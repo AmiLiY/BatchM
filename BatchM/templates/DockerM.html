@@ -1,0 +1,678 @@
+{% extends "index.html" %}
+{% load custom_tag %}
+{% block stitle %}
+    docker管理
+{% endblock %}
+{% block btitle %}
+    <span id="btitle">{{ big_title }}</span>
+{% endblock %}
+{% block page_content %}
+{#<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>#}
+
+    <div class="modal fade" id="myModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel"> 请注意</h4>
+          </div>
+          <div class="modal-body">
+            请勿狂点同一个提交按钮,<br><br>请求已提交后台处理,<br>处理完成后将会在每一行到末尾显示执行状态,请注意查看......
+          </div>
+          <div class="modal-footer">
+    {#        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
+    {#        <button type="button" class="btn btn-primary">Save changes</button>#}
+          </div>
+        </div>
+      </div>
+    </div>
+<div id="Dmanage">
+    <div class="row">
+            <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-success" value="创建一个新容器"></div>
+            <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-danger" id="remove_containers" value="销毁选中的容器" onclick="start_containers(this)"></div>
+            <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-warning" value="发送命令到指定容器"></div>
+            <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-info"   id="show_process" value="查看容器进程"  onclick="start_containers(this)"></div>
+            <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-info" id="start_containers" value="启动指定容器" onclick="start_containers(this)"></div>
+            <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-info" id="stop_containers" value="停止指定容器" onclick="start_containers(this)"></div>
+    </div><br>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+
+            <div class="col-sm-3">
+              <input class="btn" style="float: left;" value="搜索容器" type="button" onclick="search_container(this)">
+              <input  name="container_search" type="text"  style="width: 65%" class="form-control" id="container_search" placeholder="输入容器ID或者名字">
+            </div><div>
+                <label style="font-size: large; bottom: 10%" >切换主机</label>
+              <select id="switch_host" style="width: 15%" name="switch_host" onclick="switch_hosts()">
+                    <option selected="selected">所有主机</option>
+                    {% for host in hosts %}
+                        <option>{{ host.host_ip }}</option>
+                    {% endfor %}
+              </select>&nbsp;&nbsp;&nbsp;
+                <input value="全选" type="button" name="select_all" id="select_all" onclick='select_all_containers()' >
+                <input value="反选" type="button" name="reverse_all" id="reverse_all" onclick='reverse_all_containers()'>
+                <input value="取消" type="button" name="cancel_all" id="cancel_all"  onclick='cancel_all_containers()'>
+{#                <input value="刷新" class="btn btn-circle" type="button" name="cancel_all" id="cancel_all"  onclick='fresh_all_containers()'>#}
+                <button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off"  onclick='fresh_all_containers()'>
+                    刷新
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-hover">
+        <tr id="first_tr">
+            <td>选中</td>
+            <td>宿主机IP端口</td>
+            <td>容器ID</td>
+            <td>容器名字</td>
+            <td>容器镜像</td>
+            <td>运行的命令</td>
+            <td>创建时间</td>
+            <td>运行状态</td>
+            <td>数据更新时间</td>
+        </tr>
+        {% for docker in docker_containers %}
+            <tr class="show_line">
+                <td><input type="checkbox" host_port="{{ docker.Real_host_ip }}" name="{{ Container_id }}" value="{{ docker.Container_id }}"></td>
+                <td><a class="real_host_ip" href="/BatchM/DockerM/{{ docker.Real_host_ip }}">{{ docker.Real_host_ip }}&nbsp;</a></td>
+                <td><a href="/BatchM/DockerM.html/{{ docker.Container_id }}" class="container_id">{{ docker.Container_id | docker_short_id }}</a></td>
+                <td>{{ docker.Container_name }}</td>
+                <td>{{ docker.Container_image }}</td>
+                <td>{{ docker.Command }}</td>
+                <td>{{ docker.Created }}</td>
+                <td>{{ docker.Status }}</td>
+                <td>{{ docker.Record_time }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+
+<div id="Dimages">
+    <div class="row">
+        <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-info"   id="ShowImages" value="刷新镜像信息" onclick="manage_images(this)"></div>
+        <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-info"   id="delete_images" value="删除选中镜像" onclick="manage_images(this)"></div>
+        <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-info"   id="add_image" value="上传镜像" onclick="manage_images(this)"></div>
+    </div></br>
+
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+              <input value="全选" type="button" name="select_all" id="select_all" onclick='select_all_containers()' >
+              <input value="反选" type="button" name="reverse_all" id="reverse_all" onclick='reverse_all_containers()'>
+              <input value="取消" type="button" name="cancel_all" id="cancel_all"  onclick='cancel_all_containers()'>
+            <div class="col-sm-3">
+              <input class="btn" style="float: left;" value="搜索镜像" type="button" onclick="search_container(this)">
+              <input  name="container_search" type="text"  style="width: 65%" class="form-control" id="images_search"  placeholder="输入容器ID或者tag">
+            </div>
+    </form>
+    <table class="table table-hover">
+        <tr id="second_tr">
+            <td>选中</td>
+            <td>宿主机IP端口</td>
+            <td>镜像ID</td>
+            <td>仓库备注</td>
+            <td>仓库摘要</td>
+            <td>创建时间</td>
+            <td>镜像实际大小</td>
+            <td>镜像虚拟大小</td>
+            <td>标签</td>
+            <td>数据更新时间</td>
+        </tr>
+        {% for image in docker_images %}
+            <tr class="show_line">
+                <td><input type="checkbox" host_port="{{ image.Host_ip.select_related.first }}" name="{{ image.Image_id }}" value="{{ image.Image_id }}"></td>
+                <td><a class="Host_ip" href="/BatchM/DockerM.html/{{ image.Host_ip.select_related.first }}">{{ image.Host_ip.select_related.first }}&nbsp;</a></td>
+                <td><a href="/BatchM/DockerM.html/{{ image.Image_id }}" class="container_id">{{ image.Image_id | docker_short_id }}</a></td>
+                <td>{{ image.Repo_tags }}</td>
+                <td>{{ image.Repo_digests }}</td>
+                <td>{{ image.Created }}</td>
+                <td>{{ image.Image_size }}</td>
+                <td>{{ image.Virtual_size }}</td>
+                <td>{{ image.Labels }}</td>
+                <td>{{ image.update_time }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
+
+{% block encoding_js %}
+    <script>
+
+    $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
+                if ($('#btitle').text() == 'Docker 容器管理') {
+                    $('#docker_manage').toggleClass('active').siblings().removeClass('active');
+                    $('#sub-item-2').addClass('in').removeAttr('style');
+                    $('#containers_manage').css('background-color','grey');
+                    $('#Dimages').hide();
+                    $('#Dmanage').show();
+                } else if($('#btitle').text() == 'Docker镜像查看') {
+                    $('#Dmanage').attr('style','display:none');
+                    $('#docker_manage').toggleClass('active').siblings().removeClass('active');
+                    $('#sub-item-2').addClass('in').removeAttr('style');
+                    $('#images_show').css('background-color','grey');
+                    $('#Dmanage').hide();
+                    $('#Dimages').show();
+                } // end if
+                $('input :checkbox').prop('checked',false);
+
+            } // end function
+        ); // end ready
+
+    function switch_hosts() {   // 根据下拉框来切换容器显示列表
+        var select_host = $('#switch_host').val();
+        for(var host_ip in $('.real_host_ip').text().splice){
+{#            if(select_host != host_ip){#}
+                console.log()
+
+        }//end for
+    }
+
+    function select_all_containers() {    // 全选，选中所有容器
+        $('input:checkbox').prop('checked',true);
+    }
+
+    function reverse_all_containers() {   // 反选, 反选所有容器
+        $('input:checkbox').each(function () {
+            if (!$(this).prop('checked')) {
+                $(this).prop('checked', true)
+            }else{
+                 $(this).prop('checked', false)
+            }
+        })
+    }
+
+
+    function cancel_all_containers() {   // 取消选择
+        $('input:checkbox').prop('checked',false);
+    }
+
+
+    // 把手动刷新的内容加载到显示表格里
+    function show_all_containers(arg) {
+            $('#exec_status').remove();
+            $('.show_line').remove();
+
+            $.each($('#first_tr').children('td'),function () {    // 在执行玩完查看容器的进程信息后，需要把表格标题还原回去
+                // 还原到第一步就是先删除原来有到标题，在插入新到标题
+                if($(this).index() >3 ){
+                    $(this).remove()
+                }
+            });
+            var td_code = "<td>容器镜像</td><td>运行的命令</td><td>创建时间</td><td>运行状态</td><td>数据更新时间</td>";
+            $('#first_tr').append(td_code);  // 插入新到标题
+
+            var disconnect_hosts = arg.disconnect_hosts;
+            if( disconnect_hosts != undefined ){
+                for (var i in disconnect_hosts){
+                    var html_code = '<tr class="show_line"><td><input type="checkbox"></td><td>服务器 <span style="color:red">'
+                            +disconnect_hosts[i] +' </span>链接不上</td> </tr>';
+                    $('#first_tr').after(html_code);
+                }
+            };
+            for (var info in arg) {
+                var container_info = arg[info];
+                if (info != 'disconnect_hosts'){
+                    var html_code = ' <tr class="show_line"><td><input host_port="'+ container_info.Real_host_ip+'" type="checkbox" name="' + container_info.Container_id + '" value="' + container_info.Container_id + '"></td> ' +
+                            '<td><a class="real_host_ip" href="/BatchM/DockerM.html/' + container_info.Real_host_ip + '">' + container_info.Real_host_ip + '&nbsp;</a></td> ' +
+                            '<td><a href="/BatchM/DockerM.html/' + container_info.Container_id + '"class="container_id">' + container_info.Container_id.substr(0, 13) + '</a></td>' +
+                            '<td>' + container_info.Container_name + '</td>' +
+                            '<td>' + container_info.Container_image + '</td>' +
+                            '<td>' + container_info.Command + '</td> ' +
+                            '<td>' + container_info.Created + '</td> ' +
+                            '<td>' + container_info.Status + '</td> ' +
+                            '<td>' + container_info.Record_time + '</td><tr>';
+                    $('#first_tr').after(html_code);
+                } // end if
+            }
+        }
+
+
+    // 刷新当前容器信息
+    function fresh_all_containers() {
+        $('#myButton').button('loading');
+        // business logic...
+        $.ajax({
+            url: "{%  url 'all_containers_info' %}",
+            type:'post',
+            dataType:'json',
+            token:csrftoken,
+            data:{'refresh':"True",'action':'select',"type":'containers'},
+            success:function (callback) {
+                show_all_containers(callback);
+                $('#myButton').button('reset');
+            }, //end success
+            error:function (callback) {
+                alert('刷新失败  ',callback);
+{#                show_all_containers(callback);#}
+                $('#myButton').button('reset')
+                }
+            });
+        }
+
+    // 搜索容器的
+    function search_container(arg) {
+        var action_type = $(arg).val();
+        console.log(action_type);
+        if (action_type == "搜索容器"){
+            var container_name = $('#container_search').val().trim();
+            var get_url = '{% url "all_containers_info" %}'
+
+        } else if(action_type == "搜索镜像") {
+            var container_name = $('#images_search').val().trim();
+            var get_url = '{% url "all_images_info" %}'
+        }
+        console.log(get_url,container_name);
+        $.ajax({
+            url: get_url,
+            type: 'get',
+            dataType:'json',
+            token:csrftoken,
+            data:{'container_info':container_name},
+            success: function (callback) {
+                    console.log(callback);
+                    if(action_type == "搜索容器"){show_all_containers(callback)}
+                    else if(action_type == "搜索镜像"){show_new_images(callback)}
+
+            },//end success
+            error:function (callback) {
+                alert('查找失败,请确保名字或ID正确  ',callback);
+            } //end err
+        }); // end ajax
+        }
+
+
+
+
+    // 更改模态框内容的
+    function show_madel(arg) {
+        $('#myModal').modal('toggle');
+        $('.modal-body').html(arg)
+    }
+
+
+    // 显示对容器操作的执行状态
+    function show_exec_status(trid,arg) {
+        console.log('show_exec_status',arg);
+        var exec_succ = "<td><span style='background-color:lightgreen'>执行成功</td>";  // 定义文本执行成功到内容
+        var exec_err = "<td><span style='background-color:orange'>执行失败</td>";  // 定义文本执行失败到内容
+        var space_place = "<td></td>";
+        var success_list = arg.success[0];
+        console.log(success_list,'success_list');
+        $('#exec_status').remove();   // 删除这个状态栏,避免后面重复叠加l
+        $('#'+trid).append("<td id='exec_status'>执行状态</td>");  // 每行末尾添加一个显示执行状态到列
+
+        if (trid == 'first_tr'){
+             var error_list = arg.error;   // 这里到error列表返回来到事容器ID，容器ID是独一无二的，所以只需要匹配容器ID就可以了。
+            $.each($('input:checkbox'),function(){   // 获取所有选中到的input 的标签
+                //if($(this).prop('checked') == true){    // 因为点击操作容器按钮后会出现弹框，所有用户没有足够到时间来做反选，全选到动作，
+                    // 所以不许要判断全部复选框，只需要判断选中的复选框就行来。
+                    for(var i in success_list){
+                            console.log('succes',i);
+                            var ci = i.substring(0,13);
+                            var container_id = $(this).parent('td').siblings().children('.container_id').text().trim();
+                            if(ci == container_id) {
+                                $(this).parents('td').parent().append(exec_succ);   //显示这次到执行状态
+                            }
+                    } // end for
+
+                   for (var i in error_list){
+                       console.log('error',error_list[i]);
+                       var ci = error_list[i].substring(0,13);
+                       var container_id = $(this).parent('td').siblings().children('.container_id').text().trim();
+                        if(ci == container_id) {
+                            $(this).parents('td').parent().append(exec_err); //显示这次到执行状态
+                        } // end if
+                    } // end for
+                }); // end each
+        }else if(trid == 'second_tr'){    // 需要判断所有到复选框，因为不会出现弹框，所以用户有足够到时间来做全选反选动作。
+             var error_list = arg.error[0];    // 后台返回来到数据是宿主机IP和镜像ID，根据宿主机IP和镜像ID同时在html页面匹配后显示执行状态
+             $.each($('input:checkbox'),function(){
+                 var image_host_id = $(this).attr('host_port') + $(this).val();
+                 console.log('image_host_id',image_host_id);
+                 for(var err in error_list){
+                    console.log('hehe',error_list[err],err);
+                     var return_host_id = err+error_list[err];
+                     if(image_host_id==return_host_id){
+                         /**if($(this).parent().siblings().length > 9){   // 通过标签个数来判断是否添加来状态提醒
+                                    $(this).parent().siblings().last().remove();  // 删除上一次到执行状态
+                                } **/
+                         $(this).parents('td').parent().append(exec_err)
+
+                     }
+                 }// end for
+                 for (var succ in success_list){
+                     console.log('succ',succ,success_list[succ]);
+                     var return_host_id = succ+success_list[succ];
+                      if(image_host_id==return_host_id){
+                         $(this).parents('td').parent().append(exec_succ)
+                     }
+                 }
+             }); // end each
+        }}
+
+
+    // 显示容器内部进程信息的
+    function show_container_process(arg) {
+        //var success_list = arg.success;
+        //var error_list = arg.error;
+        // 首先把原来到标题给清空掉
+        $.each($('#first_tr').children('td'),function () {
+            if ($(this).index() > 3 ){
+                $(this).remove()
+            }
+        });
+        var html_code = "<td>用户</td><td>CPU占用率</td><td>内存占用率</td><td>进程状态</td><td>进程启动时间</td><td>执行的命令</td>";
+        $('#first_tr').append(html_code);
+        console.log(arg);
+        var success_list = arg.success[0];   // 提取获取进程信息成功列表
+        var error_list = arg.error;   //  获取进程信息失败到列表
+        for (var container_processes in success_list){   // 遍历进程信息成功列表
+            $.each($('.show_line'),function()  {
+                $(this).append('<td></td>');   // 在每一行添加一个td标签
+                var input_checkbox = $(this).children('td').children('input:checkbox').val();
+                console.log(input_checkbox);
+                // 进行匹配容器ID，匹配到位后提取该容器信息到值
+                if( input_checkbox == container_processes ){
+                    var processes = success_list[container_processes].Processes;   // 把进程信息的列表信息提取出来
+                    $.each($(this).children('td'),function (){    // 清空当前行的td栏的内容
+                        if($(this).index() > 3 ) {
+                            $(this).empty()
+                        }
+                    });
+                    for (var i in processes){    // 遍历每一个进程信息
+                        var each_process = processes[i];
+                        var user = each_process[0];
+                        var CPUusage = each_process[2];
+                        var MemUsage = each_process[3];
+                        var ProStatus = each_process[7];
+                        var StartTime = each_process[8];
+                        var Command = each_process[10];
+                        console.log(user,CPUusage,MemUsage,ProStatus,StartTime,Command);
+                        // 遍历每一行内容的td标签,匹配到index相等到值就把上面这些获取到进程信息塞入进去
+                        $.each($(this).children('td'),function () {
+                           if($(this).index() == 4){
+                                $(this).append(user+',<br>')
+                           }else if($(this).index() == 5){
+                                $(this).append(CPUusage+',<br>')
+                           }else if($(this).index() == 6){
+                                $(this).append(MemUsage+',<br>')
+                           }else if($(this).index() == 7){
+                                $(this).append(ProStatus+',<br>')
+                           }else if($(this).index() == 8){
+                                $(this).append(StartTime+',<br>')
+                           }else if($(this).index() == 9){
+                                $(this).append(Command+',<br>')
+                           }
+
+                        });// end each
+                    }// end for
+                } // end if
+            }) // end each
+        }
+        for(var error_container in error_list){
+            console.log('error_container',error_list[error_container]);
+            var err = error_list[error_container];
+            $.each($('.show_line'),function()  {   // 遍历tr/td标签，匹配到容器ID后打上标签
+
+                var input_checkbox = $(this).children('td').children('input:checkbox').val();
+                // 进行匹配容器ID，匹配到位后提取该容器信息到值
+                if( input_checkbox == err ) {
+                    $.each($(this).children('td'),function (){    // 清空当前行的td栏的内容
+                        if($(this).index() > 3 ) {
+                            $(this).empty()
+                        }
+                    });
+                    $.each($(this).children('td'), function () {
+                        if ($(this).index() == 4) {
+                            $(this).append('<span style="background-color: orange;">容器链接没有运行或者已经死亡' +
+                                    ',  检索不到任何进程信息</span>')
+                        }// end if
+                    });// end each
+                }
+            })
+        }
+    }
+
+
+
+    // 启动和停止指定到容器
+    function start_containers(arg) {
+        var container_id_array = {};
+        $.each($('input:checkbox'),function(){   // 获取所有选中到的input 的标签
+            if($(this).prop('checked') == true){
+                container_id_array[($(this).val())] = $(this).attr('host_port')
+            }// end if
+        });
+
+        var lenarray = len_of_dict(container_id_array);
+        if ( lenarray == 0){   // 判断是否选中来某一个容器
+            return_body= "您没有选中一个容器！！！<br>您没有选中一个容器！！！<br>您没有选中一个容器！！！重要事情说三遍";
+            show_madel(return_body);
+            return false
+        }
+
+        var action_type = $(arg).attr('id');
+        if(action_type=="stop_containers"){
+            var action = "stop";
+            var type = 'containers';
+            var button_text = $('#stop_containers').val();
+            $('#stop_containers').val('停止选定容器中.....')
+
+        }else if(action_type=="start_containers") {
+
+            var action = "start";
+            var type = 'containers'
+            var button_text = $('#start_containers').val();
+            $('#start_containers').val('启动选定容器中.....')
+
+        }else if (action_type == "remove_containers") {
+
+            var action = "delete";
+            var type = 'containers';
+            var button_text = $('#remove_containers').val();
+            $('#remove_containers').val('删除选定容器中.....')
+
+        }else if(action_type == 'show_process'){
+            var action = 'top';
+            var type = 'containers';
+            var button_text = $('#show_process').val();
+            $('#show_process').val('获取进程信息中......')
+
+        }// end if
+
+        var id_array = JSON.stringify(container_id_array);   // json化数据
+        default_body = '请勿狂点同一个提交按钮,<br><br>请求已提交后台处理,<br>处理完成后将会在每一行到末尾显示执行状态,&nbsp;请注意查看......';
+        $('.modal-body').html(default_body);
+        $('#myModal').modal('toggle');
+        $.ajax({   // 开始提交数据到后台去启动对应到容器
+            url: '{% url 'docker_containers_manage' %}',
+            type:'post',
+            dataType:'json',
+            token:csrftoken,
+            data:{'container_id_array':id_array,'action':action,'type':type},
+            success:function(callback){
+                if (action_type == 'show_process') {
+                    show_container_process(callback);
+                    $('#' + action_type).val(button_text);  // 把原来的文本内容复位回去。
+                }else {
+                    show_exec_status('first_tr', callback);   //展示执行状态
+                    $('#' + action_type).val(button_text); // 把原来的文本内容复位回去。
+                }
+            }, //end success
+            error: function(callback){
+                console.log(callback)
+            } // end error
+        }); // end ajax
+    }
+
+    // 统计字典长度
+    function len_of_dict(arg) {
+        a = 0;
+        for(var i in arg){
+            if( arg[i] == undefined ){
+                break
+            }else{
+                a=a+1
+            }
+        } // end for
+        return a
+    }
+
+    // 搜索容器信息后也是通过这个方法来展现的
+    function show_new_images(arg) {
+            $('#exec_status').remove();
+            $('.show_line').remove();
+            var disconnect_hosts = arg.disconnect_hosts;
+            if( disconnect_hosts != undefined ){
+                for (var i in disconnect_hosts){
+                    var html_code = '<tr class="show_line"><td><input type="checkbox"></td><td>服务器 <span style="color:red">'
+                            +disconnect_hosts[i] +' </span>链接不上</td> </tr>';
+                    $('#first_tr').after(html_code);
+                }
+            }
+            for (var info in arg) {
+                var image = arg[info];
+                if (info != 'disconnect_hosts'){
+
+                    var html_code = ' <tr class="show_line"><td><input host_port="'+ image.host_ip+'" type="checkbox" name="' + image.image_id + '" value="' + image.image_id + '"></td> ' +
+                            '<td><a class="host_ip" href="/BatchM/DockerM.html/' + image.host_ip + '">' + image.host_ip + '&nbsp;</a></td> ' +
+                            '<td><a href="/BatchM/DockerM.html/' + image.image_id + '"class="image_id">' + image.image_id.substr(0,13) + '</a></td>' +
+                            '<td>' + image.Repo_tags + '</td>' +
+                            '<td>' + image.Repo_digests + '</td>' +
+                            //'<td>' + transformtime(image.Created) + '</td> ' +
+                            '<td>' + image.Created + '</td> ' +
+                            '<td>' + image.Image_size + '</td> ' +
+                            '<td>' + image.Virtual_size + '</td> ' +
+                            '<td>' + image.Labels + '</td>'+
+                            '<td>' + image.update_time+'</td><tr>';
+                    $('#second_tr').after(html_code);
+                } // end if
+            }
+    }
+
+    // 转换时间的，从unix时间到人肉眼可以识别的时间
+    function transformtime(arg) {
+        var unixtime = new Date(arg*1000)
+        var unixtime = unixtime.toLocaleString();
+        return unixtime
+
+    }
+
+
+    // 刷新镜像信息后通过这个方法展现
+    function refresh_image_info(arg) {
+        var mydate = new Date();
+        success_list = arg.success;
+        error_list = arg.error;
+        $('#exec_status').remove();
+        $('.show_line').remove();
+        var succ_list = success_list[0];
+        for(var image in succ_list){    // 遍历刷新成功的列表
+            //console.log(succ_list[image]);
+            //console.log(succ_list[image].Labels);
+            var html_code = ' <tr class="show_line"><td><input host_port="'+ image+'" type="checkbox" name="' + succ_list[image].Id + '" value="' + succ_list[image].Id + '"></td> ' +
+                            '<td><a class="host_ip" href="/BatchM/DockerM.html/' + image + '">' + image + '&nbsp;</a></td> ' +
+                            '<td><a href="/BatchM/DockerM.html/' + succ_list[image].Id + '"class="image_id">' + succ_list[image].Id.substr(0,13) + '</a></td>' +
+                            '<td>' + succ_list[image].RepoTags + '</td>' +
+                            '<td>' + succ_list[image].RepoDigests + '</td>' +
+                            '<td>' + transformtime(succ_list[image].Created) + '</td> ' +
+                           // '<td>' + succ_list[image].Created + '</td> ' +
+                            '<td>' + succ_list[image].Size + '</td> ' +
+                            '<td>' + succ_list[image].VirtualSize + '</td> ' +
+                            '<td>' + succ_list[image].Labels + '</td>'+
+                            '<td>' + mydate.toLocaleString() +'</td><tr>';
+            $('#second_tr').after(html_code);
+        }
+        for(var err in error_list[0]){     // 遍历刷新失败的列表
+           var html_code = '<tr class="show_line"><td><input type="checkbox"></td><td>服务器 <span style="color:red">'
+                            +err +' </span>链接不上或者其他原因导致刷新失败，请检查次这台服务器</td> </tr>';
+            $('#second_tr').after(html_code);
+        }
+    }
+
+    //显示镜像,删除镜像，添加镜像的
+    function manage_images(arg) {
+        var action_type = $(arg).attr('id');
+        if (action_type == 'ShowImages') {
+
+            var action = 'select';
+            var type = 'images';
+            var hosts = 'all';
+            var button_text = $('#ShowImages').val();
+            $('#ShowImages').val('刷新中.....');
+
+        }else if(action_type == 'delete_images') {
+
+            var container_id_array = {};
+            $.each($('input:checkbox'),function(){   // 获取所有选中到的input 的标签
+                if($(this).prop('checked') == true){
+                    container_id_array[($(this).val())] = $(this).attr('host_port')
+                    }// end if
+            });
+
+            var lenarray = len_of_dict(container_id_array);
+            if ( lenarray == 0){   // 判断是否选中来某一个容器
+                return_body= "您没有选中一个镜像！！！<br>您没有选中一个镜像！！！<br>您没有选中一个镜像！！！重要事情说三遍";
+                show_madel(return_body);
+                return false
+            }else{
+
+                var action = 'delete';
+                var type = 'images';
+                var hosts = {};
+                $.each($('input:checkbox'),function () {
+                    if($(this).prop('checked') == true){
+                        hosts[$(this).attr('host_port')] = $(this).val()
+                    }
+                });
+                var button_text = $('#delete_images').val();
+                $('#delete_images').val('删除中.....');
+                hosts = JSON.stringify(hosts);
+                console.log('hosts',hosts)
+            }
+
+        }else if(action_type == "add_image"){
+            var action = 'push';
+            var type = 'images';
+
+            var button_text = $('#add_image').val();
+            $('#add_image').val('添加中......')
+        } // end if
+
+        $.ajax({
+            url:'{% url "docker_containers_manage" %}',
+            type:'POST',
+            dataType: 'json',
+            token:csrftoken,
+            data: {'action':action,'type':type,'hosts':hosts},
+            success:function(callback){
+                if(action=='select'){
+
+                    refresh_image_info(callback);
+                    $('#ShowImages').val(button_text);
+
+                }else if (action=='delete'){
+
+                    show_exec_status('second_tr',callback);
+                    $('#delete_images').val(button_text);
+
+                }else if(action=='push'){
+
+                    show_new_images(callback);
+                    $('#add_image').val(button_text)
+
+                }
+
+                $('#show_images').val(button_text)
+            }, // end success
+            error: function(callback) {
+                alert('操作失败，请联系平台管理员!!')
+            } // end error
+        }) // end ajax
+    }
+    </script>
+{% endblock %}

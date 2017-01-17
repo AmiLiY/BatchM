@@ -1,0 +1,324 @@
+{% extends 'index.html' %}
+{% load custom_tag %}
+{% block stitle %}
+    更新操作
+{% endblock %}
+{% block btitle %}
+    {% if btitle %}
+        <span id="btitle">{{ btitle }}</span>
+    {% endif %}
+{% endblock %}
+
+{% block page_content %}
+    <div class="apply_update">
+
+
+        <form id="updatecode"  method="post" action="/BatchM/apply_update.html/apply"   enctype="multipart/form-data" role="form">
+        {% csrf_token %}
+            <label for="exampleInputEmail1">请选择归属项目</label>
+            <div>
+                <select name="flow_project" id="flow_project" class="form-control">
+                    {% for project in  projects %}
+                        <option value="{{ project }}" >{{ project }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <label for="exampleInputEmail1">请选择归属应用</label>
+            <div>
+                <select id="flow_app" name="flow_app" class="form-control">
+                    {% for app in  apps %}
+                        <option value="{{ app }}" >{{ app }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">哪台服务器需要更新</label>
+               <!-- <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"> -->
+                <input type="text" name="target_host" class="form-control" id="target_host"  placeholder="请输入主机ip/域名">
+            </div>
+            <div class="form-group">
+                <label  >是否是代码更新</label> &nbsp;
+                <input type="checkbox"  id="whether_update_code" onclick="show_code(this)">
+            </div>
+
+            <div  class="form-group" style="display: none;">
+                <span class="second_title">代码来源</span>
+                <input  id="code_source" name="code_source" type="text" class="form-control"  placeholder="请输入代码来源地">
+            </div>
+
+            <div class="form-group" >
+                <label >是否修改配置文件</label> &nbsp;
+                 <input type="checkbox"  onclick="show_code(this)">
+            </div>
+
+            <div class="form-group" style="display: none">
+                <span  class="second_title" >配置文件路径</span>
+                <input id="configfile_path" name="configfile_path"  type="text" class="form-control"  placeholder="请输入配置文件路径">
+
+                <span class="second_title" >配置文件内容</span><br>
+                <input type=""  id="configfile_content" name="configfile_content" class="form-control"  placeholder="请输入配置文件内容"></input>
+            </div>
+
+            <div class="form-group" >
+                <label >是否修改数据库</label>
+                 <input type="checkbox"  onclick="show_code(this)">
+            </div>
+
+
+            <div class="form-group" style="display: none;">
+                 <span class="second_title">SQL语句</span> &nbsp;
+                 <input  id="sql_command" name="sql_command" type="text" class="form-control"  placeholder="请输入SQL语句">
+            </div>
+
+            <div class="form-group" >
+                <label >是否修改crondtab定时任务</label>
+                 <input type="checkbox"  onclick="show_code(this)">
+            </div>
+
+            <div class="form-group" style="display: none;">
+                 <span class="second_title">定时任务</span> &nbsp;
+                 <input id="crondtab_task" name="crondtab_task" type="text" class="form-control"  placeholder="请输入需要添加到定时任务">
+            </div>
+
+
+            <div class="form-group" >
+                <label >是否修改系统环境</label>
+                 <input type="checkbox"  onclick="show_code(this)">
+            </div>
+
+
+            <div class="form-group" style="display: none;">
+                 <span class="second_title">系统环境</span> &nbsp;
+                 <input id="change_sys_env" name="change_sys_env" type="text" class="form-control"  placeholder="请输入哪些系统环境变量需要更改">
+            </div>
+
+            <div class="form-group" >
+                 <span class="second_title">申请更新原因</span> &nbsp;
+                 <input type="text" id="Upreason" name="Upreason" class="form-control"  placeholder="申请更新原因">
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="exampleInputFile">附件上传</label>
+                 <input  type="file" name="file" id="file_upload">
+                <!-- <button  type="button" class="btn btn-default" onclick="FileUpload()">开始上传附件</button> -->
+            </div>
+            <!--
+            <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Check me out
+                </label>
+            </div>  -->
+            <button type="submit" class="btn btn-success" >提交工单</button>
+        </form>
+
+     <form id="search_order"  role="form" >
+
+        <div class="form-group" >
+                 <label >请输入需要查询的工单ID</label>
+                 <input id="input_order_id" style="width: 20%" id="change_sys_env" type="text" class="form-control"  placeholder="请输入需要查询的工单ID"><br>
+                <input class="btn btn-info" type="button" onclick="PostSearch()" value="查询">
+        </div>
+
+         <div>
+             <table class="table table-hover">
+                 <tr  id="table_header">
+                     <td>工单号</td>
+                     <td>归属项目</td>
+                     <td>归属应用</td>
+                     <td>目标服务器IP/域名</td>
+                     <td>源码来源</td>
+                     <td>配置文件路径</td>
+                     <td>更新原因</td>
+                     <td>工单已送达</td>
+                     <td>创建时间</td>
+                 </tr>
+
+                {% for line in contacts  %}
+                    <tr class="show_line">
+                        <td ><a href="/BatchM/apply_update.html/search/{{ line.OrderId }}" >{{ line.OrderId }}</a></td>
+                        <td>{{ line.flow_project }}</td>
+                        <td>{{ line.flow_app }}</td>
+                        <td>{{ line.target_host }}</td>
+                        <td>{{ line.code_source }}</td>
+                        <td>{{ line.configfile_path }}</td>
+                        <td>{{ line.update_of_reason }}</td>
+                        <td>{{ line.email_issend }}</td>
+                        <td>{{ line.update_time }}</td>
+                    </tr>
+
+                 {% endfor %}
+            </table>
+            <nav>
+              <ul class="pagination">
+                {% if contacts.has_previous %}    <!-- 判断是否有首页  -->
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                {% endif %}
+
+                  {% for page_num in contacts.paginator.page_range %}
+                      {% guess_page contacts.number  page_num %}    <!--contacts.numer表示时当前页，page_num表示for循环到元素-->
+                  {% endfor %}
+
+              {% if contacts.has_next %}           <!-- 判断是否有下一页 -->
+                 <li class="disabled"><a href="#">&raquo;</a></li>
+              {% endif %}
+              </ul>
+            </nav>
+
+         </div>
+    </form>
+    </div>
+{% endblock %}
+
+
+
+{% block encoding_js %}
+    <script>
+        // 这个方法来用去高亮当前页面到右边选择到标签
+        $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
+                if ($('#btitle').text() == '搜索操作记录') {
+                    $('#update_index').toggleClass('active').siblings().removeClass('active');
+                    $('#sub-item-1').addClass('in').removeAttr('style');
+                    $('#search_record').css('background-color','grey');
+                    $('#updatecode').hide();
+                    $('#search_order').show();
+
+                } else if ($('#btitle').text() == '申请更新') {
+                    $('#update_index').toggleClass('active').siblings().removeClass('active');
+                    $('#sub-item-1').addClass('in').removeAttr('style');
+                    $('#apply_update').css('background-color','grey');
+                    $('#updatecode').show();
+                    $('#search_order').hide();
+
+                } // end if
+                $('input:checkbox').attr('checked',false);
+                $('select option').first().attr('selected',true)
+            } // end function
+        ); // end ready
+
+        // 当用户点击单选框到时候，展开里面到内容
+     function show_code(arg) {   // 针对代码显示输入框
+         var whether_show = $(arg).parent().next('div').css('display');
+         console.log(whether_show);
+         if ( whether_show == "none") {
+             $(arg).parent().next('div').show().children('input').val('');
+         }else{
+             $(arg).parent().next('div').hide();
+         }// end if
+     }
+
+
+        // 提交工单信息
+    function PostData() { // 提交数据到服务器端
+        FileUpload();    // 提交附件到服务器端
+        var choose_project = $('#flow_project option').val();
+        var chosose_app = $('#flow_app option').val();
+        var target_host = $('#target_host').val();
+        var code_source = $('#code_source').val();
+        var configfile_path = $('#configfile_path').val();
+        var configfile_content = $('#configfile_content').val();
+        var sql_command = $('#sql_command').val();
+        var crondtab_task = $('#crondtab_task').val();
+        var change_sys_env = $('#change_sys_env').val();
+        var Upreason = $('#Upreason').val();
+        var usermail = "{{ request.user.email }}";
+        console.log('order',order_id){#        var whether_content = {};#}
+{#        $.each($('input:text'),function (index,arg) {   // 把每一个input text到标签内容都提取出来#}
+{#            console.log(index,arg.id,$(this).val());#}
+{#            if (arg.id.length != 0  ) {      // 判断是否有ID到input表情#}
+{#                if ( $(this).val().length != 0 ) {      // 判断是否有输入内容#}
+{#                    whether_content.push(arg.id, $(this).val()) ;      // 组成一个数组#}
+{#                } // end second if#}
+{#            }; // end first if#}
+{#        }); // end each#}
+
+
+        var UpData = {'choose_project':choose_project,'chosose_app':chosose_app,
+            'target_host':target_host,"code_source":code_source,'configfile_path':configfile_path,
+            'configfile_content':configfile_content,'sql_command':sql_command,'crondtab_task':crondtab_task,
+            'Upreason':Upreason,'change_sys_env':change_sys_env,'usermail':usermail,'order_id':order_id};
+
+{##}
+{#        $.ajax({#}
+{#            url:'{% url "post_apply_data" %}',#}
+{#            type:'POST',#}
+{#            dataType:'json',#}
+{#            token: csrftoken,#}
+{#            data: UpData,#}
+{#            success:function(callback){#}
+{#                console.log(callback.responseText);#}
+{#                window.location.href="callback.responseText"#}
+{#            }, //end success#}
+{#            error: function (callback) {#}
+{##}
+{#            } // end error#}
+{#        }); // end ajax#}
+    }
+
+        // 展示搜索结果到方法
+        function  show_content(arg) {
+           $('.show_line').remove();
+            html_code = "<tr class='show_line'><td><a href='/BatchM/apply_update.html/search/"+arg.OrderId+"'>"+arg.OrderId+"</td><td>"+arg.flow_project+"</td> <td>"+arg.flow_app+"</td>"  +
+                    "<td>"+arg.target_host+"</td> <td>"+arg.code_source+"</td> <td>"+arg.configfile_path+"</td>" +
+                "<td>"+arg.update_of_reason+"</td> <td>"+ arg.email_issend+"</td>" +
+                    "<td>"+ arg.update_time +"</td></tr>";
+
+            $('#table_header').after(html_code);
+        }
+
+        // 提交搜索请求到方法
+        function PostSearch() {
+            var input_order_id = $('#input_order_id').val().trim();
+            if ( input_order_id.length == 0 ) {
+                window.location.reload();
+                return false
+            }else {
+                $.ajax({
+                    url:"{% url "post_order_id" %}",
+                    type:'POST',
+                    dataType:'json',
+                    token:csrftoken,
+                    data: {"order_id":input_order_id},
+                    success:function (callback) {
+                          show_content(callback);
+                    }, //end success
+                    error:function (callback) {
+{#                        show_content(callback);#}
+                        alert('没有找到相关记录，请确认工单号正确');
+                        window.location.reload();
+                    } // end error
+                }); // end ajax
+        }}
+
+
+
+        //   上传附件到方法
+        function FileUpload() {
+            var form_data = new FormData();
+            var file_info = $('#file_upload')[0].files[0];
+            form_data.append('file',file_info);
+            //if(file_info==undefined)暂且不许要判断是否有附件
+                //alert('你没有选择任何文件');
+                //return false
+            //}
+
+            // 提交ajax的请求
+            $.ajax({
+                url:"{% url 'post_apply_data' %}",
+                type:'POST',
+                data: form_data,
+                processData: false,  // tell jquery not to process the data
+                contentType: false, // tell jquery not to set contentType
+                success: function(callback) {
+
+                    console.log(order_id)
+                }
+            }); // end ajax
+        }
+
+
+    </script>
+{% endblock %}

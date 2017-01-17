@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/BatchM.iml" filepath="$PROJECT_DIR$/.idea/BatchM.iml" />
+      <module fileurl="file://$USER_HOME$/Day23_stark/.idea/Day23_stark.iml" filepath="$USER_HOME$/Day23_stark/.idea/Day23_stark.iml" />
+    </modules>
+  </component>
+</project>
