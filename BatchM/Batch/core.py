@@ -97,7 +97,7 @@ def DockersInfo(action='select',id=None):
 
     docker_rhost = models.DockerOfHost.objects.all()
     info_result = {}
-    docker_manage = docker_control.docker()
+    docker_manage = docker_control.docker_operation()
     pool = Pool(settings.pools)
     object_type = 'containers'
     for info in docker_rhost:
@@ -122,7 +122,7 @@ def DockerManager(request):
     action = request.POST.get('action')   # 执行什么样到操作，是删除，还是搜索，还是添加
     object_type=request.POST.get('type')    # 操作对象，是容器还是镜像
     pool = Pool(settings.pools)             # 设定进程池
-    docker_manage = docker_control.docker()
+    docker_manage = docker_control.docker_operation()
     containers_id = ''  # 定义初始值，避免下面到代码抛出异常
     hosts_list = ''
     if object_type == "containers":   # 操作对象为容器

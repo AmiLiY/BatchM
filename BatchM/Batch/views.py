@@ -199,7 +199,9 @@ def docker_containers_show(request):
         else:
             all_data = models.DockerContainers.objects.all()
             hosts = models.DockerOfHost.objects.all()
-            return render(request,'DockerM.html',{"docker_containers":all_data,"hosts":hosts,'big_title':"Docker 容器管理"},)
+            images = models.DockerOfImages.objects.all()
+            return render(request,'DockerM.html',{"docker_containers":all_data,"hosts":hosts,
+                                                  'big_title':"Docker 容器管理",'images':images},)
 
     elif request.method == "POST":           # 处理ajax异步刷新容器信息
         models.DockerContainers.objects.all().delete()
@@ -332,6 +334,7 @@ def docker_manager(request):
             return HttpResponse(json.dumps(ret_list))
 
     elif request.method == "GET":
+
             all_images = models.DockerOfImages.objects.all()
             return render(request,'DockerM.html',{'docker_images':all_images})
 
@@ -351,6 +354,7 @@ def docker_container_detail_show(request,container_id):
         container_detail = models.DockerContainers.objects.get(Container_id=container_id)
         container_form = formself.Docker_Containers(instance=container_detail)
         return render(request,'Docker_detail.html',{'selfforms':container_form,})
+
 
 def docker_host_detail_show(request,hostip):
     '''

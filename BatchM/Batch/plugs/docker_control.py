@@ -3,6 +3,8 @@ import urllib.request
 from urllib import error
 import json
 import http.client
+import docker
+
 
 class switch(object):
      def __init__(self, value):
@@ -24,9 +26,9 @@ class switch(object):
          else:
            return False
 
-class docker():
+class docker_operation():
     '''
-    操作docker容器的
+    操作docker容器的class，自己写的方法来操作，通过RESTFUL url 来操作。
     '''
     def __init__(self):
         pass
@@ -144,3 +146,13 @@ class docker():
 
 
 
+class docker_operation2(object):
+    '''
+    利用docker模块来创建容器
+    '''
+    # def __init__(self):
+    #     c = docker.DockerClient(base_url='http://172.16.160.192:4343',version='auto')
+    #     hehe = c.containers.create(image='httpd',tty=True,command='/bin/bash',mem_limit='128m',name='testbyLeo')
+    #     print(hehe)
+
+#docker_operation2()
