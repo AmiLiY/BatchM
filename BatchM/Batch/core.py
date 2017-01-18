@@ -207,7 +207,34 @@ def DockerManager(request):
 
     return success_dict,err_dict
 
+def CreateContainer(request):
+    '''
+    创建容器的方法
+    :param request:   用户到请求头
+    :return:
+    '''
 
+    version = settings.DockerVersion
+    request_dict = json.loads(request)
+    request_dict2 = {}
+    print('request',request)
+    host_port,image = request_dict.get('host_image').split()  # 获取宿主机IP与镜像名字
+    action = request_dict.get('action')
+    image_name = image.split("'")[1].split(':')[0]
+    for k,v in request_dict.items():
+        if v :   # 对提交上来的数据进行清洗，value为空的就去除掉。
+            request_dict2[k] = v    # 添加到新到新的字典中
+    del request_dict2['host_image'], request_dict2['action']
+    request_dict2['image'] = image_name
+    print('request_dict2',request_dict2)
+    if action == "save_model":
+        pass
+    elif action == "create_container":
+        dc = docker_control.docker_operation2(host_port,version)
+        result = dc.create(**request_dict2)
+        print(result,'\n',dir(result))
+
+    return True
 
 
 

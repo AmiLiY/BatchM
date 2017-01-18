@@ -6,9 +6,6 @@ from django.contrib.auth.models import User
 # 最新创建到数据库表都在最前面
 
 
-
-
-
 class DockerOfHost(models.Model):
     '''
     用来记录docker宿主机信息到
@@ -22,6 +19,17 @@ class DockerOfHost(models.Model):
     class Meta:
         verbose_name = "Docker宿主机IP"
         verbose_name_plural = "Docker宿主机IP"
+
+
+class ModelOfContainer(models.Model):
+    '''
+    存容器配置模板信息的
+    '''
+    Host_ip = models.ManyToManyField(DockerOfHost,verbose_name='Docker宿主机IP')
+    Container_name = models.CharField(u'容器名字', max_length=300, null=True, blank=True)
+    Container_image = models.CharField(u'容器镜像', max_length=300)
+    Command = models.CharField(u'运行的命令', max_length=300, null=True, blank=True)
+
 
 
 class DockerOfImages(models.Model):

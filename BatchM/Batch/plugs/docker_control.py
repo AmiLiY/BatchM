@@ -150,9 +150,28 @@ class docker_operation2(object):
     '''
     利用docker模块来创建容器
     '''
-    # def __init__(self):
-    #     c = docker.DockerClient(base_url='http://172.16.160.192:4343',version='auto')
-    #     hehe = c.containers.create(image='httpd',tty=True,command='/bin/bash',mem_limit='128m',name='testbyLeo')
-    #     print(hehe)
+    def __init__(self,host_port,version):
+        #def __init__(self,**kwargs):
+        # c = docker.DockerClient(base_url='http://172.16.160.192:4343',version='auto')
+        # hehe = c.containers.create(**kwargs)
+        # print(hehe)
+        self.host_port = host_port
+        self.version = version
+        self.c = docker.DockerClient(base_url='http://%s'%(self.host_port),version=self.version)
 
-#docker_operation2()
+    def create(self,**kwargs):
+        '''
+        创建容器的方法
+        :param kwargs:
+        :return:
+        '''
+        print(kwargs)
+        try:
+            result = self.c.containers.create(**kwargs,tty=True)
+        except (docker.errors.ImageNotFound,docker.errors.APIError) as e:
+            return self.host_port,e
+        return result
+
+#a={'command': '/bin/bash', 'name': 'hehe', 'image': 'httpd'}
+#docker_operation2(**a)
+

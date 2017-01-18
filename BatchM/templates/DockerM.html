@@ -7,34 +7,9 @@
     <span id="btitle">{{ big_title }}</span>
 {% endblock %}
 {% block page_content %}
-    <!-- 下面几行代码是提示信息的，在创建启动容器信息或者停止容器信息到时候 -->
-    <div class="modal fade" id="myModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel"> 请注意</h4>
-          </div>
-          <div class="modal-body">
-            请勿狂点同一个提交按钮,<br><br>请求已提交后台处理,<br>处理完成后将会在每一行到末尾显示执行状态,请注意查看......
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
-<!-- 下面这这些代码是在点击创建容器信息以后展现出来的 -->
-<div class="modal fade" id="create_container" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel2">请填写容器信息</h4>
-      </div>
-      <div class="modal-body">
-        <form id='create_container_form' class="form-horizontal" role="form" action="{% url 'docker_containers_manage' %}" method="get">
+<div style="display:none" id="create_container_div">
+    <form id='create_container_form' class="form-horizontal" role="form" action="{% url 'docker_containers_manage' %}" method="get">
             <div class="form-group">
                 <label for="host_image" class="col-sm-3 control-label">宿主机与镜像</label>
                     <div class="col-xs-7">
@@ -60,83 +35,100 @@
             <div class="form-group">
                 <label for="" class="col-sm-3 control-label">其他高级配置</label>
                     <div class="col-xs-7">
-                       <input type="checkbox"  onclick="show_config_of_create()">
+                       <input id='showMoreConfig' type="checkbox" />
                     </div>
             </div>
-            <div id="complex_config" style="display:none">
+            <div id="complex_config" style="display: none;">
                 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;font-size: larger">以下输入框为空，那么就按docker默认配置创建</span>
                 <div class="form-group">
-                    <label for="CpuPeriod" class="col-sm-3 control-label">Cpu Period</label>
+                    <label for="cpu_group " class="col-sm-3 control-label">cpu_group</label>
                         <div class="col-xs-7">
-                           <input type="text" name="CpuPeriod" class="form-control" id="CpuPeriod" placeholder="CPU时间分片到长度(毫秒)">
+                           <input type="text" name="cpu_group " class="form-control" id="cpu_group" placeholder="CPU时间分片到长度(毫秒)">
                         </div>
                 </div>
                 <div class="form-group">
-                    <label for="CpuQuota" class="col-sm-3 control-label">Cpu Quota</label>
+                    <label for="cpu_period " class="col-sm-3 control-label">cpu_period</label>
                         <div class="col-xs-7">
-                           <input type="text" name='CpuQuota' class="form-control" id="CpuQuota" placeholder="容器可以获取到CPU时间分片的量(毫秒)">
+                           <input type="text" name='cpu_period ' class="form-control" id="cpu_period" placeholder="容器可以获取到CPU时间分片的量(毫秒)">
                         </div>
                 </div>
                 <div class="form-group">
-                    <label for="CpuShares" class="col-sm-3 control-label">Cpu Shares </label>
+                    <label for="cpu_shares " class="col-sm-3 control-label">cpu_shares</label>
                         <div class="col-xs-7">
-                           <input type="text" name="CpuShares" class="form-control" id="CpuShares" placeholder="对比其他容器占用CPU的相对权重">
+                           <input type="text" name="cpu_shares " class="form-control" id="cpu_shares " placeholder="对比其他容器占用CPU的相对权重">
                         </div>
                 </div>
                 <div class="form-group">
-                    <label for="OomKillDisable" class="col-sm-3 control-label">OomKillDisable</label>
+                    <label for="oom_kill_disable " class="col-sm-3 control-label">oom_kill_disable </label>
                         <div class="col-xs-7">
-                           <input type="text" name="OomKillDisable" class="form-control" id="OomKillDisable" placeholder="是否禁用OOM kill功能">
+                           <input type="text" name="oom_kill_disable " class="form-control" id="oom_kill_disable " placeholder="是否禁用OOM kill功能">
                         </div>
                 </div>
                 <div class="form-group">
-                    <label for="Memory" class="col-sm-3 control-label">Memory </label>
+                    <label for="mem_limit " class="col-sm-3 control-label">mem_limit </label>
                         <div class="col-xs-7">
-                           <input type="text" name='Memory' class="form-control" id="Memory" placeholder="Memory limit in bytes">
+                           <input type="text" name='mem_limit ' class="form-control" id="mem_limit " placeholder="Memory limit in bytes">
                         </div>
                 </div>
                 <div class="form-group">
-                    <label for="MemorySwap"  class="col-sm-3 control-label">MemorySwap  </label>
+                    <label for="memswap_limit "  class="col-sm-3 control-label">memswap_limit</label>
                         <div class="col-xs-7">
-                           <input type="text" name='MemorySwap' class="form-control" id="MemorySwap" placeholder="Total memory limit(memory+swap)">
+                           <input type="text" name='memswap_limit ' class="form-control" id="memswap_limit" placeholder="Total memory limit(memory+swap)">
                         </div>
                 </div>
                 <div class="form-group">
-                    <label for="DNS" class="col-sm-3 control-label">DNS 设置</label>
+                    <label for="dns" class="col-sm-3 control-label">DNS 设置</label>
                         <div class="col-xs-7">
-                           <input type="text" name='DNS' class="form-control" id="DNS" placeholder="设置容器DNS">
+                           <input type="text" name='dns' class="form-control" id="dns" placeholder="设置容器DNS">
                         </div>
                 </div>
                 <div class="form-group">
-                    <label for="NetworkMode " class="col-sm-3 control-label">NetworkMode</label>
+                    <label for="network_mode  " class="col-sm-3 control-label">network_mode </label>
                         <div class="col-xs-7">
-                            <select id="NetworkMode" namne="NetworkMode">
+                            <select id="network_mode " namne="network_mode ">
+                                <option selected="selected"></option>
                                 <option>bridge</option>
                                 <option>host</option>
                                 <option>none</option>
                             </select>
                         </div>
                 </div>
+                <div class="form-group">
+                    <label for="hostname" class="col-sm-3 control-label">hostname</label>
+                    <div class="col-xs-5">
+                       <input type="text" name='hostname' class="form-control" id="hostname" placeholder="设置容器hostname">
+                    </div>
+                </div>
             </div>
         </form>
+</div>
+
+<div id="create_container_button" style="display: none">
+    <button type="button" class="btn btn-info" id='save_model' onclick="create_container(this)">保存为模板</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+    <button type="button" class="btn btn-primary" id='create_container' onclick="create_container(this)">创建容器</button>
+</div>
+
+
+<!-- 下面这这些代码是在点击创建容器信息以后展现出来的 -->
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel2">请填写容器信息</h4>
+      </div>
+      <div class="modal-body">
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id='save_model' onclick="create_container(this)">保存为模板</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" id='create_container' onclick="create_container(this)">创建容器</button>
       </div>
     </div>
   </div>
 </div>
 
-<div id="create_container_div" style="display:none">
-
-</div>
 <div id="Dmanage">
     <div class="row">
-            <button type="button" class="col-xs-2 col-sm-2  btn btn-success" data-toggle="modal" data-target="#create_container">
-              创建一个新容器
-            </button>
+            <div type="button" class="col-xs-2 col-sm-2"><input type="button" class="btn btn-success"  value="创建一个新容器" onclick="show_create_table()" ></div>
             <!-- <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-success" id='create_container' value="创建一个新容器"></div> -->
             <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-danger" id="remove_containers" value="销毁选中的容器" onclick="start_containers(this)"></div>
             <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-warning" value="发送命令到指定容器"></div>
@@ -161,7 +153,6 @@
                 <input value="全选" type="button" name="select_all" id="select_all" onclick='select_all_containers()' >
                 <input value="反选" type="button" name="reverse_all" id="reverse_all" onclick='reverse_all_containers()'>
                 <input value="取消" type="button" name="cancel_all" id="cancel_all"  onclick='cancel_all_containers()'>
-{#                <input value="刷新" class="btn btn-circle" type="button" name="cancel_all" id="cancel_all"  onclick='fresh_all_containers()'>#}
                 <button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off"  onclick='fresh_all_containers()'>
                     刷新
                 </button>
@@ -398,14 +389,22 @@
 
     // 更改模态框内容的
     function show_madel(arg) {
-        $('#myModal').modal('toggle');
-        $('.modal-body').html(arg)
+            $('#myModal').modal('toggle');
+            $('.modal-body').html(arg)
     }
 
+    // 载创建容器信息的时候，显示模态框的内容
+    function show_create_table() {
+        var create_table = $('#create_container_div').html();
+        var create_button = $('#create_container_button').html();
+        $('#myModal').modal('toggle');
+        $('.modal-body').html(create_table);
+        $('.modal-footer').html(create_button);
+    }
 
     // 显示对容器操作的执行状态
     function show_exec_status(trid,arg) {
-        console.log('show_exec_status',arg);
+        // console.log('show_exec_status',arg);
         var exec_succ = "<td><span style='background-color:lightgreen'>执行成功</td>";  // 定义文本执行成功到内容
         var exec_err = "<td><span style='background-color:orange'>执行失败</td>";  // 定义文本执行失败到内容
         var space_place = "<td></td>";
@@ -420,7 +419,7 @@
                 //if($(this).prop('checked') == true){    // 因为点击操作容器按钮后会出现弹框，所有用户没有足够到时间来做反选，全选到动作，
                     // 所以不许要判断全部复选框，只需要判断选中的复选框就行来。
                     for(var i in success_list){
-                            console.log('succes',i);
+                           // console.log('succes',i);
                             var ci = i.substring(0,13);
                             var container_id = $(this).parent('td').siblings().children('.container_id').text().trim();
                             if(ci == container_id) {
@@ -429,7 +428,7 @@
                     } // end for
 
                    for (var i in error_list){
-                       console.log('error',error_list[i]);
+                      // console.log('error',error_list[i]);
                        var ci = error_list[i].substring(0,13);
                        var container_id = $(this).parent('td').siblings().children('.container_id').text().trim();
                         if(ci == container_id) {
@@ -483,7 +482,6 @@
             $.each($('.show_line'),function()  {
                 $(this).append('<td></td>');   // 在每一行添加一个td标签
                 var input_checkbox = $(this).children('td').children('input:checkbox').val();
-                console.log(input_checkbox);
                 // 进行匹配容器ID，匹配到位后提取该容器信息到值
                 if( input_checkbox == container_processes ){
                     var processes = success_list[container_processes].Processes;   // 把进程信息的列表信息提取出来
@@ -500,7 +498,6 @@
                         var ProStatus = each_process[7];
                         var StartTime = each_process[8];
                         var Command = each_process[10];
-                        console.log(user,CPUusage,MemUsage,ProStatus,StartTime,Command);
                         // 遍历每一行内容的td标签,匹配到index相等到值就把上面这些获取到进程信息塞入进去
                         $.each($(this).children('td'),function () {
                            if($(this).index() == 4){
@@ -523,7 +520,6 @@
             }) // end each
         }
         for(var error_container in error_list){
-            console.log('error_container',error_list[error_container]);
             var err = error_list[error_container];
             $.each($('.show_line'),function()  {   // 遍历tr/td标签，匹配到容器ID后打上标签
 
@@ -551,15 +547,18 @@
     // 启动和停止指定到容器
     function start_containers(arg) {
         var container_id_array = {};
-        $.each($('input:checkbox'),function(){   // 获取所有选中到的input 的标签
+        $.each($('.table input:checkbox'),function(){   // 获取所有选中到的input 的标签
             if($(this).prop('checked') == true){
                 container_id_array[($(this).val())] = $(this).attr('host_port')
             }// end if
         });
 
+        var close_button = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+        $('.modal-footer').html(close_button);
         var lenarray = len_of_dict(container_id_array);
+        console.log('lenarray',lenarray,container_id_array);
         if ( lenarray == 0){   // 判断是否选中来某一个容器
-            return_body= "您没有选中一个容器！！！<br>您没有选中一个容器！！！<br>您没有选中一个容器！！！重要事情说三遍";
+            var return_body= "您没有选中一个容器！！！<br>您没有选中一个容器！！！<br>您没有选中一个容器！！！重要事情说三遍";
             show_madel(return_body);
             return false
         }
@@ -590,13 +589,12 @@
             var type = 'containers';
             var button_text = $('#show_process').val();
             $('#show_process').val('获取进程信息中......')
-
         }// end if
 
         var id_array = JSON.stringify(container_id_array);   // json化数据
-        default_body = '请勿狂点同一个提交按钮,<br><br>请求已提交后台处理,<br>处理完成后将会在每一行到末尾显示执行状态,&nbsp;请注意查看......';
-        $('.modal-body').html(default_body);
-        $('#myModal').modal('toggle');
+        var default_body = '请勿狂点同一个提交按钮,<br><br>请求已提交后台处理,<br>处理完成后将会在每一行到末尾显示执行状态,&nbsp;请注意查看......';
+        show_madel(default_body);
+
         $.ajax({   // 开始提交数据到后台去启动对应到容器
             url: '{% url 'docker_containers_manage' %}',
             type:'post',
@@ -606,10 +604,10 @@
             success:function(callback){
                 if (action_type == 'show_process') {
                     show_container_process(callback);
-                    $('#' + action_type).val(button_text);  // 把原来的文本内容复位回去。
+                    $('#' + action_type).val(button_text);  // 把按钮原来的文本内容复位回去。
                 }else {
                     show_exec_status('first_tr', callback);   //展示执行状态
-                    $('#' + action_type).val(button_text); // 把原来的文本内容复位回去。
+                    $('#' + action_type).val(button_text); // 把按钮原来的文本内容复位回去。
                 }
             }, //end success
             error: function(callback){
@@ -617,6 +615,7 @@
             } // end error
         }); // end ajax
     }
+
 
     // 统计字典长度
     function len_of_dict(arg) {
@@ -665,7 +664,7 @@
 
     // 转换时间的，从unix时间到人肉眼可以识别的时间
     function transformtime(arg) {
-        var unixtime = new Date(arg*1000)
+        var unixtime = new Date(arg*1000);
         var unixtime = unixtime.toLocaleString();
         return unixtime
 
@@ -760,17 +759,12 @@
             data: {'action':action,'type':type,'hosts':hosts},
             success:function(callback){
                 if(action=='select'){
-
                     refresh_image_info(callback);
                     $('#ShowImages').val(button_text);
-
                 }else if (action=='delete'){
-
                     show_exec_status('second_tr',callback);
                     $('#delete_images').val(button_text);
-
                 }else if(action=='push'){
-
                     show_new_images(callback);
                     $('#add_image').val(button_text)
                 }
@@ -779,27 +773,61 @@
             error: function(callback) {
                 alert('操作失败，请联系平台管理员!!')
             } // end error
-        }) // end ajax
+        }); // end ajax
     }
 
-    // 显示创建容器到更高级创建信息
-    function show_config_of_create() {
-        if($('#complex_config').css('display') == 'none') {
-            $('#complex_config').show()
-        }else{
-            $('#complex_config').hide()
+    // 显示创建容器的更高级创建信息
+    $('#myModal').delegate('#showMoreConfig', 'click', function () {
+        if($(this).prop('checked')) {
+            $('#myModal').find('#complex_config').show();
+        } else {
+            $('#myModal').find('#complex_config').hide();
         }
-    }
+    });
+
 
     // 创建容器的功能
-    function create_container() {
-        var container_name = $('#name').val();
-        if(!container_name.length > 0 ){
+    function create_container(arg) {
+        var container_name = $('#name').val().trim();
+        var create_info = {};
+        if(container_name.length > 0 ){
+            $.each($('#create_container_form select'),function () {   // 遍历select标签，获取用户所选到的值
+                create_info[$(this).attr('id')] =  $(this).val()
+            });
 
+           $.each($('#create_container_form input:text'),function () {   // 遍历input是text类型的标签，获取用户所选到的值
+                    create_info[$(this).attr('id')] = $(this).val();
+           });
+            if($(arg).attr('id') == 'save_model'){
+                create_info['action'] = 'save_model'
+            }else if($(arg).attr('id') == 'create_container' ){
+                create_info['action'] = 'create_container'
+            }
+
+            console.log('create_info',create_info);
+            var create_info_json = JSON.stringify(create_info);
+            $.ajax({
+                url:'{% url 'docker_containers_manage' %}',
+                type:'GET',
+                datatype:'json',
+                token:csrftoken,
+                data:{'create_info':create_info_json},
+                success: function(callback) {
+                    alert('创建成功,容器ID：',callback);
+                    console.log(callback);
+                    window.location.reload();
+                },
+                error:function(callback){
+                    alert('创建失败,报错信息如下:',callback);
+                    console.log(callback)
+                }
+            })
         }else{
-            alert('输入信息不完整，容器名字必填')
+            alert('输入信息不完整，容器名字必填');
+            return false
         }
-
     }
+
+
     </script>
 {% endblock %}

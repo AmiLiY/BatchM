@@ -334,7 +334,12 @@ def docker_manager(request):
             return HttpResponse(json.dumps(ret_list))
 
     elif request.method == "GET":
-
+        print('request.GET', request.GET)
+        if request.GET.get('create_info'):
+            result = core.CreateContainer(request.GET.get('create_info'))
+            print('result',result)
+            return HttpResponse('create ok')
+        else:
             all_images = models.DockerOfImages.objects.all()
             return render(request,'DockerM.html',{'docker_images':all_images})
 

@@ -134,16 +134,18 @@ STATICFILES_DIRS = (
 #定义发送邮件到服务器
 sender_host='localhost'
 
-# 定义邮件收件人
+# 定义工单邮件收件人
 recipients='team_cloud_service@syberos.com'
 #recipients='liaojiafa@syberos.com'
 
-# 工单邮件中URL到host
+# 工单邮件中URL的host，通过apache或者nginx来下载附件。
 #HOST='192.168.93.133'
 HOST='172.16.22.104'
 # 工单邮件中附件下载URL端口
 APACHE_PORT=8080
-# 工单附件上传目录
+# 工单附件上传的目录
 accessory_dir = "upload/order_accessory"
 # 管理docker容器时到并发进程数
 pools=20
+# docker api 的版本号，设置auto的话，能够自适应版本，版本选择可参考：https://docs.docker.com/engine/reference/api/docker_remote_api/
+DockerVersion='auto'
