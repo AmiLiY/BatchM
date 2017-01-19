@@ -96,7 +96,6 @@ def apply_update_search(request):
                          'configfile_path':searuch_result.configfile_path,
                          'update_of_reason':searuch_result.update_of_reason,\
                          'email_issend':searuch_result.email_issend,'update_time':update_time.strftime("%Y-%m-%d %H:%M:%S")}
-        print(response_body)
         return HttpResponse(json.dumps(response_body))
 
 
@@ -193,7 +192,6 @@ def docker_containers_show(request):
                     "Command":info.Command,"Created":info.Created,"Status":info.Status,
                     "Record_time":update_time.strftime("%Y-%m-%d %H:%M:%S"),
                 }
-            print(response_body)
             return HttpResponse(json.dumps(response_body))
 
         else:
@@ -263,10 +261,8 @@ def docker_containers_show(request):
                 }
         elif request.POST.get('type') == "images":
             pass   # 把获取回来到结果做成字典 返回给前端页。
-        print('disconnect_hosts',disconnect_hosts)
         if  len(disconnect_hosts) > 0:
             response_body['disconnect_hosts'] = disconnect_hosts
-        print('response_body',response_body)
         return HttpResponse(json.dumps(response_body))
 
 
@@ -295,7 +291,6 @@ def docker_images_show(request):
                     'Virtual_size':image.Virtual_size,'Labels':image.Labels,
                     'update_time':update_time.strftime("%Y-%m-%d %H:%M:%S")
                 }
-            print('response_body',response_body)
             return HttpResponse(json.dumps(response_body))
         else:
             docker_images = models.DockerOfImages.objects.all()
@@ -337,8 +332,8 @@ def docker_manager(request):
         print('request.GET', request.GET)
         if request.GET.get('create_info'):
             result = core.CreateContainer(request.GET.get('create_info'))
-            print('result',result)
-            return HttpResponse('create ok')
+            print('dir container instance',dir(result),result)
+            return HttpResponse(json.dumps(result.id))
         else:
             all_images = models.DockerOfImages.objects.all()
             return render(request,'DockerM.html',{'docker_images':all_images})

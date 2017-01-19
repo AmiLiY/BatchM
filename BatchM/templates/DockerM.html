@@ -32,6 +32,16 @@
                     <input type="text" name='command' class="form-control" id="command" placeholder="命令">
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="detach" class="col-sm-3 control-label">创建后是否启动</label>
+                <div class="col-xs-7">
+                    <span>启动</span>
+                    <input type="radio" name='detach'  id="detach" value="True" >&nbsp;&nbsp;&nbsp;
+                    <span>不启动</span>
+                    <input type="radio" name='detach' id="detach" value="False" checked="checked">
+                </div>
+            </div>
             <div class="form-group">
                 <label for="" class="col-sm-3 control-label">其他高级配置</label>
                     <div class="col-xs-7">
@@ -43,43 +53,31 @@
                 <div class="form-group">
                     <label for="cpu_group " class="col-sm-3 control-label">cpu_group</label>
                         <div class="col-xs-7">
-                           <input type="text" name="cpu_group " class="form-control" id="cpu_group" placeholder="CPU时间分片到长度(毫秒)">
+                           <input type="text" name="cpu_group " class="form-control" id="cpu_group" placeholder="CPU时间分片的长度(毫秒),如50000">
                         </div>
                 </div>
                 <div class="form-group">
                     <label for="cpu_period " class="col-sm-3 control-label">cpu_period</label>
                         <div class="col-xs-7">
-                           <input type="text" name='cpu_period ' class="form-control" id="cpu_period" placeholder="容器可以获取到CPU时间分片的量(毫秒)">
+                           <input type="text" name='cpu_period ' class="form-control" id="cpu_period" placeholder="容器可获得CPU时间分片的量(毫秒),如100000">
                         </div>
                 </div>
                 <div class="form-group">
                     <label for="cpu_shares " class="col-sm-3 control-label">cpu_shares</label>
                         <div class="col-xs-7">
-                           <input type="text" name="cpu_shares " class="form-control" id="cpu_shares " placeholder="对比其他容器占用CPU的相对权重">
-                        </div>
-                </div>
-                <div class="form-group">
-                    <label for="oom_kill_disable " class="col-sm-3 control-label">oom_kill_disable </label>
-                        <div class="col-xs-7">
-                           <input type="text" name="oom_kill_disable " class="form-control" id="oom_kill_disable " placeholder="是否禁用OOM kill功能">
+                           <input type="text" name="cpu_shares " class="form-control" id="cpu_shares " placeholder="对比其他容器占用CPU的相对权重,如512">
                         </div>
                 </div>
                 <div class="form-group">
                     <label for="mem_limit " class="col-sm-3 control-label">mem_limit </label>
                         <div class="col-xs-7">
-                           <input type="text" name='mem_limit ' class="form-control" id="mem_limit " placeholder="Memory limit in bytes">
-                        </div>
-                </div>
-                <div class="form-group">
-                    <label for="memswap_limit "  class="col-sm-3 control-label">memswap_limit</label>
-                        <div class="col-xs-7">
-                           <input type="text" name='memswap_limit ' class="form-control" id="memswap_limit" placeholder="Total memory limit(memory+swap)">
+                           <input type="text" name='mem_limit ' class="form-control" id="mem_limit " placeholder="内存使用限制,输入数字和单位,如1G">
                         </div>
                 </div>
                 <div class="form-group">
                     <label for="dns" class="col-sm-3 control-label">DNS 设置</label>
                         <div class="col-xs-7">
-                           <input type="text" name='dns' class="form-control" id="dns" placeholder="设置容器DNS">
+                           <input type="text" name='dns' class="form-control" id="dns" placeholder="设置容器DNS,多个IP用逗号相隔">
                         </div>
                 </div>
                 <div class="form-group">
@@ -95,8 +93,40 @@
                 </div>
                 <div class="form-group">
                     <label for="hostname" class="col-sm-3 control-label">hostname</label>
-                    <div class="col-xs-5">
+                    <div class="col-xs-7">
                        <input type="text" name='hostname' class="form-control" id="hostname" placeholder="设置容器hostname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ports" class="col-sm-3 control-label">映射端口</label>
+
+                    <button type="button" class="btn btn-default" onmouseover="$(this).popover('toggle')"  onmouseout="$(this).popover('toggle')"
+                        data-container="body" data-toggle="popover" data-placement="right"
+                       data-content="The port number, as an integer. For example,
+                       1. {'2222/tcp': 3333} will expose port 2222 inside the container as port 3333 on the host.
+                       2.None, to assign a random host port. For example:{'2222/tcp': None}.
+                       3. A tuple of (address, port) if you want to specify the host interface. For example,{'1111/tcp': ('127.0.0.1', 1111)}.
+                       4. A list of integers, if you want to bind multiple host ports to a single container port. For example,{'1111/tcp': [1234, 4567]}.">？
+                    </button>
+                    <div class="col-xs-7">
+                       <input type="text" name='ports' class="form-control" id="ports" placeholder="设置容器与宿主机之间的端口映射">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="volumes" class="col-sm-3 control-label">映射端口</label>
+
+                    <button type="button" class="btn btn-default" onmouseover="$(this).popover('toggle')"  onmouseout="$(this).popover('toggle')"
+                       data-container="body" data-toggle="popover" data-placement="right"
+                       data-content="A dictionary to configure volumes mounted inside the container.
+                       The key is either the host path or a volume name, and the value is a dictionary with the keys:
+                        bind The path to mount the volume inside the container
+                        mode Either rw to mount the volume read/write, or ro to mount it read-only.For example:
+                        {'/home/user1/': {'bind': '/mnt/vol2', 'mode': 'rw'},
+                        '/var/www': {'bind': '/mnt/vol1', 'mode': 'ro'}}">？
+                    </button>
+                    <div class="col-xs-7">
+                       <input type="text" name='volumes' class="form-control" id="volumes" placeholder="设置容器与宿主机之间文件系统挂载">
                     </div>
                 </div>
             </div>
@@ -776,7 +806,8 @@
         }); // end ajax
     }
 
-    // 显示创建容器的更高级创建信息
+    // 显示创建容器的更高级创建参数,使用delegate这种方式来绑定按钮的事件，是因为模态框里的内容是后来填充进去的，
+    // 导致之前定义的onlick事件无法生效，所以采用这种方式绑定事件
     $('#myModal').delegate('#showMoreConfig', 'click', function () {
         if($(this).prop('checked')) {
             $('#myModal').find('#complex_config').show();
@@ -786,24 +817,35 @@
     });
 
 
-    // 创建容器的功能
+    // 获取填写创建容器信息的表格，然后提交到后台处理。
+    // 使用$('#myModal').find()来查找内容，因为这个模态框里的内容是后来填充进去的，这样才能找到值。
     function create_container(arg) {
-        var container_name = $('#name').val().trim();
+        var container_name =  $('#myModal').find('#name').val().trim();
         var create_info = {};
         if(container_name.length > 0 ){
-            $.each($('#create_container_form select'),function () {   // 遍历select标签，获取用户所选到的值
+            $.each($('#myModal').find('#create_container_form select'),function () {   // 遍历select标签，获取用户所选到的值
                 create_info[$(this).attr('id')] =  $(this).val()
             });
+           $.each($('#myModal').find('#create_container_form input:text'),function () {   // 遍历input是text类型的标签，获取用户所选到的值
+               if($(this).attr('id').startsWith('cpu')){
+                   create_info[$(this).attr('id')] = Number($(this).val())
+               }else {
+                   create_info[$(this).attr('id')] = $(this).val();
+               }
 
-           $.each($('#create_container_form input:text'),function () {   // 遍历input是text类型的标签，获取用户所选到的值
+           });
+           $.each($('#myModal').find('#create_container_form input:radio'),function () {   // 遍历input是radio类型的标签，获取用户所选到的值
                     create_info[$(this).attr('id')] = $(this).val();
            });
+
+
             if($(arg).attr('id') == 'save_model'){
                 create_info['action'] = 'save_model'
             }else if($(arg).attr('id') == 'create_container' ){
                 create_info['action'] = 'create_container'
             }
 
+            create_info.dns = create_info.dns+',';    // 对输入一个DNS IP的话，在最后吗添加一个，方便后端处理
             console.log('create_info',create_info);
             var create_info_json = JSON.stringify(create_info);
             $.ajax({
@@ -813,9 +855,9 @@
                 token:csrftoken,
                 data:{'create_info':create_info_json},
                 success: function(callback) {
-                    alert('创建成功,容器ID：',callback);
+                    alert('创建成功,容器ID：'+JSON.parse(callback).substring(0,13));
                     console.log(callback);
-                    window.location.reload();
+                    fresh_all_containers()
                 },
                 error:function(callback){
                     alert('创建失败,报错信息如下:',callback);
@@ -828,6 +870,11 @@
         }
     }
 
+    // 显示帮助信息的弹框：
+    function  show_help(arg) {
+        alert( $(arg).parent().find('#show_help_port span').html());
+        $(arg).parent().find('#show_help_port').show()
+    }
 
     </script>
 {% endblock %}

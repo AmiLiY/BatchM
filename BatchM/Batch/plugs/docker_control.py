@@ -53,7 +53,6 @@ class docker_operation():
                 '''
                 try:
                     status = json.loads(urllib.request.urlopen("http://%s:%s/%s/json?all=1"%(host,port,object_type)).read().decode())
-                    print('status on select',status)
                 except urllib.error.URLError:
                     return False,host,port
                 finally:
@@ -169,9 +168,18 @@ class docker_operation2(object):
         try:
             result = self.c.containers.create(**kwargs,tty=True)
         except (docker.errors.ImageNotFound,docker.errors.APIError) as e:
-            return self.host_port,e
+            return False,self.host_port,e
         return result
 
-#a={'command': '/bin/bash', 'name': 'hehe', 'image': 'httpd'}
-#docker_operation2(**a)
+
+
+def hehe(**kwargs):
+        c = docker.DockerClient(base_url='http://172.16.160.192:4343',version='auto')
+        hehe = c.containers.create(**kwargs)
+        print(hehe)
+
+# a={'image': 'httpd',  'command': '/bin/bash', 'cpu_group': 150, 'cpu_period': 200, 'name': 't11',
+#    'network_mode ': 'bridge',  'detach': 'False', 'cpu_shares ': '2', 'hostname': 't11',
+#    'dns': ['114.114.114.114', ''], 'mem_limit ': '64M'}
+# hehe(**a)
 
