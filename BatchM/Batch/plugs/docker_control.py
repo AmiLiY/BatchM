@@ -57,8 +57,8 @@ class docker_operation():
                     return False,host,port
                 finally:
                     conn.close()
-
                 return status
+
 
             if case('start'):
                 '''
@@ -164,7 +164,8 @@ class docker_operation2(object):
         :param kwargs:
         :return:
         '''
-        print(kwargs)
+        print(kwargs,'\n',type(kwargs.get('ports')))
+
         try:
             result = self.c.containers.create(**kwargs,tty=True)
         except (docker.errors.ImageNotFound,docker.errors.APIError) as e:
@@ -178,8 +179,13 @@ def hehe(**kwargs):
         hehe = c.containers.create(**kwargs)
         print(hehe)
 
-# a={'image': 'httpd',  'command': '/bin/bash', 'cpu_group': 150, 'cpu_period': 200, 'name': 't11',
-#    'network_mode ': 'bridge',  'detach': 'False', 'cpu_shares ': '2', 'hostname': 't11',
-#    'dns': ['114.114.114.114', ''], 'mem_limit ': '64M'}
+# a={'hostname': 't5', 'dns': ['8.8.8.8', '1.1.1.1', ''], 'mem_limit ': '64M', 'image': 'httpd',
+#    'ports': {'80/tcp':('0.0.0.0',8899)}, 'cpu_group': 60000, 'cpu_shares ': 600,
+#    'name': 't5', 'cpu_period': 1000000, 'command': '/bin/bash', 'detach': 'False'}
+# hehe(**a)
+
+# a={'image': 'httpd', 'cpu_period': 1000000, 'cpu_group': 50000, 'command': '/bin/bash',
+#  'cpu_shares ': 600, 'mem_limit ': '32M', 'name': 't7', 'dns': ['114.114.114.114', '8.8.8.8', ''],
+#     'detach': 'False', 'ports': {'88/tcp': ('0.0.0.0', 8888), '22/tcp': ('0.0.0.0', 2222)}}
 # hehe(**a)
 

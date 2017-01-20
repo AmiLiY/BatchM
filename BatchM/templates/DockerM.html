@@ -37,9 +37,9 @@
                 <label for="detach" class="col-sm-3 control-label">创建后是否启动</label>
                 <div class="col-xs-7">
                     <span>启动</span>
-                    <input type="radio" name='detach'  id="detach" value="True" >&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name='detach'  id="detach" value="True" checked="checked" >&nbsp;&nbsp;&nbsp;
                     <span>不启动</span>
-                    <input type="radio" name='detach' id="detach" value="False" checked="checked">
+                    <input type="radio" name='detach' id="detach" value="False" >
                 </div>
             </div>
             <div class="form-group">
@@ -98,7 +98,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="ports" class="col-sm-3 control-label">映射端口</label>
+                    <label for="ports" class="col-sm-3 control-label">端口映射</label>
 
                     <button type="button" class="btn btn-default" onmouseover="$(this).popover('toggle')"  onmouseout="$(this).popover('toggle')"
                         data-container="body" data-toggle="popover" data-placement="right"
@@ -114,7 +114,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="volumes" class="col-sm-3 control-label">映射端口</label>
+                    <label for="volumes" class="col-sm-3 control-label">目录映射</label>
 
                     <button type="button" class="btn btn-default" onmouseover="$(this).popover('toggle')"  onmouseout="$(this).popover('toggle')"
                        data-container="body" data-toggle="popover" data-placement="right"
@@ -126,7 +126,7 @@
                         '/var/www': {'bind': '/mnt/vol1', 'mode': 'ro'}}">？
                     </button>
                     <div class="col-xs-7">
-                       <input type="text" name='volumes' class="form-control" id="volumes" placeholder="设置容器与宿主机之间文件系统挂载">
+                       <input type="text" name='volumes' class="form-control" id="volumes" placeholder="设置容器与宿主机之间文件系统的挂载">
                     </div>
                 </div>
             </div>
@@ -168,6 +168,7 @@
     </div><br>
     <form class="form-horizontal" role="form">
         <div class="form-group">
+
 
             <div class="col-sm-3">
               <input class="btn" style="float: left;" value="搜索容器" type="button" onclick="search_container(this)">
@@ -348,7 +349,7 @@
                 if (info != 'disconnect_hosts'){
                     var html_code = ' <tr class="show_line"><td><input host_port="'+ container_info.Real_host_ip+'" type="checkbox" name="' + container_info.Container_id + '" value="' + container_info.Container_id + '"></td> ' +
                             '<td><a class="real_host_ip" href="/BatchM/DockerM.html/' + container_info.Real_host_ip + '">' + container_info.Real_host_ip + '&nbsp;</a></td> ' +
-                            '<td><a href="/BatchM/DockerM.html/' + container_info.Container_id + '"class="container_id">' + container_info.Container_id.substr(0, 13) + '</a></td>' +
+                            '<td><a href="/BatchM/DockerM.html/' + container_info.Container_id + '"class="container_id">' + container_info.Container_id.substring(0, 12) + '</a></td>' +
                             '<td>' + container_info.Container_name + '</td>' +
                             '<td>' + container_info.Container_image + '</td>' +
                             '<td>' + container_info.Command + '</td> ' +
@@ -450,7 +451,7 @@
                     // 所以不许要判断全部复选框，只需要判断选中的复选框就行来。
                     for(var i in success_list){
                            // console.log('succes',i);
-                            var ci = i.substring(0,13);
+                            var ci = i.substring(0,12);
                             var container_id = $(this).parent('td').siblings().children('.container_id').text().trim();
                             if(ci == container_id) {
                                 $(this).parents('td').parent().append(exec_succ);   //显示这次到执行状态
@@ -459,7 +460,7 @@
 
                    for (var i in error_list){
                       // console.log('error',error_list[i]);
-                       var ci = error_list[i].substring(0,13);
+                       var ci = error_list[i].substring(0,12);
                        var container_id = $(this).parent('td').siblings().children('.container_id').text().trim();
                         if(ci == container_id) {
                             $(this).parents('td').parent().append(exec_err); //显示这次到执行状态
@@ -846,6 +847,8 @@
             }
 
             create_info.dns = create_info.dns+',';    // 对输入一个DNS IP的话，在最后吗添加一个，方便后端处理
+            //create_info.ports = create_info.ports+',';    // 对输入的端口映射，在最后添加一个，方便后端处理;
+            //create_info.volumes = create_info.volumes+',';  // 对输入的文件系统映射，方便后端处理;
             console.log('create_info',create_info);
             var create_info_json = JSON.stringify(create_info);
             $.ajax({
@@ -855,7 +858,7 @@
                 token:csrftoken,
                 data:{'create_info':create_info_json},
                 success: function(callback) {
-                    alert('创建成功,容器ID：'+JSON.parse(callback).substring(0,13));
+                    alert('创建成功,容器ID：'+JSON.parse(callback).substring(0,12));
                     console.log(callback);
                     fresh_all_containers()
                 },

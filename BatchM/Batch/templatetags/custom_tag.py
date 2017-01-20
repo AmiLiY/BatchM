@@ -16,7 +16,7 @@ def docker_short_id(container_id):
     :param container_id: 容器ID
     :return:
     '''
-    return container_id[0:13]
+    return container_id[0:12]
 
 @register.filter   # filter只能对一个参数传入有效,调用到时候这样用  {{ xx.line  | ljf_power}}
 def ljf_lower(val):

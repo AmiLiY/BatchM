@@ -227,6 +227,8 @@ def CreateContainer(request):
     del request_dict2['host_image'], request_dict2['action']
     request_dict2['image'] = image_name
     request_dict2['dns'] = request_dict2.get('dns').split(',')  # docker模块里面表明了dns必须是个列表
+    request_dict2['ports'] = eval(request_dict2.get('ports')) if request_dict2.get('ports') else request_dict2.get('ports')
+    #request_dict2['volumes'] = eval(request_dict2.get('volumes')) if request_dict2.get('volumes') else request_dict2.get('ports')
     print('request_dict2',request_dict2)
     if action == "save_model":
         pass
@@ -236,10 +238,13 @@ def CreateContainer(request):
         print('container_instance',container_instance)
         print("request_dict2.get('detach')",request_dict2.get('detach'),type(request_dict2.get('detach')))
 
-        if request_dict2.get('detach') == 'True':
-            container_instance.start()
-
-    return container_instance
+        if container_instance is tuple:
+            if container_instance[0] is False:
+                return container_instance[1:2]
+        else:
+            if request_dict2.get('detach') == 'True':  # 是否启动容器在创建以后
+                container_instance.start()
+            return container_instance
 
 
 
