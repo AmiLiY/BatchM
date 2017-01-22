@@ -164,12 +164,18 @@ def DockerManager(request):
     elif action and hosts_list:   # 对镜像进行操作
         for k,ID  in hosts_list.items():
             host,port= k.split(':')
-            result = pool.apply_async( docker_manage.control_containers, (host,port,action,object_type,ID),)
-            if action == 'select':
-                print(type(result),'result',result.get(timeout=30))
-                info_result['%s:%s'%(host,port)] = '' if len(result.get(timeout=30)) == 0 else result.get(timeout=30)[0]
+            print(host, ID)
+            if ID is not None and len(ID) > 1:  # 如果一个宿主机上多个镜像，那么做删除操作的时候需要遍历下镜像ID列表，因为前端提交的就是一个列表
+                for i in ID:
+                    result = pool.apply_async(docker_manage.control_containers, (host, port, action, object_type, i), )
             else:
-                info_result['%s:%s' % (host, port)] = result.get(timeout=30)
+                result = pool.apply_async( docker_manage.control_containers, (host,port,action,object_type,ID),)
+            result = result.get(timeout=30)
+            if action == 'select':
+                info_result['%s:%s'%(host,port)] = '' if len(result) == 0 else result
+            else:
+                print(result)
+                info_result['%s:%s' % (host, port)] = result
         pool.close()
         pool.join()
         print('info_result',info_result)
@@ -180,9 +186,10 @@ def DockerManager(request):
                 elif len(v) == 0:    # 长度等于0表示没有获取到镜像信息/容器信息在指定的宿主机上
                     break
                 else:
-                    if info_result[k].get('Labels'):   # 因为Labels是字典到数据格式，如果没有数据那么就为空，方便前端展示如果Labels为空到时候
-                            info_result[k]['Labels'] = ''
-                    success_dict[k] = v
+                    for image in v:   # 遍历镜像列表
+                        if len(image.get('Labels')) == 0 :   # 因为Labels是字典到数据格式，如果没有数据那么就设置为None，方便前端展示如果Labels为空的时候
+                            image['Labels'] = None
+                        success_dict[k] = v
             else:    # 删除镜像和添加镜像到功能，因为要关心镜像ID和宿主机的IP，所以必须载记录镜像ID和宿主机的IP
                 if str(v[0]).startswith('4') or str(v[0]).startswith('5'):
                     err_dict[k] = v[2]
@@ -192,15 +199,16 @@ def DockerManager(request):
         if action == 'select':  # 如果是刷新容器镜像信息，那么就走下面到代码,入库存信息
             mod_obj = models.DockerOfImages.objects.all().delete()  # 清空数据库信息。
             for k,v in success_dict.items():
-                store_body = {
-                   "Image_id":v.get('Id'),"Parent_id":v.get('ParentId'),
-                    "Repo_tags":v.get('RepoTags'),"Repo_digests":'' if len(v.get('RepoDigests')) == 0 else v.get('RepoDigests'),
-                    "Created":time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(v.get('Created'))),"Image_size":v.get('Size'),
-                    "Virtual_size":v.get('VirtualSize'),"Labels":'' if len(v.get('Labels')) == 0 else v.get('Labels'),
-                }
-                mod_obj = models.DockerOfImages(**store_body)
-                mod_obj.save()
-                mod_obj.Host_ip.add(models.DockerOfHost.objects.get(host_ip=k))  #k等于主机
+                for image in v:
+                    store_body = {
+                       "Image_id":image.get('Id'),"Parent_id":image.get('ParentId'),
+                        "Repo_tags":image.get('RepoTags'),"Repo_digests":'' if len(image.get('RepoDigests')) == 0 else image.get('RepoDigests'),
+                        "Created":time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(image.get('Created'))),"Image_size":image.get('Size'),
+                        "Virtual_size":image.get('VirtualSize'),"Labels":'' if image.get('Labels') is None else image.get('Labels'),
+                    }
+                    mod_obj = models.DockerOfImages(**store_body)
+                    mod_obj.save()
+                    mod_obj.Host_ip.add(models.DockerOfHost.objects.get(host_ip=k))  #k等于主机
 
     else:
         return False
@@ -227,7 +235,9 @@ def CreateContainer(request):
     del request_dict2['host_image'], request_dict2['action']
     request_dict2['image'] = image_name
     request_dict2['dns'] = request_dict2.get('dns').split(',')  # docker模块里面表明了dns必须是个列表
+    # 端口映射的话，要求输入的是字典模式，前台传入过来的是字符串模式，后台需要把字符串类型的字典改为真正的字典模式。
     request_dict2['ports'] = eval(request_dict2.get('ports')) if request_dict2.get('ports') else request_dict2.get('ports')
+    request_dict2['detach'] = eval(request_dict2.get('detach'))
     #request_dict2['volumes'] = eval(request_dict2.get('volumes')) if request_dict2.get('volumes') else request_dict2.get('ports')
     print('request_dict2',request_dict2)
     if action == "save_model":
@@ -236,13 +246,12 @@ def CreateContainer(request):
         dc = docker_control.docker_operation2(host_port,version)
         container_instance = dc.create(**request_dict2)
         print('container_instance',container_instance)
-        print("request_dict2.get('detach')",request_dict2.get('detach'),type(request_dict2.get('detach')))
 
         if container_instance is tuple:
             if container_instance[0] is False:
                 return container_instance[1:2]
         else:
-            if request_dict2.get('detach') == 'True':  # 是否启动容器在创建以后
+            if request_dict2.get('detach'):  # 是否启动容器在创建以后,
                 container_instance.start()
             return container_instance
 

@@ -713,18 +713,23 @@
         for(var image in succ_list){    // 遍历刷新成功的列表
             //console.log(succ_list[image]);
             //console.log(succ_list[image].Labels);
-            var html_code = ' <tr class="show_line"><td><input host_port="'+ image+'" type="checkbox" name="' + succ_list[image].Id + '" value="' + succ_list[image].Id + '"></td> ' +
-                            '<td><a class="host_ip" href="/BatchM/DockerM.html/' + image + '">' + image + '&nbsp;</a></td> ' +
-                            '<td><a href="/BatchM/DockerM.html/' + succ_list[image].Id + '"class="image_id">' + succ_list[image].Id.substr(0,13) + '</a></td>' +
-                            '<td>' + succ_list[image].RepoTags + '</td>' +
-                            '<td>' + succ_list[image].RepoDigests + '</td>' +
-                            '<td>' + transformtime(succ_list[image].Created) + '</td> ' +
-                           // '<td>' + succ_list[image].Created + '</td> ' +
-                            '<td>' + succ_list[image].Size + '</td> ' +
-                            '<td>' + succ_list[image].VirtualSize + '</td> ' +
-                            '<td>' + succ_list[image].Labels + '</td>'+
-                            '<td>' + mydate.toLocaleString() +'</td><tr>';
-            $('#second_tr').after(html_code);
+            console.log('image',image);
+            console.log('succ_list',succ_list[image]);
+            var image_list = succ_list[image]
+            for (var per_image in image_list ){
+                var html_code = ' <tr class="show_line"><td><input host_port="'+ image+'" type="checkbox" name="' + image_list[per_image].Id + '" value="' + image_list[per_image].Id + '"></td> ' +
+                                '<td><a class="host_ip" href="/BatchM/DockerM.html/' + image + '">' + image + '&nbsp;</a></td> ' +
+                                '<td><a href="/BatchM/DockerM.html/' + image_list[per_image].Id + '"class="image_id">' + image_list[per_image].Id.substr(0,13) + '</a></td>' +
+                                '<td>' + image_list[per_image].RepoTags + '</td>' +
+                                '<td>' + image_list[per_image].RepoDigests + '</td>' +
+                                '<td>' + transformtime(image_list[per_image].Created) + '</td> ' +
+                               // '<td>' + image_list[per_image].Created + '</td> ' +
+                                '<td>' + image_list[per_image].Size + '</td> ' +
+                                '<td>' + image_list[per_image].VirtualSize + '</td> ' +
+                                '<td>' + [(succ_list[image].Labels == undefined) ?  " " :succ_list[image].Labels] + '</td>'+ // 添加上[]来包裹三元运算后前端展示就不会出问题
+                                '<td>' + mydate.toLocaleString() +'</td><tr>';
+                $('#second_tr').after(html_code);
+            }
         }
         for(var err in error_list[0]){     // 遍历刷新失败的列表
            var html_code = '<tr class="show_line"><td><input type="checkbox"></td><td>服务器 <span style="color:red">'
@@ -747,13 +752,11 @@
         }else if(action_type == 'delete_images') {
 
             var container_id_array = {};
-            $.each($('input:checkbox'),function(){   // 获取所有选中到的input 的标签
-                if($(this).prop('checked') == true){
-                    container_id_array[($(this).val())] = $(this).attr('host_port')
-                    }// end if
+            $.each($('.table input:checkbox:checked'),function(){   // 获取所有选中到的input 的标签
+                container_id_array[($(this).val())] = $(this).attr('host_port')
             });
-
             var lenarray = len_of_dict(container_id_array);
+            console.log(lenarray);
             if ( lenarray == 0){   // 判断是否选中来某一个容器
                 return_body= "您没有选中一个镜像！！！<br>您没有选中一个镜像！！！<br>您没有选中一个镜像！！！重要事情说三遍";
                 show_madel(return_body);
@@ -763,15 +766,17 @@
                 var action = 'delete';
                 var type = 'images';
                 var hosts = {};
-                $.each($('input:checkbox'),function () {
-                    if($(this).prop('checked') == true){
-                        hosts[$(this).attr('host_port')] = $(this).val()
+                $.each($('.table input:checkbox:checked'),function () {
+                    if(  hosts[$(this).attr('host_port')] ){  // 先判断有没有这个KEY,有的话再在后面追加镜像ID，没有的话，新添加镜像ID。
+                         hosts[$(this).attr('host_port')].push($(this).val())
+                    }else {
+                        hosts[$(this).attr('host_port')] = [$(this).val()]
                     }
                 });
                 var button_text = $('#delete_images').val();
                 $('#delete_images').val('删除中.....');
                 hosts = JSON.stringify(hosts);
-                console.log('hosts',hosts)
+                console.log('hosts',hosts);
             }
 
         }else if(action_type == "add_image"){
@@ -835,8 +840,9 @@
                }
 
            });
-           $.each($('#myModal').find('#create_container_form input:radio'),function () {   // 遍历input是radio类型的标签，获取用户所选到的值
-                    create_info[$(this).attr('id')] = $(this).val();
+           $.each($('#myModal').find('#create_container_form input:radio:checked'),function () {   // 遍历input是radio类型的标签，获取用户所选到的值
+               create_info[$(this).attr('id')] = $(this).val();
+
            });
 
 
@@ -847,8 +853,6 @@
             }
 
             create_info.dns = create_info.dns+',';    // 对输入一个DNS IP的话，在最后吗添加一个，方便后端处理
-            //create_info.ports = create_info.ports+',';    // 对输入的端口映射，在最后添加一个，方便后端处理;
-            //create_info.volumes = create_info.volumes+',';  // 对输入的文件系统映射，方便后端处理;
             console.log('create_info',create_info);
             var create_info_json = JSON.stringify(create_info);
             $.ajax({

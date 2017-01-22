@@ -52,7 +52,12 @@ class docker_operation():
                 return结果： 如果有某台主机链接不上，那么在返回到集合里面第一个元素就是False，依照这个来判端是否链接 正确
                 '''
                 try:
-                    status = json.loads(urllib.request.urlopen("http://%s:%s/%s/json?all=1"%(host,port,object_type)).read().decode())
+                    if object_type == "containers":      # 获取对象是容器的话，那么就要把all设置为1，
+                        isall = 1
+                    elif object_type == 'images':    # 获取对象是容器的话，那么就要把all设置为0，避免获取到无用的镜像信息
+                        isall = 0
+                    status = json.loads(urllib.request.urlopen("http://%s:%s/%s/json?all=%d"%(host,port,object_type,isall)).read().decode())
+                    print('status',status)
                 except urllib.error.URLError:
                     return False,host,port
                 finally:
@@ -117,10 +122,8 @@ class docker_operation():
                     response = conn.getresponse()
                 except urllib.error.URLError:
                     return False,host,port,ID
-
                 finally:
                     conn.close()
-
                 print(response.reason)
                 return response.status,response.reason,ID
             if case('top'):
@@ -167,7 +170,7 @@ class docker_operation2(object):
         print(kwargs,'\n',type(kwargs.get('ports')))
 
         try:
-            result = self.c.containers.create(**kwargs,tty=True)
+            result = self.c.containers.run(**kwargs,tty=True)
         except (docker.errors.ImageNotFound,docker.errors.APIError) as e:
             return False,self.host_port,e
         return result
@@ -176,16 +179,24 @@ class docker_operation2(object):
 
 def hehe(**kwargs):
         c = docker.DockerClient(base_url='http://172.16.160.192:4343',version='auto')
-        hehe = c.containers.create(**kwargs)
-        print(hehe)
+        result = c.containers.run(**kwargs,tty=True)
+        return result
 
 # a={'hostname': 't5', 'dns': ['8.8.8.8', '1.1.1.1', ''], 'mem_limit ': '64M', 'image': 'httpd',
 #    'ports': {'80/tcp':('0.0.0.0',8899)}, 'cpu_group': 60000, 'cpu_shares ': 600,
 #    'name': 't5', 'cpu_period': 1000000, 'command': '/bin/bash', 'detach': 'False'}
 # hehe(**a)
 
-# a={'image': 'httpd', 'cpu_period': 1000000, 'cpu_group': 50000, 'command': '/bin/bash',
-#  'cpu_shares ': 600, 'mem_limit ': '32M', 'name': 't7', 'dns': ['114.114.114.114', '8.8.8.8', ''],
-#     'detach': 'False', 'ports': {'88/tcp': ('0.0.0.0', 8888), '22/tcp': ('0.0.0.0', 2222)}}
-# hehe(**a)
+
+# {'/home/user1/': {'bind': '/mnt/vol2', 'mode': 'rw'},
+#  '/var/www': {'bind': '/mnt/vol1', 'mode': 'ro'}}
+
+# a={'image': 'httpd', 'detach':True,'cpu_period': 1000000, 'cpu_group': 50000, 'command': '/bin/bash',
+#   'cpu_shares ': 600, 'mem_limit ': '32M', 'name': 't102', 'dns': ['114.114.114.114', '8.8.8.8', ''],
+#    'ports':{'22/tcp':('0.0.0.0',1122)},'volumes':{'/home/mfs/':{'bind':'/mnt/','mode':'rw'}}}
+# # a={'image': 'httpd', 'command': '/bin/bash','name': 't16',
+# #    'volumes':{'/mnt':{'bind':'/home/mfs/','mode':'rw'},}}
+# c=hehe(**a)
+# print(type(c),dir(c))
+# c.start()
 
