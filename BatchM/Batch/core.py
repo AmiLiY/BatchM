@@ -166,21 +166,25 @@ def DockerManager(request):
             host,port= k.split(':')
             print(host, ID)
             if ID is not None and len(ID) > 1:  # 如果一个宿主机上多个镜像，那么做删除操作的时候需要遍历下镜像ID列表，因为前端提交的就是一个列表
+                info_result['%s:%s' % (host, port)] = []
                 for i in ID:
                     result = pool.apply_async(docker_manage.control_containers, (host, port, action, object_type, i), )
+                    print('in for id',result)
+                    info_result['%s:%s' % (host, port)].append(result.get())
             else:
                 result = pool.apply_async( docker_manage.control_containers, (host,port,action,object_type,ID),)
-            result = result.get(timeout=30)
+                result = result.get(timeout=30)
+                info_result['%s:%s' % (host, port)] = result
+
             if action == 'select':
                 info_result['%s:%s'%(host,port)] = '' if len(result) == 0 else result
-            else:
-                print(result)
-                info_result['%s:%s' % (host, port)] = result
+
+
         pool.close()
         pool.join()
         print('info_result',info_result)
         for k,v in info_result.items():
-            if action == 'select':    # 刷新镜像的动作，因为不需要关心详细到镜像ID信息，所以直接把宿主机IP添加即可
+            if action == 'select':    # 刷新镜像的动作，因为不需要关心详细到镜l像ID信息，所以直接把宿主机IP添加即可
                 if v == False :
                     err_dict[k] = v
                 elif len(v) == 0:    # 长度等于0表示没有获取到镜像信息/容器信息在指定的宿主机上
@@ -191,10 +195,18 @@ def DockerManager(request):
                             image['Labels'] = None
                         success_dict[k] = v
             else:    # 删除镜像和添加镜像到功能，因为要关心镜像ID和宿主机的IP，所以必须载记录镜像ID和宿主机的IP
-                if str(v[0]).startswith('4') or str(v[0]).startswith('5'):
-                    err_dict[k] = v[2]
-                elif str(v[0]).startswith('2') or str(v[0]).startswith('3'):
-                    success_dict[k] = v[2]
+                print(len(v))
+                if len(v) > 1:  #大于1表示在对同一个宿主机的镜像做操作
+                    for per_tuple in v:  # 遍历每一个value里面元素，元素就是元组
+                        if str(per_tuple[0]).startswith('4') or str(per_tuple[0]).startswith('5'):  # HTTP状态码是4/5开头的
+                            err_dict[k] = per_tuple[2]
+                        elif str(per_tuple[0]).startswith('2') or str(per_tuple[0]).startswith('3'):  # HTTP状态码是2/3开头的
+                            success_dict[k] = per_tuple[2]
+                else:
+                    if str(v[0]).startswith('4') or str(v[0]).startswith('5'):      # HTTP状态码是4/5开头的
+                        err_dict[k] = v[2]
+                    elif str(v[0]).startswith('2') or str(v[0]).startswith('3'):    # HTTP状态码是2/3开头的
+                        success_dict[k] = v[2]
 
         if action == 'select':  # 如果是刷新容器镜像信息，那么就走下面到代码,入库存信息
             mod_obj = models.DockerOfImages.objects.all().delete()  # 清空数据库信息。
