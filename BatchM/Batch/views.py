@@ -309,7 +309,7 @@ def docker_manager(request):
     :return:
     '''
     if request.method == "POST":
-        result = core.DockerManager(request)
+        result = core.DockerManager(request)   # 所有处理动作放到core里面去处理，view只关心结果。
         if result is False:
             return HttpResponse(json.dumps('unavailable params'))
         else:
@@ -332,8 +332,8 @@ def docker_manager(request):
         print('request.GET', request.GET)
         if request.GET.get('create_info'):
             result = core.CreateContainer(request.GET.get('create_info'))
-            print('dir container instance',dir(result),result)
-            return HttpResponse(json.dumps(result.id))
+            print('dir container instance',result)
+            return HttpResponse(json.dumps(result))
         else:
             all_images = models.DockerOfImages.objects.all()
             return render(request,'DockerM.html',{'docker_images':all_images})

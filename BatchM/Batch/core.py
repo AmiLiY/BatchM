@@ -139,6 +139,12 @@ def DockerManager(request):
     print('action', action, 'object_type', object_type, 'hosts',hosts_list)
 
     if action and containers_id:   # 如果没有提供任何执行动作与容器ID,那么就不执行.
+        if action == "exec_cmd":
+            cmd = request.POST.get('cmd')
+            for ID,host in  containers_id.items():
+                docker_manage2 = docker_control.docker_operation2(host,version=settings.DockerVersion)
+                result = pool.apply_async(docker_manage2.exec_cmd, (ID,cmd))
+
         for ID,host in containers_id.items():
             print(ID,host)
             host,port = host.split(':')
@@ -230,10 +236,11 @@ def DockerManager(request):
 def CreateContainer(request):
     '''
     创建容器的方法
-    :param request:   用户的请求头
+    :param request:   用户的请求头，从view视图里面传入
     :return:
     '''
-
+    error_dict = {}
+    success_dict = {}
     version = settings.DockerVersion
     request_dict = json.loads(request)
     request_dict2 = {}
@@ -249,24 +256,27 @@ def CreateContainer(request):
     request_dict2['dns'] = request_dict2.get('dns').split(',')  # docker模块里面表明了dns必须是个列表
     # 端口映射的话，要求输入的是字典模式，前台传入过来的是字符串模式，后台需要把字符串类型的字典改为真正的字典模式。
     request_dict2['ports'] = eval(request_dict2.get('ports')) if request_dict2.get('ports') else request_dict2.get('ports')
-    request_dict2['detach'] = eval(request_dict2.get('detach'))
-    #request_dict2['volumes'] = eval(request_dict2.get('volumes')) if request_dict2.get('volumes') else request_dict2.get('ports')
+    request_dict2['detach'] = True    # 创建容器使用的是run方法，detach=True，那么才会返回container_obj，否则什么也不会返回
+    request_dict2['volumes'] = eval(request_dict2.get('volumes')) if request_dict2.get('volumes') else request_dict2.get('volumes')
     print('request_dict2',request_dict2)
     if action == "save_model":
         pass
-    elif action == "create_container":
+    elif action == "create_container":    # 创建容器的代码
         dc = docker_control.docker_operation2(host_port,version)
         container_instance = dc.create(**request_dict2)
-        print('container_instance',container_instance)
 
-        if container_instance is tuple:
+        if type(container_instance) is tuple:
             if container_instance[0] is False:
-                return container_instance[1:2]
-        else:
-            if request_dict2.get('detach'):  # 是否启动容器在创建以后,
-                container_instance.start()
-            return container_instance
+                error_dict[container_instance[1]] = container_instance[2].decode()
+                return error_dict
+        return container_instance.id
 
 
 
 
+def ExeccmdContainers(request):
+    '''
+    在容器执行命令的方法
+    :param request:   用户的请求头，从view视图里面传入
+    :return:
+    '''

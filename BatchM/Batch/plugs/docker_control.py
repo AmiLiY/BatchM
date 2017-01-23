@@ -168,32 +168,69 @@ class docker_operation2(object):
         :return:
         '''
         print(kwargs,'\n',type(kwargs.get('ports')))
-
         try:
             result = self.c.containers.run(**kwargs,tty=True)
         except (docker.errors.ImageNotFound,docker.errors.APIError) as e:
-            return False,self.host_port,e
+            return False,self.host_port,e.explanation
         return result
+
+    def exec_cmd(self,Container_id,Command):
+        '''
+        在容器中执行命令的方法
+        :param Container_id: 容器ID或者名字
+        :param Command:    要在容器中执行的名字
+        :return:  返回执行结果,如果报错那么就返回容器ID和报错信息
+        '''
+        try:
+            c = docker.DockerClient(base_url='http://172.16.160.192:4343', version='auto')
+            result = c.containers.get(Container_id)
+            exec_result = result.exec_run(cmd=Command)
+        except (docker.errors.NotFound, docker.errors.APIError) as e:
+            print(e)
+            return Container_id, e.explanation
+
+        return exec_result.decode()
 
 
 
 def hehe(**kwargs):
+    try:
         c = docker.DockerClient(base_url='http://172.16.160.192:4343',version='auto')
         result = c.containers.run(**kwargs,tty=True)
-        return result
+    except (docker.errors.ImageNotFound, docker.errors.APIError) as e:
+        return e
+    return result
 
-# a={'hostname': 't5', 'dns': ['8.8.8.8', '1.1.1.1', ''], 'mem_limit ': '64M', 'image': 'httpd',
-#    'ports': {'80/tcp':('0.0.0.0',8899)}, 'cpu_group': 60000, 'cpu_shares ': 600,
-#    'name': 't5', 'cpu_period': 1000000, 'command': '/bin/bash', 'detach': 'False'}
-# hehe(**a)
+
+def exec(name,command):
+    try:
+        c = docker.DockerClient(base_url='http://172.16.160.192:4343',version='auto')
+        result = c.containers.get(name)
+        exec_result = result.exec_run(cmd=command)
+    except (docker.errors.NotFound,docker.errors.APIError) as e:
+        print(e)
+        return name,e.explanation
+
+    return exec_result
+
+# a=exec('7149cae9338e','df -hT')
+# print(a.decode(),dir(a))
+# a={'hostname': 't8', 'dns': ['8.8.8.8', '1.1.1.1', ''], 'mem_limit ': '64M', 'image': 'httpd',
+#     'cpu_group': 60000, 'cpu_shares ': 600,
+#    'name': 't6', 'cpu_period': 1000000, 'command': '/bin/bash', 'detach': 'False'}
+# c=hehe(**a)
+# print(dir(c))
+# print(c.response,c.explanation)
+# a=c.explanation.decode()
+# print(a)
 
 
 # {'/home/user1/': {'bind': '/mnt/vol2', 'mode': 'rw'},
 #  '/var/www': {'bind': '/mnt/vol1', 'mode': 'ro'}}
 
-# a={'image': 'httpd', 'detach':True,'cpu_period': 1000000, 'cpu_group': 50000, 'command': '/bin/bash',
-#   'cpu_shares ': 600, 'mem_limit ': '32M', 'name': 't102', 'dns': ['114.114.114.114', '8.8.8.8', ''],
-#    'ports':{'22/tcp':('0.0.0.0',1122)},'volumes':{'/home/mfs/':{'bind':'/mnt/','mode':'rw'}}}
+# a={'image': 'httpd_sshd', 'detach':True,'cpu_period': 1000000, 'cpu_group': 50000, 'command': '/bin/bash',
+#   'cpu_shares ': 600, 'mem_limit ': '32M', 'name': 't13', 'dns': ['114.114.114.114', '8.8.8.8', ''],
+#    'ports':{'22/tcp':('0.0.0.0',1125)},'volumes':{'/mnt/':{'bind':'/temp','mode':'rw'}}}
 # # a={'image': 'httpd', 'command': '/bin/bash','name': 't16',
 # #    'volumes':{'/mnt':{'bind':'/home/mfs/','mode':'rw'},}}
 # c=hehe(**a)

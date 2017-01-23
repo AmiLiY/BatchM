@@ -8,6 +8,7 @@
 {% endblock %}
 {% block page_content %}
 
+<!-- 下面的div-form是在创建容器的时候输入的创建参数，比如CPU，端口映射等 -->
 <div style="display:none" id="create_container_div">
     <form id='create_container_form' class="form-horizontal" role="form" action="{% url 'docker_containers_manage' %}" method="get">
             <div class="form-group">
@@ -33,15 +34,15 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="detach" class="col-sm-3 control-label">创建后是否启动</label>
+            <!-- <div class="form-group">
+                <label for="startup" class="col-sm-3 control-label">创建后是否启动</label>
                 <div class="col-xs-7">
                     <span>启动</span>
-                    <input type="radio" name='detach'  id="detach" value="True" checked="checked" >&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name='startup'  id="startup" value="True" checked="checked" >&nbsp;&nbsp;&nbsp;
                     <span>不启动</span>
-                    <input type="radio" name='detach' id="detach" value="False" >
+                    <input type="radio" name='startup' id="startup" value="False" >
                 </div>
-            </div>
+            </div> -->
             <div class="form-group">
                 <label for="" class="col-sm-3 control-label">其他高级配置</label>
                     <div class="col-xs-7">
@@ -100,14 +101,14 @@
                 <div class="form-group">
                     <label for="ports" class="col-sm-3 control-label">端口映射</label>
 
-                    <button type="button" class="btn btn-default" onmouseover="$(this).popover('toggle')"  onmouseout="$(this).popover('toggle')"
+                    <span  onmouseover="$(this).popover('toggle')"  onmouseout="$(this).popover('toggle')"
                         data-container="body" data-toggle="popover" data-placement="right"
                        data-content="The port number, as an integer. For example,
                        1. {'2222/tcp': 3333} will expose port 2222 inside the container as port 3333 on the host.
                        2.None, to assign a random host port. For example:{'2222/tcp': None}.
                        3. A tuple of (address, port) if you want to specify the host interface. For example,{'1111/tcp': ('127.0.0.1', 1111)}.
                        4. A list of integers, if you want to bind multiple host ports to a single container port. For example,{'1111/tcp': [1234, 4567]}.">？
-                    </button>
+                    </span>
                     <div class="col-xs-7">
                        <input type="text" name='ports' class="form-control" id="ports" placeholder="设置容器与宿主机之间的端口映射">
                     </div>
@@ -116,15 +117,12 @@
                 <div class="form-group">
                     <label for="volumes" class="col-sm-3 control-label">目录映射</label>
 
-                    <button type="button" class="btn btn-default" onmouseover="$(this).popover('toggle')"  onmouseout="$(this).popover('toggle')"
+                    <span  onmouseover="$(this).popover('toggle')"  onmouseout="$(this).popover('toggle')"
                        data-container="body" data-toggle="popover" data-placement="right"
-                       data-content="A dictionary to configure volumes mounted inside the container.
-                       The key is either the host path or a volume name, and the value is a dictionary with the keys:
-                        bind The path to mount the volume inside the container
-                        mode Either rw to mount the volume read/write, or ro to mount it read-only.For example:
+                       data-content="挂载目录的方式：{'宿主机目录':{'bind':'容器内目录','mode':’rw‘}}
                         {'/home/user1/': {'bind': '/mnt/vol2', 'mode': 'rw'},
                         '/var/www': {'bind': '/mnt/vol1', 'mode': 'ro'}}">？
-                    </button>
+                    </span>
                     <div class="col-xs-7">
                        <input type="text" name='volumes' class="form-control" id="volumes" placeholder="设置容器与宿主机之间文件系统的挂载">
                     </div>
@@ -133,20 +131,38 @@
         </form>
 </div>
 
+<!-- 下面的代码是显示按钮的，在填写完创建容器的信息后，需要点击创建按钮才能创建，或者其他的操作 -->
 <div id="create_container_button" style="display: none">
     <button type="button" class="btn btn-info" id='save_model' onclick="create_container(this)">保存为模板</button>
     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
     <button type="button" class="btn btn-primary" id='create_container' onclick="create_container(this)">创建容器</button>
 </div>
 
+<!-- 下面的代码是在对容器执行命令的时候显示的  -->
+<div style="display:none" id="enter_cmd_div">
+    <form id='enter_cmd_form' class="form-horizontal" role="form" >
+            <div class="form-group">
+                <label for="exec_cmd" class="col-sm-3 control-label">输入命令</label>
+                    <div class="col-xs-7">
+                        <input id="exec_cmd_input" name='exec_cmd_input' class="form-control" placeholder="请填写需要执行的命令">
+                    </div>
+            </div>
+    </form>
+</div>
 
-<!-- 下面这这些代码是在点击创建容器信息以后展现出来的 -->
+<!-- 下面的代码是显示按钮的，在填写完要对容器执行的命令信息后供用户选择 -->
+<div id="enter_cmd_button" style="display: none">
+    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+    <button type="button" class="btn btn-primary" id='exec_cmd' onclick="start_containers(this)">执行命令</button>
+</div>
+
+<!-- 下面这这些代码是在点击创建容器信息或者对容器执行命令以后展现出来的 -->
 <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel2">请填写容器信息</h4>
+        <h4 class="modal-title" id="myModalLabel2">请注意</h4>
       </div>
       <div class="modal-body">
       </div>
@@ -156,12 +172,12 @@
   </div>
 </div>
 
+
 <div id="Dmanage">
     <div class="row">
             <div type="button" class="col-xs-2 col-sm-2"><input type="button" class="btn btn-success"  value="创建一个新容器" onclick="show_create_table()" ></div>
-            <!-- <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-success" id='create_container' value="创建一个新容器"></div> -->
             <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-danger" id="remove_containers" value="销毁选中的容器" onclick="start_containers(this)"></div>
-            <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-warning" value="发送命令到指定容器"></div>
+            <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-warning" id="show_exec_cmd_from" value="发送命令到指定容器" onclick="show_entercmd_table()"></div>
             <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-info"   id="show_process" value="查看容器进程"  onclick="start_containers(this)"></div>
             <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-info" id="start_containers" value="启动指定容器" onclick="start_containers(this)"></div>
             <div class="col-xs-2 col-sm-2"><input type="button" class="btn btn-info" id="stop_containers" value="停止指定容器" onclick="start_containers(this)"></div>
@@ -416,22 +432,17 @@
         }
 
 
-
-
     // 更改模态框内容的
-    function show_madel(arg) {
+    function show_madel(arg,mode) {
+        if (mode == "ALERT"){
+            alert(arg)   // 弹出警告，没有选中任何机器
+            $('#myModal').modal('toggle');   // 清除模态框
+        }else{
             $('#myModal').modal('toggle');
-            $('.modal-body').html(arg)
+            $('.modal-body').html(arg);
+        }
     }
 
-    // 载创建容器信息的时候，显示模态框的内容
-    function show_create_table() {
-        var create_table = $('#create_container_div').html();
-        var create_button = $('#create_container_button').html();
-        $('#myModal').modal('toggle');
-        $('.modal-body').html(create_table);
-        $('.modal-footer').html(create_button);
-    }
 
     // 显示对容器操作的执行状态
     function show_exec_status(trid,arg) {
@@ -573,28 +584,32 @@
         }
     }
 
-
-
-    // 启动和停止指定到容器
+    // 启动和停止指定的容器
     function start_containers(arg) {
         var container_id_array = {};
+        var action_type = $(arg).attr('id');     // 获取操作按钮的类型，通过这个来判断做什么动作
+        var cmd = '';   //定义这个变量，避免ajax提交的时候后面出错
         $.each($('.table input:checkbox'),function(){   // 获取所有选中到的input 的标签
             if($(this).prop('checked') == true){
-                container_id_array[($(this).val())] = $(this).attr('host_port')
+                container_id_array[($(this).val())] = $(this).attr('host_port');  // 做成一个字典,以容器ID为key，宿主机IP为value
             }// end if
         });
-
-        var close_button = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+        var close_button = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';  // 在弹下来的模态框做一个close按钮.
         $('.modal-footer').html(close_button);
         var lenarray = len_of_dict(container_id_array);
         console.log('lenarray',lenarray,container_id_array);
         if ( lenarray == 0){   // 判断是否选中来某一个容器
             var return_body= "您没有选中一个容器！！！<br>您没有选中一个容器！！！<br>您没有选中一个容器！！！重要事情说三遍";
-            show_madel(return_body);
+            if (action_type == "exec_cmd" ) {
+                show_madel(return_body,'ALERT');
+            }else{
+                show_madel(return_body);
+            }
+
             return false
         }
 
-        var action_type = $(arg).attr('id');
+
         if(action_type=="stop_containers"){
             var action = "stop";
             var type = 'containers';
@@ -602,14 +617,12 @@
             $('#stop_containers').val('停止选定容器中.....')
 
         }else if(action_type=="start_containers") {
-
             var action = "start";
             var type = 'containers'
             var button_text = $('#start_containers').val();
             $('#start_containers').val('启动选定容器中.....')
 
         }else if (action_type == "remove_containers") {
-
             var action = "delete";
             var type = 'containers';
             var button_text = $('#remove_containers').val();
@@ -620,6 +633,12 @@
             var type = 'containers';
             var button_text = $('#show_process').val();
             $('#show_process').val('获取进程信息中......')
+        }else if(action_type == "exec_cmd"){
+            var action = 'exec_cmd';
+            var type = "containers";
+            var cmd = $('#exec_cmd_input').val();
+            var button_text = $('#exec_cmd').val();
+            $('#show_exec_cmd_from').val('执行命令中......')
         }// end if
 
         var id_array = JSON.stringify(container_id_array);   // json化数据
@@ -631,7 +650,7 @@
             type:'post',
             dataType:'json',
             token:csrftoken,
-            data:{'container_id_array':id_array,'action':action,'type':type},
+            data:{'container_id_array':id_array,'action':action,'type':type,'cmd':cmd},
             success:function(callback){
                 if (action_type == 'show_process') {
                     show_container_process(callback);
@@ -822,6 +841,15 @@
         }
     });
 
+    // 载创建容器信息的时候，显示模态框的内容
+    function show_create_table() {
+        var create_table = $('#create_container_div').html();
+        var create_button = $('#create_container_button').html();
+        $('#myModal').modal('toggle');
+        $('.modal-body').html(create_table);
+        $('.modal-footer').html(create_button);
+    }
+
 
     // 获取填写创建容器信息的表格，然后提交到后台处理。
     // 使用$('#myModal').find()来查找内容，因为这个模态框里的内容是后来填充进去的，这样才能找到值。
@@ -838,18 +866,20 @@
                }else {
                    create_info[$(this).attr('id')] = $(this).val();
                }
-
            });
            $.each($('#myModal').find('#create_container_form input:radio:checked'),function () {   // 遍历input是radio类型的标签，获取用户所选到的值
                create_info[$(this).attr('id')] = $(this).val();
 
            });
 
-
             if($(arg).attr('id') == 'save_model'){
-                create_info['action'] = 'save_model'
+                create_info['action'] = 'save_model';
+                var button_text = $(arg).text();
+                $(arg).text('保存模板中.......')
             }else if($(arg).attr('id') == 'create_container' ){
-                create_info['action'] = 'create_container'
+                create_info['action'] = 'create_container';
+                var button_text = $(arg).text();
+                $(arg).text('创建容器中......')
             }
 
             create_info.dns = create_info.dns+',';    // 对输入一个DNS IP的话，在最后吗添加一个，方便后端处理
@@ -862,13 +892,23 @@
                 token:csrftoken,
                 data:{'create_info':create_info_json},
                 success: function(callback) {
-                    alert('创建成功,容器ID：'+JSON.parse(callback).substring(0,12));
-                    console.log(callback);
-                    fresh_all_containers()
-                },
+                    try {
+                        alert('创建成功,容器ID：' + JSON.parse(callback).substring(0, 12));
+                        console.log(callback);
+                        fresh_all_containers();
+                        $(arg).text(button_text);   // 把之前的按钮信息复位回去
+                    }
+                    catch(TypeError){
+                        var error_dict = JSON.parse(callback);
+                        for(var i in error_dict){
+                            alert('创建失败,来自'+i+' 的报错信息如下:'+error_dict[i]);
+                            console.log(error_dict[i])
+                        }
+                    } // end catch
+                }, // end success
                 error:function(callback){
-                    alert('创建失败,报错信息如下:',callback);
-                    console.log(callback)
+
+                    console.log(JSON.parse(callback))
                 }
             })
         }else{
@@ -877,10 +917,13 @@
         }
     }
 
-    // 显示帮助信息的弹框：
-    function  show_help(arg) {
-        alert( $(arg).parent().find('#show_help_port span').html());
-        $(arg).parent().find('#show_help_port').show()
+    // 点击执行命令的按钮的时候，显示输入命令框
+    function  show_entercmd_table() {
+        var enter_cmd = $('#enter_cmd_div').html();
+        var enter_cmd_button = $('#enter_cmd_button').html();
+        $('#myModal').modal('toggle');
+        $('.modal-body').html(enter_cmd);
+        $('.modal-footer').html(enter_cmd_button);
     }
 
     </script>
