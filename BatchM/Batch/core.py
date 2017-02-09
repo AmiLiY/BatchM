@@ -136,29 +136,35 @@ def DockerManager(request):
                 hosts_list[host.host_ip] = None
         else:
             hosts_list = json.loads(hosts_list)
-    print('action', action, 'object_type', object_type, 'hosts',hosts_list)
+    print('action', action, 'object_type', object_type, 'hosts',hosts_list,'containers_id',containers_id)
 
     if action and containers_id:   # 如果没有提供任何执行动作与容器ID,那么就不执行.
-        if action == "exec_cmd":
+        if action == "exec_cmd":   # 对选定的容器执行命令
             cmd = request.POST.get('cmd')
+            print('cmd',cmd)
             for ID,host in  containers_id.items():
                 docker_manage2 = docker_control.docker_operation2(host,version=settings.DockerVersion)
-                result = pool.apply_async(docker_manage2.exec_cmd, (ID,cmd))
+                result = pool.apply_async(docker_manage2.exec_cmd, (ID,cmd),)
+                print(result)
+                info_result[ID] = result.get()
 
-        for ID,host in containers_id.items():
-            print(ID,host)
-            host,port = host.split(':')
-            result = pool.apply_async( docker_manage.control_containers, (host,port,action,object_type,ID),)
-            info_result[ID] = result.get()
+
+        else:   # 如果不是对容器执行命令，那么就是对容器启动，停止，删除等操作
+            for ID,host in containers_id.items():
+                print(ID,host)
+                host,port = host.split(':')
+                result = pool.apply_async( docker_manage.control_containers, (host,port,action,object_type,ID),)
+                info_result[ID] = result.get()
         pool.close()
         pool.join()
         print('DockerManager-info_result',info_result)
-        for k,v in info_result.items():
-            if action != 'top':     # 如果对容器的操作动作不是top，那么返回来的值是HTTP状态码，判断状态码来分别放到不同到列表中
-                if str(v[0]).startswith('20') or str(v[0]).startswith('30'):
-                    success_dict[k] = v
+        for k,v in info_result.items():   # 遍历执行结果（对容器操作的执行结果）
+            if action == "exec_cmd":
+                if v[0] == False:  # 表示执行命令返回有错
+                    err_dict[k] = "%s:%s" % (v[1], v[2])
                 else:
-                    err_dict[k] = v
+                    success_dict[k] = v
+
             elif action == 'top':  # 对容器的操作动作是top的时候，如果容器没有运行，
                 # 那么就会直接报错（HTTP 500错误），容器ID写错，那么就是HTTP 404错误，whatever error，返回来的事元组，下标0为False,
 
@@ -166,6 +172,11 @@ def DockerManager(request):
                     err_dict[k] = "%s:%s" %(v[1],v[2])
                 else:
                     success_dict[k] = v
+            else:  # 如果对容器的操作动作不是top,and not exec_cmd ，那么返回来的值是HTTP状态码，判断状态码来分别放到不同到列表中
+                if str(v[0]).startswith('20') or str(v[0]).startswith('30'):
+                    success_dict[k] = v
+                else:
+                    err_dict[k] = v
 
     elif action and hosts_list:   # 对镜像进行操作
         for k,ID  in hosts_list.items():
@@ -184,13 +195,12 @@ def DockerManager(request):
 
             if action == 'select':
                 info_result['%s:%s'%(host,port)] = '' if len(result) == 0 else result
-
-
         pool.close()
         pool.join()
+
         print('info_result',info_result)
         for k,v in info_result.items():
-            if action == 'select':    # 刷新镜像的动作，因为不需要关心详细到镜l像ID信息，所以直接把宿主机IP添加即可
+            if action == 'select':    # 刷新镜像的动作，因为不需要关心详细到镜像ID信息，所以直接把宿主机IP添加即可
                 if v == False :
                     err_dict[k] = v
                 elif len(v) == 0:    # 长度等于0表示没有获取到镜像信息/容器信息在指定的宿主机上
@@ -200,14 +210,17 @@ def DockerManager(request):
                         if len(image.get('Labels')) == 0 :   # 因为Labels是字典到数据格式，如果没有数据那么就设置为None，方便前端展示如果Labels为空的时候
                             image['Labels'] = None
                         success_dict[k] = v
+
             else:    # 删除镜像和添加镜像到功能，因为要关心镜像ID和宿主机的IP，所以必须载记录镜像ID和宿主机的IP
                 print(len(v))
-                if len(v) > 1:  #大于1表示在对同一个宿主机的镜像做操作
+                if len(v) > 1:  #大于1表示在对同一个宿主机的多个镜像做操作，len(v)就是统计要操作的镜像的数量
+                    err_dict[k] = []    # 设置这个宿主机的值为列表
+                    success_dict[k] = []
                     for per_tuple in v:  # 遍历每一个value里面元素，元素就是元组
                         if str(per_tuple[0]).startswith('4') or str(per_tuple[0]).startswith('5'):  # HTTP状态码是4/5开头的
-                            err_dict[k] = per_tuple[2]
+                            err_dict[k].append(per_tuple[2])
                         elif str(per_tuple[0]).startswith('2') or str(per_tuple[0]).startswith('3'):  # HTTP状态码是2/3开头的
-                            success_dict[k] = per_tuple[2]
+                            success_dict[k].append(per_tuple[2])
                 else:
                     if str(v[0]).startswith('4') or str(v[0]).startswith('5'):      # HTTP状态码是4/5开头的
                         err_dict[k] = v[2]

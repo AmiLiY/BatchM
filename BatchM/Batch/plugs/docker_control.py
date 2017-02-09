@@ -28,7 +28,7 @@ class switch(object):
 
 class docker_operation():
     '''
-    操作docker容器的class，自己写的方法来操作，通过RESTFUL url 来操作。
+    操作docker容器的class，自己写的方法来操作，通过RESTFUL url 来操作。包含的方法有容器查询，启动容器，停止容器，删除容器等信息
     '''
     def __init__(self):
         pass
@@ -150,7 +150,7 @@ class docker_operation():
 
 class docker_operation2(object):
     '''
-    利用docker模块来创建容器
+    利用docker模块来创建容器,在容器中执行命令的方法
     '''
     def __init__(self,host_port,version):
         #def __init__(self,**kwargs):
@@ -159,7 +159,7 @@ class docker_operation2(object):
         # print(hehe)
         self.host_port = host_port
         self.version = version
-        self.c = docker.DockerClient(base_url='http://%s'%(self.host_port),version=self.version)
+        self.cdocker = docker.DockerClient(base_url='http://%s'%(self.host_port),version=version)
 
     def create(self,**kwargs):
         '''
@@ -167,9 +167,8 @@ class docker_operation2(object):
         :param kwargs:
         :return:
         '''
-        print(kwargs,'\n',type(kwargs.get('ports')))
         try:
-            result = self.c.containers.run(**kwargs,tty=True)
+            result = self.cdocker.containers.run(**kwargs,tty=True)
         except (docker.errors.ImageNotFound,docker.errors.APIError) as e:
             return False,self.host_port,e.explanation
         return result
@@ -178,16 +177,17 @@ class docker_operation2(object):
         '''
         在容器中执行命令的方法
         :param Container_id: 容器ID或者名字
-        :param Command:    要在容器中执行的名字
-        :return:  返回执行结果,如果报错那么就返回容器ID和报错信息
+        :param Command:    要在容器中执行的command
+        :return:  返回执行结果,如果报错那么就返回 False,容器ID和报错信息
         '''
+        c = docker.DockerClient(base_url='http://%s' % (self.host_port), version=self.version)
         try:
-            c = docker.DockerClient(base_url='http://172.16.160.192:4343', version='auto')
-            result = c.containers.get(Container_id)
-            exec_result = result.exec_run(cmd=Command)
+            exec_instance = c.containers.get(Container_id)
+            exec_result = exec_instance.exec_run(cmd=Command)
+            print('exec_result.decode',exec_result.decode())
         except (docker.errors.NotFound, docker.errors.APIError) as e:
             print(e)
-            return Container_id, e.explanation
+            return False,Container_id, e.explanation
 
         return exec_result.decode()
 
@@ -211,10 +211,17 @@ def exec(name,command):
         print(e)
         return name,e.explanation
 
-    return exec_result
+    return exec_result.decode()
 
-# a=exec('7149cae9338e','df -hT')
-# print(a.decode(),dir(a))
+
+# a=docker_operation2('172.16.160.192:4343',version='auto')
+# result = a.exec_cmd('7149cae9338e','df -hT')
+# print(result)
+
+
+
+#a=exec('7149cae9338e','df -hT')
+#print(a)
 # a={'hostname': 't8', 'dns': ['8.8.8.8', '1.1.1.1', ''], 'mem_limit ': '64M', 'image': 'httpd',
 #     'cpu_group': 60000, 'cpu_shares ': 600,
 #    'name': 't6', 'cpu_period': 1000000, 'command': '/bin/bash', 'detach': 'False'}

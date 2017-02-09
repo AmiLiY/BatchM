@@ -482,25 +482,27 @@
              var error_list = arg.error[0];    // 后台返回来到数据是宿主机IP和镜像ID，根据宿主机IP和镜像ID同时在html页面匹配后显示执行状态
              $.each($('input:checkbox'),function(){
                  var image_host_id = $(this).attr('host_port') + $(this).val();
-                 console.log('image_host_id',image_host_id);
                  for(var err in error_list){
-                    console.log('hehe',error_list[err],err);
-                     var return_host_id = err+error_list[err];
-                     if(image_host_id==return_host_id){
-                         /**if($(this).parent().siblings().length > 9){   // 通过标签个数来判断是否添加来状态提醒
-                                    $(this).parent().siblings().last().remove();  // 删除上一次到执行状态
-                                } **/
-                         $(this).parents('td').parent().append(exec_err)
+                     for(var i=0;i < error_list[err].length;i++){   // 遍历每一台宿主机上的镜像ID，
+                         var return_host_id = err+error_list[err][i];
+                         if(image_host_id==return_host_id){
+                             /**if($(this).parent().siblings().length > 9){   // 通过标签个数来判断是否添加来状态提醒
+                                        $(this).parent().siblings().last().remove();  // 删除上一次到执行状态
+                                    } **/
+                             $(this).parents('td').parent().append(exec_err)
 
-                     }
+                         } // end if
+                     } // end for
                  }// end for
                  for (var succ in success_list){
-                     console.log('succ',succ,success_list[succ]);
-                     var return_host_id = succ+success_list[succ];
-                      if(image_host_id==return_host_id){
-                         $(this).parents('td').parent().append(exec_succ)
-                     }
-                 }
+                     console.log('succ',succ);
+                     for(var i=0;i < success_list[succ].length;i++){   // 遍历每一台宿主机上的镜像ID，
+                         var return_host_id = succ+success_list[succ][i];
+                         console.log('return_host_id',return_host_id);
+                          if(image_host_id==return_host_id){
+                             $(this).parents('td').parent().append(exec_succ)
+                         }
+                 }}
              }); // end each
         }}
 
@@ -605,7 +607,6 @@
             }else{
                 show_madel(return_body);
             }
-
             return false
         }
 
@@ -636,16 +637,17 @@
         }else if(action_type == "exec_cmd"){
             var action = 'exec_cmd';
             var type = "containers";
-            var cmd = $('#exec_cmd_input').val();
-            var button_text = $('#exec_cmd').val();
+            var cmd = $('.modal-body #exec_cmd_input').val();     // 获取执行命令
+            var button_text = $('#show_exec_cmd_from').val();
             $('#show_exec_cmd_from').val('执行命令中......')
+
         }// end if
 
         var id_array = JSON.stringify(container_id_array);   // json化数据
         var default_body = '请勿狂点同一个提交按钮,<br><br>请求已提交后台处理,<br>处理完成后将会在每一行到末尾显示执行状态,&nbsp;请注意查看......';
         show_madel(default_body);
 
-        $.ajax({   // 开始提交数据到后台去启动对应到容器
+        $.ajax({   // 开始提交数据到后台去启动对应的容器
             url: '{% url 'docker_containers_manage' %}',
             type:'post',
             dataType:'json',
@@ -655,9 +657,13 @@
                 if (action_type == 'show_process') {
                     show_container_process(callback);
                     $('#' + action_type).val(button_text);  // 把按钮原来的文本内容复位回去。
-                }else {
+                }else if(action_type == 'exec_cmd'){
+                    $('#show_exec_cmd_from').val(button_text);    // 因为执行命令的按钮ID不一样，所有这里需要单独判断一下
                     show_exec_status('first_tr', callback);   //展示执行状态
+                } else {
                     $('#' + action_type).val(button_text); // 把按钮原来的文本内容复位回去。
+                    show_exec_status('first_tr', callback);   //展示执行状态
+
                 }
             }, //end success
             error: function(callback){
@@ -795,7 +801,6 @@
                 var button_text = $('#delete_images').val();
                 $('#delete_images').val('删除中.....');
                 hosts = JSON.stringify(hosts);
-                console.log('hosts',hosts);
             }
 
         }else if(action_type == "add_image"){
