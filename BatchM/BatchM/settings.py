@@ -149,3 +149,15 @@ accessory_dir = "upload/order_accessory"
 pools=20
 # docker api 的版本号，设置auto的话，能够自适应版本，版本选择可参考：https://docs.docker.com/engine/reference/api/docker_remote_api/
 DockerVersion='auto'
+
+# 设置salt-api的主机IP
+SaltApiOfHost='172.16.22.129'
+#SaltApiOfHost='192.168.141.129'
+# 设置登录salt-api的用户名
+SaltApiUsername='saltapi'
+# 设置登录salt-api的密码
+SaltApiPasswd='123456'
+# 设置登录salt-api的认证方式
+SaltApiAuthMethod='pam'
+# 设置saltstack的组配置文件路径
+SaltGroupConfigFile="/etc/salt/master.d/group.conf"

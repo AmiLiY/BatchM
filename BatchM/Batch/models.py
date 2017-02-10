@@ -2,6 +2,8 @@ from django.db import models
 import time
 from django.contrib.auth.models import User
 
+from Batch.customize_auth_model import MyUser
+
 # Create your models here.   \
 # 最新创建到数据库表都在最前面
 
@@ -248,13 +250,8 @@ class NewSaltstackMinionsStatus(models.Model):
 
 
 
-from django.db import models
 
-# Create your models here.
-
-from django.contrib.auth.models import User
-from asset.user_models import MyUser
-
+############ 以下就是关于资产的数据库  #####
 
 class Asset(models.Model):
     asset_type_choices = (

@@ -10,12 +10,12 @@ path = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(path)
 
 from django.core.exceptions import ObjectDoesNotExist
-from asset import models
-from asset.plugs import record_log
+from Batch import models
+from Batch.plugs import record_log
 from django.utils import timezone
 import json
 from io import BytesIO
-from Day23_stark import settings
+from BatchM import settings
 import paramiko
 import collections
 
@@ -95,9 +95,10 @@ class Asset(object):
         so it will come to the server asks for the asset it first,then report the data again
         :return:
         '''
-        print(self.request.POST)
+
         data = self.request.POST.get('asset_data')
         response = {}
+        print('asset_data',data)
         if data:
             try:
                 data = json.loads(data)

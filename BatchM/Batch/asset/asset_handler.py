@@ -2,7 +2,7 @@
 从数据库获取信息后做处理（增删改查等），然后return回去
 '''
 
-from asset import models
+from Batch import models
 import json
 
 def get_asset_model(obj):

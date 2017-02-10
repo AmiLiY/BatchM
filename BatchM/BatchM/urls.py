@@ -16,11 +16,13 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from Batch import child_urls
+from Batch.asset import asset_urls
 from BatchM import views
 urlpatterns = [
     url(r'^accounts/login',views.auth_login,name='User_Login'),
     url(r'^accouts/logout',views.auth_logout,name='auth_logout'),
     url(r"^$",views.index),
     url(r'^admin/', admin.site.urls),
-    url(r'^BatchM/',include(child_urls))
+    url(r'^BatchM/',include(child_urls)),
+    url(r'^asset/',include(asset_urls))
 ]
