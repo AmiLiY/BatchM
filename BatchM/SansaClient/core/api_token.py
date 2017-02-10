@@ -1,5 +1,5 @@
 #_*_coding:utf-8_*_
-__author__ = 'Alex Li'
+__author__ = 'Leo'
 
 
 import hashlib,time
@@ -17,4 +17,4 @@ def get_token(username,token_id):
 
 
 if __name__ =='__main__':
-    print(get_token('alex','test'))
+    print(get_token('Leo','test'))
