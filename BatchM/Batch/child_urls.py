@@ -15,7 +15,7 @@ from Batch import views
 from Batch.asset import asset_views
 
 urlpatterns = [
-    url(r'index.html$',views.dashboard_index),
+    url(r'index.html$|^$',views.dashboard_index),
     url(r'GetServerHostStatus$',views.server_host_status,name="get_server_host_status"),#获取运行次系统的服务状态信息
     url(r"^saltstack.html$",views.saltstack_index),
     url(r"apply_update.html$",views.apply_update_apply),

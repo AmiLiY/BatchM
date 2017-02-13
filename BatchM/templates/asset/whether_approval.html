@@ -1,0 +1,55 @@
+{% extends "asset/base_for_AddAsset.html" %}
+{% block main_content %}
+            <h3>确定要将下列数据存入？</h3>
+            <div class="panel-body">
+                <form method="post" action="{% url 'new_assets_approvel' %}">
+                    {% csrf_token %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td>资产SN号</td>
+                            <td>资产类型</td>
+                            <td>制造商</td>
+                            <td>资产型号</td>
+                            <td>CPU型号</td>
+                            <td>CPU数量</td>
+                            <td>CPU核心数量</td>
+                            <td>RAM 大小</td>
+                            <td>系统类型</td>
+                            <td>系统版本</td>
+                            <td>汇报日期</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for at_info in asset_info %}
+                            <tr data-set="{{ at_info.id }}">
+                                <td>{{ at_info.sn  }}</td>
+                                <td>{{ at_info.asset_type  }}</td>
+                                <td>{{ at_info.manufactory }}</td>
+                                <td>{{ at_info.model }}</td>
+                                <td>{{ at_info.cpu_model }}</td>
+                                <td>{{ at_info.cpu_count }}</td>
+                                <td>{{ at_info.cpu_core_count }}</td>
+                                <td>{{ at_info.ram_size }}</td>
+                                <td>{{ at_info.os_type }}--{{ at_info.os_distribution }}</td>
+                                <td>{{ at_info.os_release }}</td>
+                                <td>{{ at_info.date }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+                    <select name="approved_asset_list" class="hide"  multiple >
+                        {% for new_asset in  asset_info %}
+                            <option value="{{ new_asset.id }}" selected="selected">{{ new_asset.sn }}</option>
+                        {% endfor %}
+                    </select>
+
+                  <input type="submit" value="Yes,i'm sure" class="btn btn-lg btn-primary" >
+                  <a class="btn btn-lg btn-danger" href="/admin/asset/newassetapprovalzone/" role="button">
+                      No,i need to cancel
+                  </a>
+
+                    </form>
+            </div>
+{% endblock %}

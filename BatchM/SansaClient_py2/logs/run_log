@@ -1,0 +1,833 @@
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [model] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [model] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [model] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [model] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:31:05	ERROR	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [model] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [model] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [model] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [model] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:31:53	ERROR	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [model] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [model] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [model] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [model] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:32:34	ERROR	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [model] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [model] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [model] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [model] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:33:15	ERROR	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-03:33:50	INFO	{u'FieldChanged': u'Asset[id:40 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[40:RAM slot #0:1024] --> field[sn] has changed from [Not Spe] to [Not Specified]'}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [model] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [model] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [model] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [model] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:33:50	ERROR	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-03:35:34	INFO	{u'NewComponentAdded': u"Asset[id:40 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[RAM] has justed added a new item [{'slot': u'RAM slot #0', 'asset_id': 40L, 'model': u'DRAM', 'capacity': u'1024', 'sn': u'Not Specified'}]"}
+2015-11-09-03:35:34	INFO	{u'NewComponentAdded': u"Asset[id:40 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> has added new [cpu] component with data [{'asset_id': 40L, 'cpu_count': 1, 'cpu_model': u'Intel(R) Core(TM) i5-3427U CPU @ 1.80GHz', 'cpu_core_count': 1}]"}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [model] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [model] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [model] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [model] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:35:34	ERROR	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-03:36:28	INFO	{u'NewComponentAdded': u"Asset[id:40 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> has added new [cpu] component with data [{'asset_id': 40L, 'cpu_count': 1, 'cpu_model': u'Intel(R) Core(TM) i5-3427U CPU @ 1.80GHz', 'cpu_core_count': 1}]"}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [model] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [model] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [model] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [model] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [40:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-03:36:28	ERROR	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-18:26:29	ERROR	{u'AssetDataInvalid': u'Cannot find asset object in DB by using asset id [40] and SN [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] '}
+2015-11-09-18:34:05	ERROR	{u'AssetDataInvalid': u'Cannot find asset object in DB by using asset id [40] and SN [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] '}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [model] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [model] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [model] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [model] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-19:16:43	ERROR	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [model] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [model] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [model] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [model] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-19:16:56	ERROR	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-19:18:36	INFO	{u'FieldChanged': u'Asset[id:41 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[41:36:40:B5:B1:94:DB] --> field[model] has changed from [] to [unknown]'}
+2015-11-09-19:18:36	INFO	{u'FieldChanged': u'Asset[id:41 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[41:34:40:B5:B0:14:DA] --> field[model] has changed from [] to [unknown]'}
+2015-11-09-19:18:36	INFO	{u'FieldChanged': u'Asset[id:41 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[41:34:40:B5:B0:14:DA_bonding_addr2] --> field[model] has changed from [] to [unknown]'}
+2015-11-09-19:18:36	INFO	{u'FieldChanged': u'Asset[id:41 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[41:34:40:B5:B0:14:DA_bonding_addr] --> field[model] has changed from [] to [unknown]'}
+2015-11-09-19:18:36	ERROR	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:18:36	ERROR	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-19:18:36	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:18:36	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-19:18:36	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:18:36	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-19:18:36	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-19:18:36	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:18:36	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-19:18:36	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-19:18:36	ERROR	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-19:18:45	ERROR	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:18:45	ERROR	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-19:18:45	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:18:45	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-19:18:45	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:18:45	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-19:18:45	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-19:18:45	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:18:45	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-19:18:45	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-19:18:45	ERROR	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-19:23:38	ERROR	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:23:38	ERROR	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-19:23:38	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:23:38	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-19:23:38	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:23:38	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-19:23:38	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-19:23:38	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:23:38	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-19:23:38	ERROR	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-19:23:38	ERROR	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-19:51:26	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:51:26	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-19:51:26	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:51:26	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-19:51:26	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:51:26	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-19:51:26	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-19:51:26	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-19:51:26	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-19:51:26	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-19:51:26	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-20:07:21	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-20:07:21	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-20:07:21	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-20:07:21	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-20:07:21	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-20:07:21	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-20:07:21	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-20:07:21	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-20:07:21	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-20:07:21	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-20:07:21	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-20:08:03	INFO	{u'FieldChanged': u'Asset[id:41 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[41:RAM slot #0:1024] --> field[model] has changed from [DR] to [DRAM]'}
+2015-11-09-20:08:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-20:08:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-20:08:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-20:08:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-20:08:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-20:08:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-20:08:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-20:08:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-20:08:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-20:08:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-20:08:03	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-09-20:08:48	INFO	{u'FieldChanged': u'Asset[id:41 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[41:36:40:B5:B1:94:DB] --> field[name] has changed from [usb] to [usb0]'}
+2015-11-09-20:08:48	INFO	{u'FieldChanged': u'Asset[id:41 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[41:34:40:B5:B0:14:DA_bonding_addr2] --> field[name] has changed from [eth] to [eth3]'}
+2015-11-09-20:08:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-09-20:08:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-09-20:08:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-09-20:08:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-09-20:08:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-09-20:08:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-20:08:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-09-20:08:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-09-20:08:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-09-20:08:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-09-20:08:48	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-21:10:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:10:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:10:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:10:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:10:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:10:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:10:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:10:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:10:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:10:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:10:41	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-21:11:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:11:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:11:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:11:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:11:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:11:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:11:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:11:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:11:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:11:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:11:07	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-21:17:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:17:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:17:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:17:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:17:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:17:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:17:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:17:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:17:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:17:07	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:17:07	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-21:17:46	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:17:46	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:17:46	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:17:46	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:17:46	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:17:46	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:17:46	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:17:46	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:17:46	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:17:46	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:17:46	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-21:18:39	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:18:39	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:18:39	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:18:39	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:18:39	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:18:39	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:18:39	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:18:39	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:18:39	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:18:39	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:18:39	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-21:44:02	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:44:02	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:44:02	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:44:02	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:44:02	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:44:02	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:44:02	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:44:02	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:44:02	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:44:02	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:44:02	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-21:45:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:45:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:45:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:45:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-21:45:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:45:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:45:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:45:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-21:45:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-21:45:48	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-21:45:48	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:15:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:15:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:15:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:15:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:15:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:15:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:15:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:15:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:15:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:15:03	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:15:03	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:16:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:16:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:16:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:16:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:16:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:16:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:16:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:16:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:16:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:16:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:16:08	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:17:44	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:17:44	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:17:44	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:17:44	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:17:44	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:17:44	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:17:44	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:17:44	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:17:44	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:17:44	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:17:44	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:21:50	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:21:50	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:21:50	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:21:50	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:21:50	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:21:50	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:21:50	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:21:50	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:21:50	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:21:50	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:21:50	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:32:56	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:32:56	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:32:56	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:32:56	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:32:56	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:32:56	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:32:56	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:32:56	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:32:56	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:32:56	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:32:56	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:33:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:33:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:33:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:33:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:33:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:33:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:33:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:33:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:33:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:33:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:33:40	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:36:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:36:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:36:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:36:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:36:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:36:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:36:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:36:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:36:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:36:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:36:41	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:37:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:37:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:37:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:37:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:37:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:37:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:37:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:37:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:37:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:37:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:37:41	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:42:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:42:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:42:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:42:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:42:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:42:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:42:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:42:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:42:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:42:08	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:42:08	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:42:19	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:42:19	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:42:19	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:42:19	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:42:19	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:42:19	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:42:19	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:42:19	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:42:19	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:42:19	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:42:19	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:43:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:43:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:43:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:43:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:43:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:43:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:43:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:43:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:43:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:43:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:43:31	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:43:47	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:43:47	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:43:47	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:43:47	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:43:47	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:43:47	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:43:47	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:43:47	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:43:47	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:43:47	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:43:47	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:55:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:55:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:55:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:55:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:55:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:55:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:55:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:55:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:55:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:55:40	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:55:40	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-10-23:55:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:55:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:55:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:55:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-10-23:55:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:55:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:55:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:55:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-10-23:55:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-10-23:55:41	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-10-23:55:41	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-11-00:01:25	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:01:25	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-11-00:01:25	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:01:25	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-11-00:01:25	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:01:25	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-00:01:25	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-11-00:01:25	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:01:25	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-00:01:25	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-11-00:01:25	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-11-00:02:18	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:02:18	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-11-00:02:18	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:02:18	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-11-00:02:18	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:02:18	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-00:02:18	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-11-00:02:18	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:02:18	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-00:02:18	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-11-00:02:18	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-11-00:03:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:03:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-11-00:03:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:03:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-11-00:03:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:03:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-00:03:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-11-00:03:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:03:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-00:03:31	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-11-00:03:31	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-11-00:04:12	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:04:12	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-11-00:04:12	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:04:12	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-11-00:04:12	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:04:12	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-00:04:12	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-11-00:04:12	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:04:12	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-00:04:12	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-11-00:04:12	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-11-00:04:43	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:04:43	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-11-00:04:43	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:04:43	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-11-00:04:43	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:04:43	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-00:04:43	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-11-00:04:43	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:04:43	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-00:04:43	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-11-00:04:43	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-11-00:12:11	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:12:11	WARNING	{u'AssetUpdateWarning': u"Asset component [41:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-11-00:12:11	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:12:11	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-11-00:12:11	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:12:11	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-00:12:11	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-11-00:12:11	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-11-00:12:11	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-00:12:11	WARNING	{u'AssetUpdateWarning': u"Asset component [41:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-11-00:12:11	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-11-20:11:13	ERROR	{u'AssetDataInvalid': u'Cannot find asset object in DB by using asset id [41] and SN [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] '}
+2015-11-11-20:23:16	WARNING	{u'AssetUpdateWarning': u"Asset component [57:36:40:B5:B1:94:DB]'s field [sn] is not provided in reporting data "}
+2015-11-11-20:23:16	WARNING	{u'AssetUpdateWarning': u"Asset component [57:36:40:B5:B1:94:DB]'s field [bonding] is not provided in reporting data "}
+2015-11-11-20:23:16	WARNING	{u'AssetUpdateWarning': u"Asset component [57:34:40:B5:B0:14:DA]'s field [sn] is not provided in reporting data "}
+2015-11-11-20:23:16	WARNING	{u'AssetUpdateWarning': u"Asset component [57:34:40:B5:B0:14:DA]'s field [bonding] is not provided in reporting data "}
+2015-11-11-20:23:16	WARNING	{u'AssetUpdateWarning': u"Asset component [57:34:40:B5:B0:14:DA_bonding_addr2]'s field [sn] is not provided in reporting data "}
+2015-11-11-20:23:16	WARNING	{u'AssetUpdateWarning': u"Asset component [57:34:40:B5:B0:14:DA_bonding_addr2]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-20:23:16	WARNING	{u'AssetUpdateWarning': u"Asset component [57:34:40:B5:B0:14:DA_bonding_addr2]'s field [netmask] is not provided in reporting data "}
+2015-11-11-20:23:16	WARNING	{u'AssetUpdateWarning': u"Asset component [57:34:40:B5:B0:14:DA_bonding_addr]'s field [sn] is not provided in reporting data "}
+2015-11-11-20:23:16	WARNING	{u'AssetUpdateWarning': u"Asset component [57:34:40:B5:B0:14:DA_bonding_addr]'s field [ipaddress] is not provided in reporting data "}
+2015-11-11-20:23:16	WARNING	{u'AssetUpdateWarning': u"Asset component [57:34:40:B5:B0:14:DA_bonding_addr]'s field [netmask] is not provided in reporting data "}
+2015-11-11-20:23:16	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-12-02:13:01	INFO	{u'HardwareChanges': u'Asset[id:57 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[57:36:40:B5:B1:94:DB] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2015-11-12-02:13:01	INFO	{u'HardwareChanges': u'Asset[id:57 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[57:34:40:B5:B0:14:DA] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2015-11-12-02:13:01	INFO	{u'HardwareChanges': u'Asset[id:57 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[57:34:40:B5:B0:14:DA_bonding_addr2] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2015-11-12-02:13:01	INFO	{u'HardwareChanges': u'Asset[id:57 name:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a] --> component[57:34:40:B5:B0:14:DA_bonding_addr] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2015-11-12-02:13:01	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [36:40:B5:B1:94:DB],component data is missing in reporting data!'}
+2015-11-12-02:13:01	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [34:40:B5:B0:14:DA],component data is missing in reporting data!'}
+2015-11-12-02:13:01	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [34:40:B5:B0:14:DA_bonding_addr2],component data is missing in reporting data!'}
+2015-11-12-02:13:01	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [34:40:B5:B0:14:DA_bonding_addr],component data is missing in reporting data!'}
+2015-11-12-02:13:01	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-12-02:13:12	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-12-02:13:15	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-12-02:13:18	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-12-02:13:20	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-12-02:15:56	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-12-02:15:58	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-12-02:15:59	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2015-11-12-02:20:24	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a sn:VMware-56 4d ee b6 68 8a d4 aa-c3 28 e6 c5 1f 9d db 4a]'s field [raid_type] is not provided in reporting data "}
+2016-01-05-13:00:02	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset             id [None] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-01-05-13:02:07	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset             id [None] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-01-05-13:09:20	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset             id [None] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-07-21-11:02:31	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:03:52	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:03:53	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:03:54	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:04:52	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:05:44	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:05:45	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:06:35	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:06:36	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:06:37	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:06:37	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:06:38	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:06:38	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:06:38	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:51:48	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-11:52:03	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-13:42:54	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-13:51:29	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-13:51:52	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-13:52:48	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-13:58:34	ERROR	{u'ObjectCreateException': u'Object [server] UNIQUE constraint failed: asset_server.asset_id'}
+2016-07-21-15:42:34	WARNING	{u'AssetUpdateWarning': u"Asset component [26:00:0C:29:95:33:7C]'s field [sn] is not provided in reporting data "}
+2016-07-21-15:42:34	WARNING	{u'AssetUpdateWarning': u"Asset component [26:00:0C:29:95:33:7C]'s field [bonding] is not provided in reporting data "}
+2016-07-21-15:42:34	WARNING	{u'AssetUpdateWarning': u"Asset component [26:slot:sda capacity:40.0]'s field [sn] is not provided in reporting data "}
+2016-07-21-15:42:34	WARNING	{u'AssetUpdateWarning': u"Asset component [26:slot:sda capacity:40.0]'s field [model] is not provided in reporting data "}
+2016-07-21-15:42:34	WARNING	{u'AssetUpdateWarning': u"Asset component [26:slot:sda capacity:40.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-21-15:42:34	WARNING	{u'AssetUpdateWarning': u"Asset component [26:slot:sda capacity:40.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-21-15:42:34	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c sn:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c]'s field [raid_type]                  is not provided in reporting data "}
+2016-07-21-15:43:05	INFO	{u'FieldChanged': u'Asset[id:26 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[26:slot:sda capacity:40.0] --> field[capacity] has changed from [50.0] to [40.0]'}
+2016-07-21-15:43:05	INFO	{u'FieldChanged': u'Asset[id:26 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[26:RAM slot #0:256] --> field[capacity] has changed from [1256] to [256]'}
+2016-07-21-15:43:05	INFO	{u'FieldChanged': u'Asset[id:26 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[26:RAM slot #1:128] --> field[capacity] has changed from [1128] to [128]'}
+2016-07-21-15:43:05	WARNING	{u'AssetUpdateWarning': u"Asset component [26:00:0C:29:95:33:7C]'s field [sn] is not provided in reporting data "}
+2016-07-21-15:43:05	WARNING	{u'AssetUpdateWarning': u"Asset component [26:00:0C:29:95:33:7C]'s field [bonding] is not provided in reporting data "}
+2016-07-21-15:43:05	WARNING	{u'AssetUpdateWarning': u"Asset component [26:slot:sda capacity:50.0]'s field [sn] is not provided in reporting data "}
+2016-07-21-15:43:05	WARNING	{u'AssetUpdateWarning': u"Asset component [26:slot:sda capacity:50.0]'s field [model] is not provided in reporting data "}
+2016-07-21-15:43:05	WARNING	{u'AssetUpdateWarning': u"Asset component [26:slot:sda capacity:50.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-21-15:43:05	WARNING	{u'AssetUpdateWarning': u"Asset component [26:slot:sda capacity:40.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-21-15:43:05	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c sn:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c]'s field [raid_type]                  is not provided in reporting data "}
+2016-07-21-15:51:52	INFO	{u'FieldChanged': u'Asset[id:26 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz] --> field[cpu_model] has changed from [Intel(R) Core(TM) i9-3470 CPU @ 3.20GHz] to [Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz]'}
+2016-07-21-15:51:52	WARNING	{u'AssetUpdateWarning': u"Asset component [26:00:0C:29:95:33:7C]'s field [sn] is not provided in reporting data "}
+2016-07-21-15:51:52	WARNING	{u'AssetUpdateWarning': u"Asset component [26:00:0C:29:95:33:7C]'s field [bonding] is not provided in reporting data "}
+2016-07-21-15:51:52	WARNING	{u'AssetUpdateWarning': u"Asset component [26:slot:sda capacity:40.0]'s field [sn] is not provided in reporting data "}
+2016-07-21-15:51:52	WARNING	{u'AssetUpdateWarning': u"Asset component [26:slot:sda capacity:40.0]'s field [model] is not provided in reporting data "}
+2016-07-21-15:51:52	WARNING	{u'AssetUpdateWarning': u"Asset component [26:slot:sda capacity:40.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-21-15:51:52	WARNING	{u'AssetUpdateWarning': u"Asset component [26:slot:sda capacity:40.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-21-15:51:52	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c sn:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c]'s field [raid_type]                  is not provided in reporting data "}
+2016-07-21-16:37:45	INFO	{u'HardwareChanged': u'Asset[id:26 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[26:slot:sda capacity:40.0] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2016-07-21-16:37:45	INFO	{u'FieldChanged': u'Asset[id:26 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[26:RAM slot #0:512] --> field[capacity] has changed from [256] to [512]'}
+2016-07-21-16:37:45	INFO	{u'HardwareChanged': u'Asset[id:26 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[26:RAM slot #1:128] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2016-07-21-16:37:45	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [sda],component data is missing in reporting data!'}
+2016-07-21-16:37:45	ERROR	{u'AddingComponentException': u'Asset[id:26 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[Disk] has error: NOT NULL constraint failed: asset_disk.iface_type'}
+2016-07-21-16:37:45	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [RAM slot #1],component data is missing in reporting data!'}
+2016-07-21-16:37:45	WARNING	{u'AssetUpdateWarning': u"Asset component [26:00:0C:29:95:33:7C]'s field [sn] is not provided in reporting data "}
+2016-07-21-16:37:45	WARNING	{u'AssetUpdateWarning': u"Asset component [26:00:0C:29:95:33:7C]'s field [bonding] is not provided in reporting data "}
+2016-07-21-16:37:45	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c sn:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c]'s field [raid_type]                  is not provided in reporting data "}
+2016-01-07-13:27:18	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset             id [26] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-01-07-13:27:18	ERROR	{u'AssetDataInvalid': u'The reported data is not valid or provied'}
+2016-01-07-13:27:54	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset             id [None] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-01-07-13:27:54	ERROR	{u'AssetDataInvalid': u"invalid literal for int() with base 10: ''"}
+2016-01-07-13:30:12	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset             id [None] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-01-07-13:30:12	ERROR	{u'AssetDataInvalid': u"invalid literal for int() with base 10: ''"}
+2016-01-07-13:30:28	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset             id [None] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-01-07-13:30:28	ERROR	{u'AssetDataInvalid': u"invalid literal for int() with base 10: ''"}
+2016-01-07-13:32:56	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset             id [None] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-01-07-13:32:56	ERROR	{u'AssetDataInvalid': u"invalid literal for int() with base 10: ''"}
+2016-01-07-13:39:59	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset id [None] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-01-07-13:39:59	ERROR	{u'AssetDataInvalid': u"invalid literal for int() with base 10: ''"}
+2016-01-07-13:44:25	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset id [None] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-01-07-13:44:25	ERROR	{u'AssetDataInvalid': u"invalid literal for int() with base 10: ''"}
+2016-01-07-14:58:34	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset id [29] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-07-22-09:54:53	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset id [26] and SN [VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c]'}
+2016-07-22-11:49:01	INFO	{u'FieldChanged': u'Asset[id:38 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[38:RAM slot #0:256] --> field[capacity] has changed from [512] to [256]'}
+2016-07-22-11:49:01	INFO	{u'NewComponentAdded': u"Asset[id:38 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[RAM] has justed added a new item [{'slot': 'RAM slot #1', 'model': 'DRAM', 'capacity': '64', 'sn': 'Not Specified', 'asset_id': 38}]"}
+2016-07-22-11:49:01	INFO	{u'NewComponentAdded': u"Asset[id:38 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[RAM] has justed added a new item [{'slot': 'RAM slot #2', 'model': 'DRAM', 'capacity': '32', 'sn': 'Not Specified', 'asset_id': 38}]"}
+2016-07-22-11:49:01	INFO	{u'NewComponentAdded': u"Asset[id:38 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[RAM] has justed added a new item [{'slot': 'RAM slot #3', 'model': 'DRAM', 'capacity': '16', 'sn': 'Not Specified', 'asset_id': 38}]"}
+2016-07-22-11:49:01	INFO	{u'NewComponentAdded': u"Asset[id:38 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[RAM] has justed added a new item [{'slot': 'RAM slot #4', 'model': 'DRAM', 'capacity': '8', 'sn': 'Not Specified', 'asset_id': 38}]"}
+2016-07-22-11:49:01	INFO	{u'FieldChanged': u'Asset[id:38 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz] --> field[cpu_count] has changed from [2] to [4]'}
+2016-07-22-11:49:01	INFO	{u'FieldChanged': u'Asset[id:38 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz] --> field[cpu_core_count] has changed from [4] to [8]'}
+2016-07-22-11:49:01	ERROR	{u'AddingComponentException': u'Asset[id:38 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[Disk] has error: NOT NULL constraint failed: asset_disk.iface_type'}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [38:00:0C:29:95:33:86]'s field [sn] is not provided in reporting data "}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [38:00:0C:29:95:33:86]'s field [bonding] is not provided in reporting data "}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [38:00:0C:29:95:33:7C]'s field [sn] is not provided in reporting data "}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [38:00:0C:29:95:33:7C]'s field [bonding] is not provided in reporting data "}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sda capacity:40.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sda capacity:40.0]'s field [model] is not provided in reporting data "}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sda capacity:40.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sda capacity:40.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sdb capacity:20.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sdb capacity:20.0]'s field [model] is not provided in reporting data "}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sdb capacity:20.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sdb capacity:20.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-11:49:01	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c sn:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c]'s field [raid_type]                  is not provided in reporting data "}
+2016-07-22-11:50:41	ERROR	{u'AddingComponentException': u'Asset[id:38 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[Disk] has error: NOT NULL constraint failed: asset_disk.iface_type'}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [38:00:0C:29:95:33:86]'s field [sn] is not provided in reporting data "}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [38:00:0C:29:95:33:86]'s field [bonding] is not provided in reporting data "}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [38:00:0C:29:95:33:7C]'s field [sn] is not provided in reporting data "}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [38:00:0C:29:95:33:7C]'s field [bonding] is not provided in reporting data "}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sda capacity:40.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sda capacity:40.0]'s field [model] is not provided in reporting data "}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sda capacity:40.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sda capacity:40.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sdb capacity:20.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sdb capacity:20.0]'s field [model] is not provided in reporting data "}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sdb capacity:20.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sdb capacity:20.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-11:50:41	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c sn:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c]'s field [raid_type]                  is not provided in reporting data "}
+2016-07-22-13:10:29	ERROR	{u'AddingComponentException': u'Asset[id:38 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[Disk] has error: NOT NULL constraint failed: asset_disk.iface_type'}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [38:00:0C:29:95:33:86]'s field [sn] is not provided in reporting data "}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [38:00:0C:29:95:33:86]'s field [bonding] is not provided in reporting data "}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [38:00:0C:29:95:33:7C]'s field [sn] is not provided in reporting data "}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [38:00:0C:29:95:33:7C]'s field [bonding] is not provided in reporting data "}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sda capacity:40.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sda capacity:40.0]'s field [model] is not provided in reporting data "}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sda capacity:40.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sda capacity:40.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sdb capacity:20.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sdb capacity:20.0]'s field [model] is not provided in reporting data "}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sdb capacity:20.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [38:slot:sdb capacity:20.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-13:10:29	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c sn:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c]'s field [raid_type]                  is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:00:0C:29:95:33:86]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:00:0C:29:95:33:86]'s field [bonding] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:00:0C:29:95:33:7C]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:00:0C:29:95:33:7C]'s field [bonding] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sda capacity:40.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sda capacity:40.0]'s field [model] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sda capacity:40.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sda capacity:40.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdc capacity:0.61]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdc capacity:0.61]'s field [model] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdc capacity:0.61]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdc capacity:0.61]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdd capacity:1700.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdd capacity:1700.0]'s field [model] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdd capacity:1700.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdd capacity:1700.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdb capacity:20.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdb capacity:20.0]'s field [model] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdb capacity:20.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdb capacity:20.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-14:33:06	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c sn:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c]'s field [raid_type]                  is not provided in reporting data "}
+2016-07-22-14:39:00	INFO	{u'FieldChanged': u'Asset[id:39 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[39:slot:sdc capacity:1700.0] --> field[capacity] has changed from [0.61] to [1700.0]'}
+2016-07-22-14:39:00	INFO	{u'FieldChanged': u'Asset[id:39 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[39:slot:sdb capacity:0.61] --> field[capacity] has changed from [20.0] to [0.61]'}
+2016-07-22-14:39:00	INFO	{u'HardwareChanged': u'Asset[id:39 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[39:slot:sdd capacity:1700.0] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2016-07-22-14:39:00	INFO	{u'FieldChanged': u'Asset[id:39 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[39:RAM slot #0:512] --> field[capacity] has changed from [256] to [512]'}
+2016-07-22-14:39:00	INFO	{u'HardwareChanged': u'Asset[id:39 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[39:RAM slot #1:64] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2016-07-22-14:39:00	INFO	{u'HardwareChanged': u'Asset[id:39 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[39:RAM slot #2:32] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2016-07-22-14:39:00	INFO	{u'HardwareChanged': u'Asset[id:39 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[39:RAM slot #3:16] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2016-07-22-14:39:00	INFO	{u'HardwareChanged': u'Asset[id:39 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[39:RAM slot #4:8] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2016-07-22-14:39:00	INFO	{u'FieldChanged': u'Asset[id:39 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz] --> field[cpu_count] has changed from [4] to [2]'}
+2016-07-22-14:39:00	INFO	{u'FieldChanged': u'Asset[id:39 name:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c] --> component[Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz] --> field[cpu_core_count] has changed from [8] to [4]'}
+2016-07-22-14:39:00	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [sdd],component data is missing in reporting data!'}
+2016-07-22-14:39:00	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [RAM slot #1],component data is missing in reporting data!'}
+2016-07-22-14:39:00	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [RAM slot #2],component data is missing in reporting data!'}
+2016-07-22-14:39:00	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [RAM slot #3],component data is missing in reporting data!'}
+2016-07-22-14:39:00	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [RAM slot #4],component data is missing in reporting data!'}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:00:0C:29:95:33:86]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:00:0C:29:95:33:86]'s field [bonding] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:00:0C:29:95:33:7C]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:00:0C:29:95:33:7C]'s field [bonding] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sda capacity:40.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sda capacity:40.0]'s field [model] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sda capacity:40.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sda capacity:40.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdc capacity:0.61]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdc capacity:0.61]'s field [model] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdc capacity:0.61]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdc capacity:1700.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdb capacity:20.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdb capacity:20.0]'s field [model] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdb capacity:20.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdb capacity:0.61]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-14:39:00	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c sn:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c]'s field [raid_type]                  is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:00:0C:29:95:33:86]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:00:0C:29:95:33:86]'s field [bonding] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:00:0C:29:95:33:7C]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:00:0C:29:95:33:7C]'s field [bonding] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sda capacity:40.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sda capacity:40.0]'s field [model] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sda capacity:40.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sda capacity:40.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdc capacity:1700.0]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdc capacity:1700.0]'s field [model] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdc capacity:1700.0]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdc capacity:1700.0]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdb capacity:0.61]'s field [sn] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdb capacity:0.61]'s field [model] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdb capacity:0.61]'s field [manufactory] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [39:slot:sdb capacity:0.61]'s field [iface_type] is not provided in reporting data "}
+2016-07-22-14:40:23	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c sn:VMware-56 4d b7 8c c4 89 4c fd-86 e1 18 ce 75 95 33 7c]'s field [raid_type]                  is not provided in reporting data "}
+2016-01-08-09:42:27	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset id [39] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-01-08-09:42:47	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset id [39] and SN [VMware-56 4d 0e 8d 61 3e 35 32-b6 04 d1 1c 40 de c0 6d]'}
+2016-08-06-19:23:09	ERROR	{u'AssetDataInvalid': u'the reported asset data is not valid or provied'}
+2016-08-06-19:25:39	ERROR	{u'AssetDataInvalid': u'the reported asset data is not valid or provied'}
+2016-08-06-19:25:58	ERROR	{u'AssetDataInvalid': u'the reported asset data is not valid or provied'}
+2016-08-06-19:27:45	ERROR	{u'AssetDataInvalid': u'the reported asset data is not valid or provied'}
+2016-08-06-19:28:07	ERROR	{u'AssetDataInvalid': u'the reported asset data is not valid or provied'}
+2016-08-06-19:28:57	ERROR	{u'MandatoryCheckFailed': u'The field [sn] is mandatory and not provided in your reporting data'}
+2016-08-06-19:28:57	ERROR	{u'MandatoryCheckFailed': u'The field [asset_type] is mandatory and not provided in your reporting data'}
+2016-08-06-19:29:28	ERROR	{u'MandatoryCheckFailed': u'The field [sn] is mandatory and not provided in your reporting data'}
+2016-08-06-19:29:28	ERROR	{u'MandatoryCheckFailed': u'The field [asset_type] is mandatory and not provided in your reporting data'}
+2016-08-06-19:30:54	ERROR	{u'MandatoryCheckFailed': u'The field [sn] is mandatory and not provided in your reporting data'}
+2016-08-13-04:19:13	ERROR	{u'MandatoryCheckFailed': u'The field [asset_id] is mandatory and not provided in your reporting data'}
+2016-08-13-08:06:22	ERROR	{u'MandatoryCheckFailed': u'The field [asset_id] is mandatory and not provided in your reporting data'}
+2016-08-13-08:14:33	ERROR	{u'MandatoryCheckFailed': u'The field [asset_id] is mandatory and not provided in your reporting data'}
+2016-08-13-08:16:16	ERROR	{u'MandatoryCheckFailed': u'The field [asset_id] is mandatory and not provided in your reporting data'}
+2016-08-13-08:16:54	ERROR	{u'MandatoryCheckFailed': u'The field [asset_id] is mandatory and not provided in your reporting data'}
+2016-08-13-10:19:41	INFO	{u'NewComponentAdded': u"Asset[id:43 name:VMware-56 4d 70 d3 9e 55 3f 98-39 bd 74 c1 ff a1 ef 18] --> component[Disk] has justed added a new item [{'asset_id': 43, 'capacity': 44, 'slot': 'sda'}]"}
+2016-08-13-10:19:41	WARNING	{u'AssetUpdateWarning': u"Asset component [192.168.1.100]'s field [sn] is not provided in reporting data "}
+2016-08-13-10:19:41	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d 70 d3 9e 55 3f 98-39 bd 74 c1 ff a1 ef 18 sn:VMware-56 4d 70 d3 9e 55 3f 98-39 bd 74 c1 ff a1 ef 18]'s field [raid_type]                  is not provided in reporting data "}
+2016-08-23-20:11:46	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset id [44] and SN [VMware-56 4d 30 8c 37 04 2b d8-cd 51 e0 d6 df 5f 44 d6]'}
+2016-08-23-20:45:02	INFO	{u'NewComponentAdded': u"Asset[id:46 name:VMware-56 4d 30 8c 37 04 2b d8-cd 51 e0 d6 df 5f 44 d6] --> component[Disk] has justed added a new item [{'capacity': 30, 'asset_id': 46, 'slot': 'sda'}]"}
+2016-08-23-20:45:02	INFO	{u'NewComponentAdded': u"Asset[id:46 name:VMware-56 4d 30 8c 37 04 2b d8-cd 51 e0 d6 df 5f 44 d6] --> component[RAM] has justed added a new item [{'capacity': '1024', 'model': 'DRAM', 'asset_id': 46, 'sn': 'Not Specified', 'slot': 'RAM slot #0'}]"}
+2016-08-23-20:45:02	WARNING	{u'AssetUpdateWarning': u"Asset component [172.16.22.129]'s field [sn] is not provided in reporting data "}
+2016-08-23-20:45:02	WARNING	{u'AssetUpdateWarning': u"Asset component [172.17.42.1]'s field [sn] is not provided in reporting data "}
+2016-08-23-20:45:02	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d 30 8c 37 04 2b d8-cd 51 e0 d6 df 5f 44 d6 sn:VMware-56 4d 30 8c 37 04 2b d8-cd 51 e0 d6 df 5f 44 d6]'s field [raid_type]                  is not provided in reporting data "}
+2016-08-23-20:46:06	WARNING	{u'AssetUpdateWarning': u"Asset component [172.16.22.129]'s field [sn] is not provided in reporting data "}
+2016-08-23-20:46:06	WARNING	{u'AssetUpdateWarning': u"Asset component [172.17.42.1]'s field [sn] is not provided in reporting data "}
+2016-08-23-20:46:06	WARNING	{u'AssetUpdateWarning': u"Asset component [46:slot:sda capacity:30.0]'s field [sn] is not provided in reporting data "}
+2016-08-23-20:46:06	WARNING	{u'AssetUpdateWarning': u"Asset component [46:slot:sda capacity:30.0]'s field [model] is not provided in reporting data "}
+2016-08-23-20:46:06	WARNING	{u'AssetUpdateWarning': u"Asset component [46:slot:sda capacity:30.0]'s field [manufactory] is not provided in reporting data "}
+2016-08-23-20:46:06	WARNING	{u'AssetUpdateWarning': u"Asset component [46:slot:sda capacity:30.0]'s field [iface_type] is not provided in reporting data "}
+2016-08-23-20:46:06	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d 30 8c 37 04 2b d8-cd 51 e0 d6 df 5f 44 d6 sn:VMware-56 4d 30 8c 37 04 2b d8-cd 51 e0 d6 df 5f 44 d6]'s field [raid_type]                  is not provided in reporting data "}
+2016-09-02-01:19:29	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset id [48] and SN [VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10]'}
+2016-09-02-01:21:44	INFO	{u'HardwareChanged': u'Asset[id:49 name:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> component[172.16.22.159] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2016-09-02-01:21:44	INFO	{u'NewComponentAdded': u"Asset[id:49 name:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> component[NIC] has justed added a new item [{'macaddress': '00:0c:29:34:89:10', 'bonding': 'unknow', 'asset_id': 49, 'model': 'unknow', 'name': 'eth0', 'netmask': 'unknow', 'ipaddress': '172.16.22.159'}]"}
+2016-09-02-01:21:44	INFO	{u'FieldChanged': u'Asset[id:49 name:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> component[VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> field[os_type] has changed from [linux] to [Linux]'}
+2016-09-02-01:21:44	INFO	{u'FieldChanged': u'Asset[id:49 name:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> component[VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> field[os_distribution] has changed from [lsb_release] to [CentOS]'}
+2016-09-02-01:21:44	INFO	{u'FieldChanged': u'Asset[id:49 name:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> component[VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> field[os_release] has changed from [lsb_release] to [CentOS 6.6 [Final]-2.6.32-504.el6.x86_64]'}
+2016-09-02-01:21:44	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [00:0C:29:34:89:10],component data is missing in reporting data!'}
+2016-09-02-01:21:44	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [sn] is not provided in reporting data "}
+2016-09-02-01:21:44	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [model] is not provided in reporting data "}
+2016-09-02-01:21:44	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [manufactory] is not provided in reporting data "}
+2016-09-02-01:21:44	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [iface_type] is not provided in reporting data "}
+2016-09-02-01:21:44	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10]'s field [raid_type]                  is not provided in reporting data "}
+2016-09-02-01:21:47	WARNING	{u'AssetUpdateWarning': u"Asset component [172.16.22.159]'s field [sn] is not provided in reporting data "}
+2016-09-02-01:21:47	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [sn] is not provided in reporting data "}
+2016-09-02-01:21:47	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [model] is not provided in reporting data "}
+2016-09-02-01:21:47	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [manufactory] is not provided in reporting data "}
+2016-09-02-01:21:47	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [iface_type] is not provided in reporting data "}
+2016-09-02-01:21:47	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10]'s field [raid_type]                  is not provided in reporting data "}
+2016-09-02-01:25:36	WARNING	{u'AssetUpdateWarning': u"Asset component [172.16.22.159]'s field [sn] is not provided in reporting data "}
+2016-09-02-01:25:36	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [sn] is not provided in reporting data "}
+2016-09-02-01:25:36	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [model] is not provided in reporting data "}
+2016-09-02-01:25:36	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [manufactory] is not provided in reporting data "}
+2016-09-02-01:25:36	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [iface_type] is not provided in reporting data "}
+2016-09-02-01:25:36	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10]'s field [raid_type]                  is not provided in reporting data "}
+2016-09-02-01:25:55	WARNING	{u'AssetUpdateWarning': u"Asset component [172.16.22.159]'s field [sn] is not provided in reporting data "}
+2016-09-02-01:25:55	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [sn] is not provided in reporting data "}
+2016-09-02-01:25:55	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [model] is not provided in reporting data "}
+2016-09-02-01:25:55	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [manufactory] is not provided in reporting data "}
+2016-09-02-01:25:55	WARNING	{u'AssetUpdateWarning': u"Asset component [49:slot:sda capacity:30.0]'s field [iface_type] is not provided in reporting data "}
+2016-09-02-01:25:55	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10]'s field [raid_type]                  is not provided in reporting data "}
+2016-09-02-01:28:05	ERROR	{u'AssetDataInvalid': u'Cannot find a asset object in DB by using asset id [49] and SN [VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10]'}
+2016-09-02-01:59:17	INFO	{u'HardwareChanged': u'Asset[id:50 name:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> component[172.16.22.159] --> is lacking from reporting source data, assume it has been removed or replaced,will also delete it from DB'}
+2016-09-02-01:59:17	INFO	{u'NewComponentAdded': u"Asset[id:50 name:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> component[NIC] has justed added a new item [{'macaddress': '00:0C:29:34:89:10', 'bonding': 0, 'asset_id': 50, 'model': 'unknown', 'name': 'eth0', 'netmask': '255.255.255.0', 'ipaddress': '172.16.22.159'}]"}
+2016-09-02-01:59:17	INFO	{u'FieldChanged': u'Asset[id:50 name:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> component[VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> field[os_type] has changed from [Linux] to [linux]'}
+2016-09-02-01:59:17	INFO	{u'FieldChanged': u'Asset[id:50 name:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> component[VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> field[os_distribution] has changed from [CentOS] to [lsb_release]'}
+2016-09-02-01:59:17	INFO	{u'FieldChanged': u'Asset[id:50 name:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> component[VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10] --> field[os_release] has changed from [CentOS 6.6 [Final]-2.6.32-504.el6.x86_64] to [lsb_release]'}
+2016-09-02-01:59:17	ERROR	{u'AssetUpdateWarning': u'Cannot find any matches in source data by using key field val [00:0c:29:34:89:10],component data is missing in reporting data!'}
+2016-09-02-01:59:17	WARNING	{u'AssetUpdateWarning': u"Asset component [50:slot:sda capacity:30.0]'s field [sn] is not provided in reporting data "}
+2016-09-02-01:59:17	WARNING	{u'AssetUpdateWarning': u"Asset component [50:slot:sda capacity:30.0]'s field [model] is not provided in reporting data "}
+2016-09-02-01:59:17	WARNING	{u'AssetUpdateWarning': u"Asset component [50:slot:sda capacity:30.0]'s field [manufactory] is not provided in reporting data "}
+2016-09-02-01:59:17	WARNING	{u'AssetUpdateWarning': u"Asset component [50:slot:sda capacity:30.0]'s field [iface_type] is not provided in reporting data "}
+2016-09-02-01:59:17	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10]'s field [raid_type]                  is not provided in reporting data "}
+2016-09-02-01:59:21	WARNING	{u'AssetUpdateWarning': u"Asset component [172.16.22.159]'s field [sn] is not provided in reporting data "}
+2016-09-02-01:59:21	WARNING	{u'AssetUpdateWarning': u"Asset component [172.16.22.159]'s field [bonding] is not provided in reporting data "}
+2016-09-02-01:59:21	WARNING	{u'AssetUpdateWarning': u"Asset component [50:slot:sda capacity:30.0]'s field [sn] is not provided in reporting data "}
+2016-09-02-01:59:21	WARNING	{u'AssetUpdateWarning': u"Asset component [50:slot:sda capacity:30.0]'s field [model] is not provided in reporting data "}
+2016-09-02-01:59:21	WARNING	{u'AssetUpdateWarning': u"Asset component [50:slot:sda capacity:30.0]'s field [manufactory] is not provided in reporting data "}
+2016-09-02-01:59:21	WARNING	{u'AssetUpdateWarning': u"Asset component [50:slot:sda capacity:30.0]'s field [iface_type] is not provided in reporting data "}
+2016-09-02-01:59:21	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10]'s field [raid_type]                  is not provided in reporting data "}
+2016-09-02-01:59:23	WARNING	{u'AssetUpdateWarning': u"Asset component [172.16.22.159]'s field [sn] is not provided in reporting data "}
+2016-09-02-01:59:23	WARNING	{u'AssetUpdateWarning': u"Asset component [172.16.22.159]'s field [bonding] is not provided in reporting data "}
+2016-09-02-01:59:23	WARNING	{u'AssetUpdateWarning': u"Asset component [50:slot:sda capacity:30.0]'s field [sn] is not provided in reporting data "}
+2016-09-02-01:59:23	WARNING	{u'AssetUpdateWarning': u"Asset component [50:slot:sda capacity:30.0]'s field [model] is not provided in reporting data "}
+2016-09-02-01:59:23	WARNING	{u'AssetUpdateWarning': u"Asset component [50:slot:sda capacity:30.0]'s field [manufactory] is not provided in reporting data "}
+2016-09-02-01:59:23	WARNING	{u'AssetUpdateWarning': u"Asset component [50:slot:sda capacity:30.0]'s field [iface_type] is not provided in reporting data "}
+2016-09-02-01:59:23	WARNING	{u'AssetUpdateWarning': u"Asset component [VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10 sn:VMware-56 4d cc 58 24 6f c0 0e-ef 11 27 8b 94 34 89 10]'s field [raid_type]                  is not provided in reporting data "}

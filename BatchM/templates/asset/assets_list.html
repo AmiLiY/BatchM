@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+<div class="panel-body" >
+            <table id="asset_list" class="display table  table-hover">
+              <thead >
+                    <tr class="btn-info">
+                        <th>资产ID</th>
+                        <th>资产类型</th>
+                        <th>Name</th>
+                        <th>SN</th>
+
+                        <th>IDC</th>
+                        <th>业务线</th>
+                        <th>管理IP</th>
+                        <th>制造商</th>
+                        <th>型号</th>
+                        <th>CPU型号</th>
+                        <th>CPU核数</th>
+                        <th>内存</th>
+                        <th>硬盘(GB)</th>
+                        <th>CMD</th>
+{#    databaase havn't this data  <th>状态</th>#}
+                    </tr>
+                </thead>
+                <tbody>
+                {% for info in assets %}
+                    <tr>
+                        <th><a href="assets/asset_list/{{ info.id }}" target="_blank">{{ info.id }}</a></th>
+                        <th>{{ info.asset_type }}</th>
+                        <th>{{ info.name }}</th>
+                        <th>{{ info.sn }}</th>
+                        <th>{{ info.idc }}</th>
+                        <th>{{ info.business_unit }}</th>
+                        <th>{{ info.management_ip }}</th>
+                        <th>{{ info.manufactory }}</th>
+                        <th>{{ info.model }}</th>
+                        <th>{{ info.cpu_model }}</th>
+                        <th>{{ info.cpu_core_count }}</th>
+                        <th>{{ info.ram_size }}</th>
+                        <th>{{ info.disk_size }}</th>
+                        <th><a href="shell/{{ info.id }} " target="_blank">Run Cmd</a></th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <footer></footer>
+            </table>
+
+
+        </div>

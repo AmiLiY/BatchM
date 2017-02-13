@@ -42,11 +42,12 @@
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<form role="search">
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search">
+				<input type="text" class="form-control" placeholder="请输入服务器IP或者主机名">
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="/BatchM/index.html"><span class="glyphicon glyphicon-dashboard"></span> 仪表板</a></li>
+			<li class="active"><a href="/BatchM/index.html"><span class="glyphicon glyphicon-dashboard"></span>仪表把</a></li>
+            <li ><a href="/asset/asset_list"><span class="glyphicon glyphicon-adjust"></span>服务器信息</a></li>
 			<li><a href="/BatchM/saltstack.html"><span class="glyphicon glyphicon-th"></span> saltstack管理</a></li>
 			<li><a href="charts.html"><span class="glyphicon glyphicon-stats"></span>服务器性能趋势监控</a></li>
 			<li id="docker_manage" class="parent ">
@@ -68,7 +69,7 @@
             </li>
             <li class="parent " id="update_index">
 				<a href="#" id="ApplyUpdate" onclick="in_active()">
-					<span class="glyphicon glyphicon-list"></span> 更新操作 <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+					<span class="glyphicon glyphicon-save"></span> 更新操作 <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
 				</a>
 				<ul class="children collapse" id="sub-item-1">
 					<li>

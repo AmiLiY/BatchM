@@ -121,6 +121,7 @@ class AssetAdmin(admin.ModelAdmin):
     inlines = [ServerInline,CPUInline,RAMInline,DiskInline,NICInline]
     search_fields = ['sn',]
     list_filter = ['idc','manufactory','business_unit','asset_type']
+
 class NicAdmin(admin.ModelAdmin):
     list_display = ('name','macaddress','ipaddress','netmask','bonding')
     search_fields = ('macaddress','ipaddress')

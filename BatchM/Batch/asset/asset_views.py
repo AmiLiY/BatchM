@@ -83,7 +83,7 @@ def new_assets_approval(request):
                 obj.approved = True
                 obj.save()
                 response_dic[obj.id] = ass_handler.response
-        return HttpResponseRedirect('/admin/asset/newassetapprovalzone/')
+        return HttpResponseRedirect('/admin/Batch/newassetapprovalzone/')
 
     else:
         ids = request.GET.get('ids')
@@ -198,7 +198,8 @@ def assets(request):
     :return:
     '''
     assets = handler.fetch_asset_list()
-    return render(request,'asset/assets.html',{'assets':assets})
+    return render(request,'asset/assets_list.html',{'assets':assets})
+
 
 @login_required
 def asset_list(request):
@@ -208,8 +209,7 @@ def asset_list(request):
     :return:
     '''
     assets = handler.fetch_asset_list()
-    #assets = models.Asset.objects.all()
-    return render(request,'assets/assets.html',{'assets':assets['data']})
+    return render(request,'asset/assets_list.html',{'assets':assets['data']})
 
 @login_required
 def get_asset_list(request):

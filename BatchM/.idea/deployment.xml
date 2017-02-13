@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="for SansaClient">
+    <serverData>
+      <paths name="for SansaClient">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/SansaClient_py2" local="$PROJECT_DIR$/SansaClient_py2" web="/" />
+            <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>

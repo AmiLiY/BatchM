@@ -10,6 +10,7 @@ path = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(path)
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.utils import  IntegrityError
 from Batch import models
 from Batch.plugs import record_log
 from django.utils import timezone
@@ -18,6 +19,18 @@ from io import BytesIO
 from BatchM import settings
 import paramiko
 import collections
+
+
+# 代码错误列表
+# 1XX表示数据库客户提交的数据有问题，比如收集的信息不全，
+# 101 表示资产数据在等待管理审核的时候再次提交资产数据.
+# 2xx 表示管理员操作时间，比如管理员在审核提交的数据
+error_code = {101: "you had post these data already ,don't post data again,please waiting  administrator for approving ",
+              102: "Cannot find a asset object in DB by using asset id [%s] and SN [%s]",
+              103: "The field [%s] is mandatory and not provided in your reporting data",
+              104:"Cannot find any matches in source data by using key field val [%s],component data is missing in reporting data!",
+              201:"this is a new asset , so you need IT admin's approval to creat the new asset id..",
+              }
 
 
 
@@ -65,7 +78,7 @@ class Asset(object):
         '''
         强制入库检测,
         1 首先判断是否提供了sn号，资产编号，资产类型，没有提供，在response里面添加该报错信息，
-        2 判断是否对sn号进行检测，如果需要的话，要把Asset表里面的内容根据asset_id和sn号提取出来。
+        2 是否对sn号进行检测，通过only_check_sn来确定是否需要执行,如果需要的话，要把Asset表里面的内容根据asset_id和sn号提取出来。
         :param data:
         :param only_check_sn:
         :return:
@@ -73,7 +86,7 @@ class Asset(object):
         for field in self.mandatory_fields:
             if not field in data:
                 self.response_msg('error', 'MandatoryCheckFailed',
-                                  'The field [%s] is mandatory and not provided in your reporting data' % field)
+                                  error_code[103] % field)
         else:
             if self.response['error']: return False
         try:
@@ -84,7 +97,7 @@ class Asset(object):
             return True
         except ObjectDoesNotExist as e:
             print(e)
-            self.response_msg('error', 'AssetDataInvalid', 'Cannot find a asset object in DB by using asset id [%s] and SN [%s]' % (data['asset_id'], data['sn']))
+            self.response_msg('error', 'AssetDataInvalid', error_code[102] %(data['asset_id'], data['sn']))
             # 添加批准确认标志
             self.waitting_approval = True
             return False
@@ -102,20 +115,21 @@ class Asset(object):
         if data:
             try:
                 data = json.loads(data)
-                print('---->', data)
                 # if the asset is already exist in DB,just return it's asset id to client
                 if self.mandatory_check(data, only_check_sn=True):
                     response = {'asset_id': self.asset_obj.id}
                 else:
                     if hasattr(self, 'waitting_approval'):
-                        response = {'needs_aproval': "this is a new asset , needs IT admin's approval to \
-                        creat the new asset id.."}
+                        response = {'needs_aproval': error_code[201]}
                         self.clean_data = data
-                        self.save_new_asset_to_approval_zone()
-                        print(response)
+                        ret = self.save_new_asset_to_approval_zone()
+                        if ret is not True:
+                            response = {'needs_aproval':error_code[ret]}
+
                     else:
                         response = self.response
             except ValueError as e:
+                print('here',e)
                 self.response_msg("error", 'AssetDataInvalid', str(e))
                 response = self.response
         else:
@@ -129,7 +143,8 @@ class Asset(object):
         :return:
         '''
         asset_sn = self.clean_data.get('sn')
-        asset_already_in_approval_zone = models.NewAssetApprovalZone.objects.get_or_create(sn=asset_sn,
+        try:
+            asset_already_in_approval_zone = models.NewAssetApprovalZone.objects.get_or_create(sn=asset_sn,
                                                                                        data=json.dumps(
                                                                                            self.clean_data),
                                                                                        manufactory=self.clean_data.get(
@@ -153,7 +168,10 @@ class Asset(object):
                                                                                         os_type=self.clean_data.get(
                                                                                            'os_type'),
                                                                                            )
-        return True
+
+            return True
+        except IntegrityError:
+            return 101
 
     def data_is_valid(self):
         '''
@@ -559,12 +577,7 @@ class Asset(object):
                                                   fk, identify_field))
 
                         else:  # couldn't find any matches, the asset component must be broken or changed manually
-                            print(
-                                '\033[33;1mError:cannot find any matches in source data by using key field val [%s],component data is missing in reporting data!\033[0m' % (
-                                key_field_data))
-                            self.response_msg("error", "AssetUpdateWarning",
-                                              "Cannot find any matches in source data by using key field val [%s],component data is missing in reporting data!" % (
-                                              key_field_data))
+                            self.response_msg("error", "AssetUpdateWarning",error_code[104]% (key_field_data))
 
                     else:
                         print('\033[31;1mMust be sth wrong,logic should goes to here at all.\033[0m')
@@ -592,8 +605,7 @@ class Asset(object):
                     pass
                     # print '\033[32;1m val_from_db[%s]  == val_from_data_source[%s]\033[0m' %(val_from_db,val_from_data_source)
                 else:
-                    print('\033[34;1m val_from_db[%s]  != val_from_data_source[%s]\033[0m' % (
-                    val_from_db, val_from_data_source), type(val_from_db), type(val_from_data_source))
+
                     db_field = model_obj._meta.get_field(field)
                     db_field.save_form_data(model_obj, val_from_data_source)
                     model_obj.update_date = timezone.now()
@@ -619,7 +631,6 @@ class Asset(object):
         '''
         data_source_key_list = []
         for data in data_source:
-            print('data ---',data)
             if type(data) is str and type(data_source) is dict:
                 data_source_key_list.append(data_source[data])
             else:
@@ -630,7 +641,6 @@ class Asset(object):
 #        if type(data_source_key_list) is not list:
         data_source_key_list = set(data_source_key_list)
         data_identify_val_from_db = set([getattr(obj, identify_field) for obj in data_from_db])
-        print('data_identify_val_from_db -->',data_identify_val_from_db)
         # delete record in db
         data_only_in_db = data_identify_val_from_db - data_source_key_list
         # add into db
