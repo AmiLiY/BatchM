@@ -1,13 +1,15 @@
 {% extends 'index.html' %}
-<div class="panel-body" >
-            <table id="asset_list" class="display table  table-hover">
+{% block btitle %}{{ title }}{% endblock %}
+{% block page_content %}
+<div id="asset_list">
+    <div class="panel-body" >
+        <table id="asset_list" class="display table  table-hover">
               <thead >
                     <tr class="btn-info">
                         <th>资产ID</th>
                         <th>资产类型</th>
                         <th>Name</th>
                         <th>SN</th>
-
                         <th>IDC</th>
                         <th>业务线</th>
                         <th>管理IP</th>
@@ -18,13 +20,13 @@
                         <th>内存</th>
                         <th>硬盘(GB)</th>
                         <th>CMD</th>
-{#    databaase havn't this data  <th>状态</th>#}
+                    {#    databaase havn't this data  <th>状态</th>#}
                     </tr>
                 </thead>
                 <tbody>
                 {% for info in assets %}
                     <tr>
-                        <th><a href="assets/asset_list/{{ info.id }}" target="_blank">{{ info.id }}</a></th>
+                        <th><a href="/asset/asset_list/{{ info.id }}" target="_blank">{{ info.id }}</a></th>
                         <th>{{ info.asset_type }}</th>
                         <th>{{ info.name }}</th>
                         <th>{{ info.sn }}</th>
@@ -42,7 +44,84 @@
                 {% endfor %}
                 </tbody>
                 <footer></footer>
-            </table>
+        </table>
+    </div>
+</div>
+<div id="asset_graphic" style="width: 50%">
+    <div id="bingtu"  style="min-width:400px;height:400px;background-color:aliceblue"></div>
+</div>
 
+{% endblock %}
+{% block encoding_js %}
 
-        </div>
+    <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+
+    <script>
+        $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
+            if ($('.page-header').text() == '服务器信息表') {
+                $('#server_asset').toggleClass('active').siblings().removeClass('active');
+                $('#sub-item-3').addClass('in').removeAttr('style');
+                $('#server_list').css('background-color', 'grey');
+                $('#asset_graphic').hide();
+                $('#asset_list').show();
+
+            } else if ($('.page-header').text() == '服务器信息饼状图') {
+                $('#server_asset').toggleClass('active').siblings().removeClass('active');
+                $('#sub-item-3').addClass('in').removeAttr('style');
+                $('#server_graphic').css('background-color', 'grey');
+                $('#asset_list').hide();
+                $('#asset_graphic').show();
+                create_graphic()
+            }
+        });
+
+    function create_graphic() {
+            $('#bingtu').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: '服务器系统信息饼图'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Browser share',
+                    data: [
+                        ['Firefox',   45.0],
+                        ['IE',       26.8],
+                        {
+                            name: 'Chrome',
+                            y: 12.8,
+                            sliced: true,
+                            selected: true
+                        },
+                        ['Safari',    8.5],
+                        ['Opera',     6.2],
+                        ['Others',   0.7]
+                    ]
+                }]
+            });
+        };
+
+    </script>
+{% endblock %}

@@ -10,6 +10,7 @@
 <link href="/static/css/datepicker3.css" rel="stylesheet">
 <link href="/static/css/styles.css" rel="stylesheet">
 <link href="/static/plugins/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+<link href="/static/css/custom.css" rel="stylesheet">
 {% endblock %}
 </head>
 
@@ -46,12 +47,28 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="/BatchM/index.html"><span class="glyphicon glyphicon-dashboard"></span>仪表把</a></li>
-            <li ><a href="/asset/asset_list"><span class="glyphicon glyphicon-adjust"></span>服务器信息</a></li>
+			<li class="active"><a href="/BatchM/index.html"><span class="glyphicon glyphicon-dashboard"></span>前台</a></li>
 			<li><a href="/BatchM/saltstack.html"><span class="glyphicon glyphicon-th"></span> saltstack管理</a></li>
 			<li><a href="charts.html"><span class="glyphicon glyphicon-stats"></span>服务器性能趋势监控</a></li>
+            <li id="server_asset" class="parent ">
+                <a href="#"  onclick="in_active(this)">
+					<span class="glyphicon glyphicon-adjust"></span> 服务器信息汇总 <span data-toggle="collapse" href="#sub-item-3" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+				</a>
+                <ul class="children collapse" id="sub-item-3">
+					<li>
+						<a id="server_list" href="/asset/asset_list">
+							<span class="glyphicon glyphicon-share-alt"></span>服务器信息列表
+						</a>
+					</li>
+					<li>
+						<a id="server_graphic" href="/asset/asset_graphic">
+							<span class="glyphicon glyphicon-share-alt"></span>服务器信息图表
+						</a>
+					</li>
+				</ul>
+            </li>
 			<li id="docker_manage" class="parent ">
-                <a href="#" id="ApplyUpdate" onclick="in_active()">
+                <a href="#" id="container_manange" onclick="in_active(this)">
 					<span class="glyphicon glyphicon-list"></span> Docker管理 <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
 				</a>
             <ul class="children collapse" id="sub-item-2">
@@ -68,7 +85,7 @@
 				</ul>
             </li>
             <li class="parent " id="update_index">
-				<a href="#" id="ApplyUpdate" onclick="in_active()">
+				<a href="#" id="ApplyUpdate" onclick="in_active(this)">
 					<span class="glyphicon glyphicon-save"></span> 更新操作 <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
 				</a>
 				<ul class="children collapse" id="sub-item-1">
@@ -146,7 +163,7 @@
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">{% block btitle %}仪表板{% endblock %}</h1>
+				<h3 class="page-header">{% block btitle %}仪表板{% endblock %}</h3>
 			</div>
 		</div><!--/.row-->
         {% block page_content %}
@@ -164,9 +181,9 @@
 	<script src="/static/js/easypiechart.js"></script>
 	<script src="/static/js/easypiechart-data.js"></script>
 	<script src="/static/js/bootstrap-datepicker.js"></script>
-    <script src="/static/js/selfdefine.js"></script>
+{#    <script src="/static/js/selfdefine.js"></script>#}
 	<!--Nifty Admin [ RECOMMENDED ]-->
-	<script src="/static/js/nifty.min.js"></script>
+
     {% endblock %}
 
 	<script>
@@ -196,7 +213,6 @@
             if (active_node.parent().parent().hasClass("collapse")){
                 active_node.parent().parent().addClass("in");
             }
-
         });//end doc ready
 
         function  get_sys_load(){
@@ -249,18 +265,11 @@
 
 
 
-        function in_active() {   // 点击申请更新时，时这个按钮添加active属性
-            $('#ApplyUpdate').addClass('active');
-            $('#ApplyUpdate').parent().siblings().removeClass('active');
+        function in_active(arg) {   // 点击按钮时，时这个按钮添加active属性
+            $(arg).addClass('active');
+            $(arg).parent().siblings().removeClass('active').children('a').removeClass('active');
         }
 
-
-
-        // 展现docker容器管理到首页
-        function show_docker_index() {
-
-
-        }
 
 	</script>
 

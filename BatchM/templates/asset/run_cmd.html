@@ -1,0 +1,73 @@
+{% extends "index.html" %}
+{% block btitle %}
+    对 <span style="color: red">{{ mininon_name }}</span> 执行命令
+{% endblock %}
+{% block page_content %}
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">执行命令</h3>
+        </div>
+        <div class="panel-body" >
+            <span id='host_id' style="display: none;">{{ host_id }}</span>
+            <span style="font-size: larger">对&nbsp;<a  id="minion_id" style="color: red" href="/assetnew_assets/asset_list/assets/asset_list/{{ host_id }}">
+                {{ salt_minion_id }}</a>&nbsp;&nbsp;执行命令</span></br></br></br>
+
+                <span>{% csrf_token %}</span>
+                请输入命令: <input id='input_func' type="text"  placeholder="请输入要执行的命令" class="form-control"></br></br>
+                请输入参数: <input id='input_args'  type="text"  placeholder="请输入该命令要跟随的参数" class="form-control"></br></br></br>
+                <button type="button" class="btn btn-success" onclick="run_cmd()" >执行命令</button></br></br>
+            <pre class="pre-scrollable" style="display: none;">
+            </pre>
+
+            </div>
+            </div>
+    </div>
+{% endblock %}
+{% block encoding_js %}
+    <script>
+    // 回车键是信号13，下面这个方法就是捕获回车键的功能，然后触发run_cmd函数
+    $('input').keydown(function(event){
+       if(event.which == 13)
+           run_cmd()
+    });
+
+    // 这个方法用来获取用户输入的方法，参数，然后通过ajax来提交请求，然后把返回的内容放到提交按钮下面
+    function run_cmd(){
+        var csrftoken = getCookie('csrftoken');
+        var input_func = $('#input_func').val();
+        var input_args = $('#input_args').val();
+
+        $.ajax({
+            url:"/BatchM/put_cmd/"+$('#host_id').text().trim(),
+            type:'POST',
+            dataType:'json',
+            token: csrftoken,
+            data:{'host_id':$('#host_id').text().trim(),'minion_name':$('#minion_id').text(),
+                'func':input_func,'args':input_args},
+            success: function(callback){
+                show_result(callback)
+            }, // end success
+            error: function (callback) {
+                console.log(callback);
+                err_content = '';
+                for (i in callback){
+                        console.log(i,callback[i]);
+                        // status_text是 http code的文本，status是http code
+                        if(i == "statusText" || i ==  "status" ){
+                            err_content += callback[i]
+                        } // end if
+                } // end for
+                show_result(err_content)
+            }
+        })
+    }
+
+
+
+    //把返回的内容放到提交按钮下面
+    function show_result(content){
+        $('pre').css('display','block');
+        $('pre').text(content);
+    }
+</script>
+{% endblock %}

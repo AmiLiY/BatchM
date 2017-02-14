@@ -94,7 +94,7 @@ def new_assets_approval(request):
 
 def create_salt_group(request):
     '''
-    we will create or delete group config in saltstack master folder.(/etc/salt/master.d/)
+    we will create or delete of group's config in saltstack master folder.(/etc/salt/master.d/)
     :param request:
     :return:
     '''
@@ -198,7 +198,7 @@ def assets(request):
     :return:
     '''
     assets = handler.fetch_asset_list()
-    return render(request,'asset/assets_list.html',{'assets':assets})
+    return render(request,'asset/assets_list.html',{'assets':assets,'title':'服务器信息表'})
 
 
 @login_required
@@ -209,7 +209,7 @@ def asset_list(request):
     :return:
     '''
     assets = handler.fetch_asset_list()
-    return render(request,'asset/assets_list.html',{'assets':assets['data']})
+    return render(request,'asset/assets_list.html',{'assets':assets['data'],'title':'服务器信息表'})
 
 @login_required
 def get_asset_list(request):
@@ -237,7 +237,20 @@ def asset_category(request):
         data = categories.serialize_data()
         return HttpResponse(data)
     else:
-        return render(request,'assets/asset_category.html',{'catetory_type':category_type})
+        return render(request,'asset/asset_category.html',{'catetory_type':category_type})
+
+
+@login_required()
+def asset_graphic(request):
+    '''
+    显示资产列表的圆饼图
+    :param request:
+    :return:
+    '''
+    if request.method == 'GET':
+        return render(request,'asset/assets_list.html',{'title':'服务器信息饼状图'})
+
+
 
 @login_required
 def asset_event_logs(request,asset_id):
@@ -263,8 +276,8 @@ def asset_detail(request,asset_id):
         try:
             asset_obj = models.Asset.objects.get(id=asset_id)
         except ObjectDoesNotExist as e:
-            return render(request,'assets/asset_detail.html',{'error':e})
-        return render(request,'assets/asset_detail.html',{"asset_obj":asset_obj})
+            return render(request,'asset/asset_detail.html',{'error':e})
+        return render(request,'asset/asset_detail.html',{"asset_obj":asset_obj})
 
 @login_required
 def host_status(request):
@@ -275,7 +288,7 @@ def host_status(request):
     '''
     all_host_status = models.NewSystemStatus.objects.all().order_by('id')
     print('all_host_status',all_host_status)
-    return render(request,'assets/host_status.html',{'host_status_list':all_host_status})
+    return render(request,'asset/host_status.html',{'host_status_list':all_host_status})
 
 
 @login_required
@@ -305,7 +318,7 @@ def host_status_detail(request,host_id):
         time_stamp = t
         update_time_stamp.append(time_stamp.timestamp())
     print(update_time_stamp.reverse())
-    return render(request,'assets/host_status_detail.html',{'host_id':host_id,
+    return render(request,'asset/host_status_detail.html',{'host_id':host_id,
                                                             'disk_usage_a_hour': disk_usage_a_hour,
                                                             'sys_load_a_hour': sys_load_a_hour,
                                                             'cpu_io_wait_a_hour' : cpu_io_wait_a_hour,
@@ -388,7 +401,7 @@ def run_shell(request,host_id):
             return HttpResponse("<h1>404</h1>,Not Found the minion's anything on the databases,\
                             May be these infos are outdated or losed!! please communicate with \
                             the website administrator! ")
-        return render(request,'assets/run_cmd.html',{'salt_minion_id':salt_minion_id,'host_id':host_id})
+        return render(request,'asset/run_cmd.html',{'salt_minion_id':salt_minion_id,'host_id':host_id})
 
 
 #@login_required()
@@ -444,14 +457,14 @@ def groupshell(request,host_id):
             try:
                 group_number = models.SaltGroup.objects.filter(id=host_id)
                 group = group_number[0]
-                return render(request,'assets/saltstack_group_detail.html',{'group_number':group_number,'group':group})
+                return render(request,'asset/saltstack_group_detail.html',{'group_number':group_number,'group':group})
             except IndexError:
                 return HttpResponse("<h1>404</h1>,Not Found the Group's anything on the databases,\
                                         May be these infos are outdated or losed!! please communicate with \
                                         the website administrator! ")
 
     salt_group = models.SaltGroup.objects.all()
-    return render(request,'assets/saltstack_group.html',{"salt_group":salt_group,})
+    return render(request,'asset/saltstack_group.html',{"salt_group":salt_group,})
 
 
 
@@ -517,12 +530,12 @@ def distributecode(request,project_name):
         rh.info("host: %s,script_name: %s,code_pkg: %s,auth_method: %s ,"
                 % (remote_ip,remote_inst_script,code_pkg,auth_method))
         if result is True:
-            return render(request,'assets/remote_run_cmd.html',{'script_name':remote_inst_script,'timestamp_cache':timestamp,
+            return render(request,'asset/remote_run_cmd.html',{'script_name':remote_inst_script,'timestamp_cache':timestamp,
                                                                 "code_pkg_name":remote_code_pkg,"remote_ip":remote_ip})
         else:
             return  HttpResponse("<h1>Authentication failed.</h1> please check username or password or auth method!!!")
     else:
-        return render(request, 'assets/distribute_code.html',{'project_name':project_name})
+        return render(request, 'asset/distribute_code.html',{'project_name':project_name})
 
 @login_required()
 def remote_run_cmd_by_distributecode(request):
@@ -567,7 +580,7 @@ def remote_run_cmd_by_distributecode(request):
             if result:
                 return HttpResponse(json.dumps("Execute this script successfully!!"))
     else:
-        return render(request, 'assets/remote_run_cmd.html')
+        return render(request, 'asset/remote_run_cmd.html')
 
 def file_upload_progress(request):
     '''

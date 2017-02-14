@@ -339,8 +339,6 @@ def docker_manager(request):
             return render(request,'DockerM.html',{'docker_images':all_images})
 
 
-
-
 def docker_container_detail_show(request,container_id):
     '''
     显示每一个容器到详细信息，预留人工修改容器信息到功能
