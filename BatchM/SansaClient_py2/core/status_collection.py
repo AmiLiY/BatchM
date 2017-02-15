@@ -11,7 +11,7 @@ try:
     import psutil
 except ImportError ,e:
     print"\033[32m Installing psutil \033[30m"
-    result = commands.getstatusoutput("pip install psutil")
+    result = commands.getstatusoutput("yum -y install python-pip && pip install psutil")
     if result[0] == 0:
         import psutil
     else:

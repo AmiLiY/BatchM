@@ -47,8 +47,9 @@
         </table>
     </div>
 </div>
-<div id="asset_graphic" style="width: 50%">
-    <div id="bingtu"  style="min-width:400px;height:400px;background-color:aliceblue"></div>
+<div id="asset_graphic" >
+    <div id="os_release"  style="min-width:400px;height:450px;background-color:aliceblue;width: 50%;float: left"></div>
+    <div id="manufactory"  style="min-width:400px;height:450px;background-color:aliceblue;width: 50%;float: right"></div>
 </div>
 
 {% endblock %}
@@ -73,55 +74,126 @@
                 $('#server_graphic').css('background-color', 'grey');
                 $('#asset_list').hide();
                 $('#asset_graphic').show();
-                create_graphic()
+                get_data('os_release');
+                get_data('manufactory');
             }
         });
 
-    function create_graphic() {
-            $('#bingtu').highcharts({
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false
-                },
-                title: {
-                    text: '服务器系统信息饼图'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                            style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                            }
+    function create_graphic(result,data_type) {
+        if(data_type == 'os_release'){
+            var os_release_data = [];
+            for(var i in result){
+                var push_data = [i,Number(result[i])];
+                os_release_data.push(push_data);
+            }
+            $('#os_release').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '服务器操作系统图'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         }
                     }
-                },
-                series: [{
-                    type: 'pie',
-                    name: 'Browser share',
-                    data: [
-                        ['Firefox',   45.0],
-                        ['IE',       26.8],
-                        {
-                            name: 'Chrome',
-                            y: 12.8,
-                            sliced: true,
-                            selected: true
-                        },
-                        ['Safari',    8.5],
-                        ['Opera',     6.2],
-                        ['Others',   0.7]
-                    ]
-                }]
-            });
-        };
+                }
+            },
+
+            series: [{
+                type: 'pie',
+                name: 'system  version',
+
+                data:os_release_data,
+            }]
+        });
+
+        }else if(data_type == 'manufactory'){
+            var manufactory_data = [];
+            for(var i in result){
+                manufactory_data.push([i,result[i]])
+            }
+            $('#manufactory').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '服务器制造商'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'manufactory',
+                data: manufactory_data,
+            }]
+        });
+        }
+        console.log('result',result);
+    };
+
+    // getting data to paint for hcharts from server
+    function get_data(arg) {
+        console.log('csrftoken',csrftoken);
+        $.ajax(
+            {
+                url:'/asset/asset_graphic',
+                type:'POST',
+                token:csrftoken,
+                dataType:'json',
+                data:{'graphic_type':arg},
+                success: function(data) {
+                    console.log(data);
+                    var result = handler_data(data);
+                    console.log(result);
+                    create_graphic(result,arg)
+
+                 }, // end success
+                error: function (data) {
+                    console.log(data)
+                }, // end error
+            }
+        )
+    }
+
+    // handler these data from response of server
+    function handler_data(data) {
+        var os_release_dict = {};
+        var total_number = data.total_number;
+        var os_release_number = data.os_release_number;
+        for(var i in os_release_number){
+            os_release_dict[i]=os_release_number[i]/total_number*100
+        }
+        return os_release_dict
+    }
 
     </script>
 {% endblock %}

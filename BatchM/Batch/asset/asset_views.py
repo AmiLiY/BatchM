@@ -13,6 +13,7 @@ import json
 import os
 import sys
 import time
+import collections
 
 
 
@@ -240,6 +241,7 @@ def asset_category(request):
         return render(request,'asset/asset_category.html',{'catetory_type':category_type})
 
 
+@csrf_exempt
 @login_required()
 def asset_graphic(request):
     '''
@@ -249,8 +251,20 @@ def asset_graphic(request):
     '''
     if request.method == 'GET':
         return render(request,'asset/assets_list.html',{'title':'服务器信息饼状图'})
+    elif request.method == 'POST':   # how manay type of OS release and release's number
+        graphic_type = request.POST.get('graphic_type')
+        os_release_list =   all_os_release = []
 
+        if graphic_type == 'os_release':
+            all_os_release = models.Server.objects.all().values('os_release')
+        elif graphic_type == "manufactory":
+            all_os_release = models.Manufactory.objects.all().values('manufactory')
 
+        for os_release in all_os_release:
+            os_release_list.append(os_release[graphic_type])
+        print(collections.Counter(os_release_list))
+        response_data = {"os_release_number":collections.Counter(os_release_list),"total_number":len(os_release_list)}
+        return HttpResponse(json.dumps(response_data))
 
 @login_required
 def asset_event_logs(request,asset_id):
