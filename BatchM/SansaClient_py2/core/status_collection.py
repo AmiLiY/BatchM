@@ -7,15 +7,8 @@ import os
 import json
 from conf import settings
 import datetime
-try:
-    import psutil
-except ImportError ,e:
-    print"\033[32m Installing psutil \033[30m"
-    result = commands.getstatusoutput("yum -y install python-pip && pip install psutil")
-    if result[0] == 0:
-        import psutil
-    else:
-        exit("\033[31m I'm Sorry! psutil installed is false!! \n\t please you install it by yourself!! \033[0m")
+import psutil
+
 
 __status_info = {}
 
@@ -40,20 +33,21 @@ def system_load():
     :return:
     '''
     system_info_list=commands.getoutput("uptime").split(',')
+    print(system_info_list)
     __status_info['up_time'] = system_info_list[0].split('up')[1]
-    __status_info['login_users'] = system_info_list[1].strip()
-    __status_info['load_average_fiveMin_ago'] = float(system_info_list[2].split(':')[1].strip())
+    __status_info['login_users'] = system_info_list[2].strip()
+    __status_info['load_average_fiveMin_ago'] = float(system_info_list[3].split(':')[1].strip())
     __status_info['hostname'] = commands.getoutput('hostname')
     # get these info by model psutil 
     __status_info['cpu_ioWait'] = psutil.cpu_times_percent().iowait
     __status_info['start_time'] = datetime.datetime.fromtimestamp(psutil.boot_time()).strftime("%Y-%m-%d %H:%M:%S")
     mem = psutil.virtual_memory()
     __status_info['mem_use_precent'] = mem.used/float(mem.total)
-    
 
-    exec_command = '''echo `df -h |awk '{print $5}'|grep -v Use|awk -F"%" '{print $1}'` \
-                |awk 'BEGIN {max = 0} {if ($1>max) max=$1 fi} END {print  max}' '''
-    __status_info['disk_max_usage'] = float(commands.getoutput(exec_command))
+    disk_max_usage_list = []
+    for partition in psutil.disk_partitions():
+        disk_max_usage_list.append(psutil.disk_usage(partition.mountpoint).percent)
+    __status_info['disk_max_usage'] = float(max(disk_max_usage_list))
     cur_time=datetime.datetime.now()
     __status_info['update_time'] = cur_time.strftime('%Y-%m-%d %H:%M:%S.%u')
     __status_info['zombie_process'] = int(commands.getoutput("ps -ef |grep defunct |grep -v defunct|wc -l"))

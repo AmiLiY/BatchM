@@ -225,8 +225,8 @@
                             $('#'+ i +'_display').text(callback[i]);
                             $('#'+ i +'_width').text(callback[i]);
                             $('#'+ i +'_attr').css('width',callback[i]+'%')
-
                     }// end for
+                    console.log('get_sys_load',callback)
                 },// end sucess func
                 error: function(callback){
                     console.log(callback)

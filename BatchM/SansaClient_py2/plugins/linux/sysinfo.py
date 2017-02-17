@@ -49,6 +49,10 @@ def diskinfo():
     return obj.linux()
 
 def nicinfo():
+    '''
+
+    :return:
+    '''
     #tmp_f = file('/tmp/bonding_nic').read()
     #raw_data= subprocess.check_output("ifconfig -a",shell=True)
     raw_data = commands.getoutput("ifconfig -a")
@@ -173,8 +177,10 @@ def raminfo():
         #print(ram_data)
 
     return ram_data
+
+
 def osinfo():
-    #distributor = subprocess.check_output(" lsb_release -a|grep 'Distributor ID'",shell=True).split(":")
+    #distributor = subprocess.check_output("yum install "*/lsb_release && lsb_release -a|grep 'Distributor ID'",shell=True).split(":")
     distributor = commands.getoutput(" lsb_release -a|grep 'Distributor ID'").split(":")
     #release  = subprocess.check_output(" lsb_release -a|grep Description",shell=True).split(":")
     release  = commands.getoutput(" lsb_release -a|grep Description").split(":")

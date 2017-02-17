@@ -7,7 +7,7 @@ import status_collection
 import urllib,urllib2,sys,os,json,datetime
 import api_token
 import commands
-
+from core import  install_rpm
 
 class ArgvHandler(object):
     def __init__(self,argv_list):
@@ -18,6 +18,7 @@ class ArgvHandler(object):
     def parse_argv(self):
         if len(self.argvs) >1:
             if hasattr(self,self.argvs[1]):
+                install_rpm.get_command()     #
                 func = getattr(self,self.argvs[1])
                 func()
             else:
@@ -33,6 +34,11 @@ class ArgvHandler(object):
         report_asset   采集资产信息后汇报，不会展现
         report_sys_status     汇报服务器状态信息
         '''
+        msg = '''
+        CDSS(collect_data_by_saltstack)           通过saltstack来收集服务器信息后展现且汇报到服务器端
+        run_forever    进入后台运行，deamon模式
+        report_sys_status     汇报服务器状态信息
+        '''
         print(msg)
 
     def collect_data(self):
@@ -44,7 +50,7 @@ class ArgvHandler(object):
  
     def report_sys_status(self):
         '''
-           report system basic status to CMDB  server ,these datat include sys load average,disk max usage and so on
+           report system basic status to CMDB  server ,these data include sys load average,disk max usage and so on
         '''
        	status_result = status_collection.system_load()
         self.__submit_data('report_system_status',status_result,'post')
@@ -53,17 +59,9 @@ class ArgvHandler(object):
         '''
             collect machine's info by saltstack....
         '''
-        try:
-            import salt.config
-            import salt.loader
-        except ImportError ,e:
-            print"\033[32m Installing saltstack-minion \n\n %s \033[30m"%e
-            result = commands.getstatusoutput("yum -y install saltstack-minion saltstack")
-            if result[0] == 0:
-                import salt.config
-                import salt.loader
-            else:
-                exit("\033[31m I'm Sorry! saltstack installed is false!! \n\t please you install it by yourself!! \033[0m")
+
+        import salt.config
+        import salt.loader
         minion_conf = salt.config.minion_config('/etc/salt/minion')
         salt_minion_id = minion_conf['id']
         grains = salt.loader.grains(minion_conf)
@@ -92,11 +90,12 @@ class ArgvHandler(object):
         data_processed = {}
         no_need_item = ('wake_up_type','uuid','os_release','os_distribution',
                         'nic','cpu_count','ram','cpu_model','manufactory',
-                        'asset_type','physical_disk_driver','sn','os_release',
+                        'asset_type','physical_disk_driver','sn',
                         'os_type','cpu_core_count','model','ram_size')
         # sn
         data_processed['sn'] = data['serialnumber']
-        data_processed['os_release'] = "%s %s [%s]-%s" %(data['os'],data['osrelease'],data['lsb_distrib_codename'],data['kernelrelease'])
+        #data_processed['os_release'] = "%s %s [%s]-%s" %(data['os'],data['osrelease'],data['lsb_distrib_codename'],data['kernelrelease'])
+        data_processed['os_release'] = "%s %s %s" % (data['os'], data['osrelease'],data['kernelrelease'])
         data_processed['os_type'] = data['kernel']
         data_processed['os_distribution'] = data['os']
         nic_info = []

@@ -203,7 +203,7 @@ class SaltstackMinionsStatus(models.Model):
     '''
     记录saltstack Minions 的状态信息,存放历史状态记录的。
     '''
-    # asset = models.ForeignKey('Asset',verbose_name='资产编号')
+    asset = models.ForeignKey('Asset',verbose_name='资产编号',default=1)
     ipaddress = models.GenericIPAddressField(u'IP')
     hostname = models.CharField(u'主机名',max_length=128)
     zombie_process =  models.IntegerField(u'僵死进程数量')
@@ -217,7 +217,7 @@ class SaltstackMinionsStatus(models.Model):
     poweron_time = models.DateTimeField(u'系统开机时间',)
 
     def __str__(self):
-        return self.ipaddress
+        return self.hostname
 
     class Meta:
         verbose_name = '系统5分钟内运行状态'
@@ -228,7 +228,7 @@ class NewSaltstackMinionsStatus(models.Model):
     '''
     记录saltstack Minions 的状态信息,存放最新的状态记录的。
     '''
-    # asset = models.ForeignKey('Asset',verbose_name='资产编号')
+    asset = models.ForeignKey('Asset',verbose_name='资产编号',default=1)
     ipaddress = models.GenericIPAddressField(u'IP')
     hostname = models.CharField(u'主机名',max_length=128)
     zombie_process =  models.IntegerField(u'僵死进程数量')
@@ -247,6 +247,16 @@ class NewSaltstackMinionsStatus(models.Model):
     class Meta:
         verbose_name = '系统状态'
         verbose_name_plural =  '系统状态'
+
+
+class ApproveHosts(models.Model):
+    '''
+    how many hosts was approved
+    '''
+    asset_id = models.ForeignKey('Asset',verbose_name='资产编号',default=1)
+    minion_name = models.ForeignKey('SaltstackMinions',verbose_name='Minion的主机名')
+    how_many = models.IntegerField()
+    update_time = models.DateTimeField(u'批准时间',auto_now=True)
 
 
 

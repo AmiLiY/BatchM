@@ -21,6 +21,7 @@ import paramiko
 import collections
 
 
+
 # 代码错误列表
 # 1XX表示数据库客户提交的数据有问题，比如收集的信息不全，
 # 101 表示资产数据在等待管理审核的时候再次提交资产数据.
@@ -32,7 +33,7 @@ error_code = {101: "you had post these data already ,don't post data again,pleas
               201:"this is a new asset , so you need IT admin's approval to creat the new asset id..",
               }
 
-
+outdated_devices = ['fd0']   # floppy disk and so on ,these outdated devices were storaged in this list...
 
 class Asset(object):
     '''
@@ -171,7 +172,7 @@ class Asset(object):
 
             return True
         except IntegrityError:
-            return 101
+            return 101     # error code里面的101
 
     def data_is_valid(self):
         '''
@@ -307,6 +308,7 @@ class Asset(object):
                 # 判断数据类型
                 if type(field_val) is not list:
                     data_set[field_key] = data_type(field_val)
+                    print('data_set',data_set)
                 # 主要对没有做raid的磁盘做检测，并且有个标志位检测，如果是忽略列表为真，那么就跳过这个检测
                 elif type(field_val) is list and not ignore_list:
                     for data in field_val:
@@ -322,7 +324,7 @@ class Asset(object):
 
     def _create_server(self):
         '''
-        开始创建server类型的资产记录，下面都是调用相对应的cpu，磁盘内存记录
+        开始创建server类型的资产记录，下面都是调用相对应的cpu，磁盘内存存入的方法
         :return:
         '''
         self.__create_server_info()
@@ -413,15 +415,27 @@ class Asset(object):
         :return:
         '''
         disk_info = self.clean_data.get('physical_disk_driver')
+        print('disk_info',disk_info)
         if disk_info:
             try:
                 for disk_item in disk_info:
+                    print('disk_item',disk_item)
+
+                    self.__verify_field(disk_item, 'slot', str)
+                    print(disk_item.get('slot'))
+                    if disk_item.get('slot') in outdated_devices:   # storaging outdated devices
+                        data_set = { 'slot':disk_item.get('slot')}
+                        obj = models.Disk(**data_set)
+                        obj.save()
+                        break
+
                     self.__verify_field(disk_item, 'slot', str)
                     self.__verify_field(disk_item, 'capacity', float)
                     if len(disk_item) > 2:
                         self.__verify_field(disk_item, 'iface_type', str)
                         self.__verify_field(disk_item, 'model', str)
                     # 如果没有错误那么就处理，有错误就不处理
+                    print('self.response', self.response)
                     if not len(self.response['error']):
                         if len(disk_item) > 2:
                             data_set = {
@@ -452,6 +466,7 @@ class Asset(object):
         :return:
         '''
         nic_info = self.clean_data.get('nic')
+        print('nic_info',nic_info)
         if nic_info:
             for nic_item in nic_info:
                 try:
@@ -480,11 +495,15 @@ class Asset(object):
         :return:
         '''
         ram_info = self.clean_data.get('ram')
+        print('ram_info',ram_info)
         if ram_info:
             for ram_item in ram_info:
                 try:
+                    print('ram_item',ram_item)
                     self.__verify_field(ram_item, 'capacity', int)
+                    print('self.response',self.response)
                     if not len(self.response['error']):
+                        print('ram_info in not len',ram_info)
                         data_set = {
                             'asset_id': self.asset_obj.id,
                             'slot': ram_item.get('slot'),

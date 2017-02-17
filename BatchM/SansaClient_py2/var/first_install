@@ -1,0 +1,3 @@
+yum -y install '*/lsb_release'
+yum -y install python-pip && pip install psutil
+yum -y install saltstack-minion saltstack

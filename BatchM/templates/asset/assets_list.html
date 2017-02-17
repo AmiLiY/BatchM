@@ -48,9 +48,15 @@
     </div>
 </div>
 <div id="asset_graphic" >
-    <div id="os_release"  style="min-width:400px;height:450px;background-color:aliceblue;width: 50%;float: left"></div>
-    <div id="manufactory"  style="min-width:400px;height:450px;background-color:aliceblue;width: 50%;float: right"></div>
+    <h4>当前服务器总数:&nbsp;&nbsp;<span id="total_number_show" style="color: red;font-size: larger"></span></h4>
+    <div>
+        <div id="os_release"  style="min-width:400px;height:450px;background-color:aliceblue;width: 50%;float: left"></div>
+        <div id="manufactory"  style="min-width:400px;height:450px;background-color:aliceblue;width: 50%;float: right"></div>
+        <!--暂未使用这个代码，后续可能使用 <div id="hosts_show" style="min-width:400px;height:450px"></div> --> -
+        <div id="hosts_show" style="min-width:400px;height:450px">
+    </div>
 </div>
+
 
 {% endblock %}
 {% block encoding_js %}
@@ -60,6 +66,7 @@
     <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
 
     <script>
+        get_sys_load()
         $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
             if ($('.page-header').text() == '服务器信息表') {
                 $('#server_asset').toggleClass('active').siblings().removeClass('active');
@@ -76,11 +83,13 @@
                 $('#asset_graphic').show();
                 get_data('os_release');
                 get_data('manufactory');
+                create_graphic('hosts_show')
             }
         });
 
+
     function create_graphic(result,data_type) {
-        if(data_type == 'os_release'){
+        if(data_type == 'os_release'){   // 显示系统版本的圆饼图
             var os_release_data = [];
             for(var i in result){
                 var push_data = [i,Number(result[i])];
@@ -111,16 +120,15 @@
                     }
                 }
             },
-
             series: [{
                 type: 'pie',
                 name: 'system  version',
 
                 data:os_release_data,
             }]
-        });
+        });  // end if
 
-        }else if(data_type == 'manufactory'){
+        }else if(data_type == 'manufactory'){   // 显示服务器制造商的图
             var manufactory_data = [];
             for(var i in result){
                 manufactory_data.push([i,result[i]])
@@ -155,14 +163,50 @@
                 name: 'manufactory',
                 data: manufactory_data,
             }]
-        });
+        }); // end else if
+
+        }else if(data_type='hosts_show') {   // 折线图
+
+            $('#hosts_show').highcharts({
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: '服务器入库信息'
+                },
+                subtitle: {
+                    text: '最近一个月变动信息'
+                },
+                xAxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec','Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                },
+                yAxis: {
+                    title: {
+                        text: '数量'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                series: [{
+                    name: 'Tokyo',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                }, {
+                    name: 'London',
+                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8,3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8,]
+                }]
+            });
         }
-        console.log('result',result);
+
     };
 
     // getting data to paint for hcharts from server
     function get_data(arg) {
-        console.log('csrftoken',csrftoken);
         $.ajax(
             {
                 url:'/asset/asset_graphic',
@@ -172,8 +216,7 @@
                 data:{'graphic_type':arg},
                 success: function(data) {
                     console.log(data);
-                    var result = handler_data(data);
-                    console.log(result);
+                    var result = handler_data(data,arg);
                     create_graphic(result,arg)
 
                  }, // end success
@@ -185,12 +228,15 @@
     }
 
     // handler these data from response of server
-    function handler_data(data) {
+    function handler_data(data,data_type) {
         var os_release_dict = {};
         var total_number = data.total_number;
         var os_release_number = data.os_release_number;
         for(var i in os_release_number){
             os_release_dict[i]=os_release_number[i]/total_number*100
+        }
+        if(data_type=='os_release') {
+            $('#total_number_show').text(total_number)
         }
         return os_release_dict
     }

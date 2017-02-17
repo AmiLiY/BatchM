@@ -26,4 +26,12 @@ urlpatterns = [
     url(r'approval/$',views.new_assets_approval),
     url(r'report/asset_with_no_asset_id/',views.report_with_no_id),
     url(r'report/?',views.report_resource),
+    url(r'status/system/', views.system_status),  # 汇报minion的系统状态信息
+    url(r'host_status/$', views.host_status, name='host_status'),
+    url(r'host_status/(\d+)$', views.host_status_detail),  # 获取单台服务器状态信息
+    url(r'get_status_data$', views.get_status_data, name='get_status_data'),  # 获取详细的状态信息
+    url(r'saltstack_report$', views.saltstack_report, name="saltstack_report"),  #
+    url(r'put_cmd/(\d+)$', views.run_shell, name="put_cmd"),  # 针对 单台minion执行命令
+    url(r'groupshell/(\d+)$', views.groupshell, name='groupshell'),  # 针对saltstack组做命令操作
+    url(r'saltstack_group/(\d+)/$', views.groupshell),  # 针对saltstack组做命令操作
     ]

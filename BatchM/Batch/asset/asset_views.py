@@ -14,6 +14,7 @@ import os
 import sys
 import time
 import collections
+import datetime
 
 
 
@@ -182,12 +183,12 @@ def system_status(request):
         }
         # 开始存入专门用来放历史记录的表，
         print(request_set)
-        data_save_obj = models.SystemStatus(**request_set)
+        data_save_obj = models.SaltstackMinionsStatus(**request_set)
         #　更新专门用来存放最新一条历史记录的的表
-        if models.NewSystemStatus.objects.filter(asset=asset_id.first()):
-            models.NewSystemStatus.objects.filter(asset=asset_id.first()).update(**request_set)
+        if models.NewSaltstackMinionsStatus.objects.filter(asset=asset_id.first()):
+            models.NewSaltstackMinionsStatus.objects.filter(asset=asset_id.first()).update(**request_set)
         else:
-            models.NewSystemStatus.objects.create(**request_set)
+            models.NewSaltstackMinionsStatus.objects.create(**request_set)
         data_save_obj.save()
     return HttpResponse(json.dumps('put ok'))
 
@@ -300,7 +301,7 @@ def host_status(request):
     :param request:
     :return:
     '''
-    all_host_status = models.NewSystemStatus.objects.all().order_by('id')
+    all_host_status = models.NewSaltstackMinionsStatus.objects.all().order_by('id')
     print('all_host_status',all_host_status)
     return render(request,'asset/host_status.html',{'host_status_list':all_host_status})
 
@@ -319,7 +320,7 @@ def host_status_detail(request,host_id):
     mem_usage_a_hour = []
     update_time_stamp = []
     tmp_time = []
-    a_hour_data = models.SystemStatus.objects.filter(asset__id=host_id).order_by('-update_time')[0:12]
+    a_hour_data = models.SaltstackMinionsStatus.objects.filter(asset__id=host_id).order_by('-update_time')[0:12]
     for info in a_hour_data:
         disk_usage_a_hour.append(float(info.disk_max_usage))
         sys_load_a_hour.append(float(info.load_average_fiveMin_ago))
@@ -352,7 +353,7 @@ def get_status_data(request):
     if request.method == 'POST':
         print(request.POST)
         host_id = request.POST.get('host_id')
-        a_hour_data = models.SystemStatus.objects.filter(asset__id=host_id)[0:12]
+        a_hour_data = models.SaltstackMinionsStatus.objects.filter(asset__id=host_id)[0:12]
         responce_data = {'disk_usage_a_hour':[],'cpu_io_wait_a_hour':[],
                          'mem_usage_a_hour':[],'sys_load_a_hour':[]}
         for info in a_hour_data:
@@ -418,27 +419,18 @@ def run_shell(request,host_id):
         return render(request,'asset/run_cmd.html',{'salt_minion_id':salt_minion_id,'host_id':host_id})
 
 
-#@login_required()
-def server_host_status(request):
+@login_required()
+def show_approve_hosts(request):
     '''
-    获取运行此系统的服务器cpu和内存的使用方法，供首页展示
-    :param request:
+    show how many hosts was approvel
     :return:
     '''
-    if sys.platform != "win32":   # if the platform is not windowns,then these code will be execute.just get cpu and mem \
-        # useage from localhost
-        Usages = os.popen('sh %s/plugs/get_cpu.sh' %os.path.dirname(__file__) ).read()
-        Usage = {}
-        Usage['cpu_usage'],Usage['mem_usage'] = Usages.split('\n')[0].split('.')[0],Usages.split('\n')[1].split('.')[0]
-    else:
-        Usage = {'cpu_usage': '35', 'mem_usage': '68'}
-    # 获取IP的
-    if "HTTP_X_FORWARDED_FOR" in request.META:
-        ip = request.META['HTTP_X_FORWARDED_FOR']
-    else:
-        ip = request.META['REMOTE_ADDR']
+    now = datetime.datetime.now()
+    models.Asset.objects.dates()
+    all_approvel_host =  models.Asset.objects.filter(update_date__month=now.month)
 
-    return HttpResponse(json.dumps(Usage))
+    hosts_approvel = models.ApproveHosts.objects.all()
+
 
 
 @csrf_exempt
