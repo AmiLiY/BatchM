@@ -39,7 +39,7 @@ def report_resource(request):
 @csrf_exempt
 def report_with_no_id(request):
     '''
-    处理服务器第一次汇报数据
+    处理客户端第一次汇报数据
     :param request:
     :return:
     '''
@@ -75,8 +75,10 @@ def new_assets_approval(request):
     if request.method == "POST":
         request.POST = request.POST.copy()
         approved_asset_id_list = request.POST.getlist('approved_asset_list')
+        print('approved_asset_list',approved_asset_id_list)
         approved_asset_list = models.NewAssetApprovalZone.objects.filter(id__in=approved_asset_id_list)
         response_dic = {}
+        approved_host_list = []
         for obj in approved_asset_list:
             request.POST['asset_data'] = obj.data
             ass_handler = core.Asset(request)
@@ -85,6 +87,11 @@ def new_assets_approval(request):
                 obj.approved = True
                 obj.save()
                 response_dic[obj.id] = ass_handler.response
+                approved_host_list.append(obj.salt_minion_id)
+        # add which host was approved into Asset table..
+        ApproveHosts = models.ApproveHosts.objects.create(minion_name=approved_host_list,how_many=len(approved_host_list))
+        ApproveHosts.save()
+
         return HttpResponseRedirect('/admin/Batch/newassetapprovalzone/')
 
     else:
@@ -260,6 +267,26 @@ def asset_graphic(request):
             all_os_release = models.Server.objects.all().values('os_release')
         elif graphic_type == "manufactory":
             all_os_release = models.Manufactory.objects.all().values('manufactory')
+        elif graphic_type == 'hosts_show':
+            # filter which host was approved in  this table ApproveHosts
+            now_month = datetime.datetime.now().month
+            already_approved = models.ApproveHosts.objects.filter(update_time__month=now_month).order_by('update_time')
+            waiting_approve = models.NewAssetApprovalZone.objects.filter(date__month=now_month,approved=False).order_by('date')
+            response_dict= {'already_approved':{},'waiting_approve':{}}
+            for i in already_approved:
+                if str(i.update_time).split()[0] in response_dict['already_approved'].keys():
+                    response_dict['already_approved'][str(i.update_time).split()[0]] =  response_dict['already_approved'][str(i.update_time).split()[0]]+i.how_many     # update_time as key in this dictionary
+                else:
+                    response_dict['already_approved'][str(i.update_time).split()[0]] = i.how_many
+
+            for i in waiting_approve:
+                if str(i.date).split()[0] in response_dict['waiting_approve'].keys():  # if the day in the key of dict,so we need to incrase 1
+                    response_dict['waiting_approve'][str(i.date).split()[0]] = response_dict['waiting_approve'][str(i.date).split()[0]]+1
+                else:   # not in ,so we also incrase 1
+                    response_dict['waiting_approve'][str(i.date).split()[0]] =   1
+
+            print(response_dict)
+            return HttpResponse(json.dumps(response_dict))
 
         for os_release in all_os_release:
             os_release_list.append(os_release[graphic_type])

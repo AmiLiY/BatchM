@@ -253,11 +253,16 @@ class ApproveHosts(models.Model):
     '''
     how many hosts was approved
     '''
-    asset_id = models.ForeignKey('Asset',verbose_name='资产编号',default=1)
-    minion_name = models.ForeignKey('SaltstackMinions',verbose_name='Minion的主机名')
+    minion_name = models.CharField(u'saltstack_minion_name',max_length=4096)
     how_many = models.IntegerField()
     update_time = models.DateTimeField(u'批准时间',auto_now=True)
 
+    def __str__(self):
+        return self.minion_name
+
+    class Meta:
+        verbose_name = '批准主机的数量'
+        verbose_name_plural = '批准主机的数量'
 
 
 
@@ -590,6 +595,7 @@ class NewAssetApprovalZone(models.Model):
     approved = models.BooleanField(u'已批准',default=False)
     approved_by = models.ForeignKey(MyUser,verbose_name=u'批准人',blank=True,null=True)
     approved_date = models.DateTimeField(u'批准日期',blank=True,null=True)
+    salt_minion_id = models.CharField(u'saltstack_minion_id',max_length=1024,blank=True,null=True)
 
     def __str__(self):
         return self.sn

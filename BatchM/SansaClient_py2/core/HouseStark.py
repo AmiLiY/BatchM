@@ -3,11 +3,11 @@ __author__ = 'Leo'
 
 import info_collection
 from conf import settings
-import status_collection
+from core import  install_rpm
 import urllib,urllib2,sys,os,json,datetime
 import api_token
 import commands
-from core import  install_rpm
+
 
 class ArgvHandler(object):
     def __init__(self,argv_list):
@@ -52,6 +52,7 @@ class ArgvHandler(object):
         '''
            report system basic status to CMDB  server ,these data include sys load average,disk max usage and so on
         '''
+        import status_collection
        	status_result = status_collection.system_load()
         self.__submit_data('report_system_status',status_result,'post')
     

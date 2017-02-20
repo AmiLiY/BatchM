@@ -83,7 +83,7 @@
                 $('#asset_graphic').show();
                 get_data('os_release');
                 get_data('manufactory');
-                create_graphic('hosts_show')
+                get_data('hosts_show')
             }
         });
 
@@ -178,7 +178,7 @@
                     text: '最近一个月变动信息'
                 },
                 xAxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec','Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    categories: result['approved_month']
                 },
                 yAxis: {
                     title: {
@@ -194,11 +194,11 @@
                     }
                 },
                 series: [{
-                    name: 'Tokyo',
-                    data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                    name: '已批准的服务器',
+                    data: result['approved_number']
                 }, {
-                    name: 'London',
-                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8,3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8,]
+                    name: '待批准的服务器',
+                    data: result['approve_number']
                 }]
             });
         }
@@ -216,8 +216,14 @@
                 data:{'graphic_type':arg},
                 success: function(data) {
                     console.log(data);
-                    var result = handler_data(data,arg);
-                    create_graphic(result,arg)
+                    if(arg == 'hosts_show'){
+                        var result = handler_data_line_chart(data, arg);
+                        console.log('result',result);
+                        create_graphic(result,arg)
+                    }else {
+                        var result = handler_data_pie_chart(data, arg);
+                        create_graphic(result, arg)
+                    }
 
                  }, // end success
                 error: function (data) {
@@ -227,8 +233,8 @@
         )
     }
 
-    // handler these data from response of server
-    function handler_data(data,data_type) {
+    // handler these data from response of server,the data is  create a pie chart
+    function handler_data_pie_chart(data,data_type) {
         var os_release_dict = {};
         var total_number = data.total_number;
         var os_release_number = data.os_release_number;
@@ -239,6 +245,33 @@
             $('#total_number_show').text(total_number)
         }
         return os_release_dict
+    }
+
+    // handler these data from response of server,the data is  create a line chart
+    function  handler_data_line_chart(data,data_type) {
+        var already_approved = data.already_approved;
+        var wating_approve = data.waiting_approve;
+
+        var approved_month = [];   // the list was storadged  month what come from    already_approved dict
+        var approved_number = [];  // the list was storadged  how many asset was approved
+        for(var k in already_approved){
+            approved_month.push(k);
+            approved_number.push(already_approved[k])
+        }
+
+        var approve_month = [];
+        var approve_number = [];
+        for(var k in wating_approve){
+            approve_month.push(k);
+            approve_number.push(wating_approve[k]);
+        }
+
+        var result = {};
+        result['approved_month'] =  approved_month;
+        result['approved_number'] = approved_number;
+        result['approve_month'] = approve_month;
+        result['approve_number'] = approve_number;
+        return result
     }
 
     </script>

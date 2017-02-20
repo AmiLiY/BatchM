@@ -166,8 +166,11 @@ class Asset(object):
                                                                                            'os_distribution'),
                                                                                        os_release=self.clean_data.get(
                                                                                            'os_release'),
-                                                                                        os_type=self.clean_data.get(
+                                                                                       os_type=self.clean_data.get(
                                                                                            'os_type'),
+                                                                                       salt_minion_id = self.clean_data.get(
+                                                                                           'salt_minion_id'
+                                                                                       )
                                                                                            )
 
             return True
