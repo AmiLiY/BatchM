@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% block btitle %}{{ title }}{% endblock %}
+{% block page_content %}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+<div class="panel-body" >
+    <table id="new_asset_wait_approvel" class="display table  table-hover" data-toggle="table"
+                    data-url="{% url 'new_asset_wait_approvel' %}"
+                    data-method="post"
+                    data-pagination="true"
+                    data-side-pagination="server"
+                    data-page-list="[10, 20, 50, 100, 200]"
+                    data-search="true" data-mobile-responsive="true" searchOnEnterKey="true"
+                    data-show-refresh="true" data-show-columns="true"
+                    data-show-toggle="true" data-page-size=20 data-unique-id="asset_id"
+                    data-sort-stable="true"  data-striped="true"
+                    data-sortable="true"
+                    >
+                  <thead >
+                        <tr>
+                        <th data-field="state" data-checkbox="true"></th>
+                        <th data-field="new_asset_sn" data-align="left" data-sortable="true" data-class="asset_sn">资产编号</th>
+                        <th data-field="new_asset_manufactory" data-sortable="true">厂商</th>
+                        <th data-field="new_asset_type" data-sortable="true">类型</th>
+                        <th data-field="new_asset_os_release" data-sortable="true">操作系统</th>
+                        <th data-field="new_asset_cpu_model" data-sortable="true">CPU型号</th>
+                        <th data-field="new_asset_cpu_count" data-sortable="true">CPU个数</th>
+                        <th data-field="new_asset_cpu_core_count" data-sortable="true">CPU总核数</th>
+                        <th data-field="new_asset_rams_size" data-sortable="true">内存大小（MB）</th>
+                        <th data-field="new_asset_salt_minion_id" data-sortable="true">saltstack_minion_id</th>
+                        <th data-field="new_asset_posted_data"  data-align="center">新资产汇报的数据</th>
+                        <th data-field="new_asset_create_date" data-sortable="true">汇报日期</th>
+                        </tr>
+                  </thead>
+        </table>
+</div>
+{% endblock %}
+{% block encoding_js %}
+
+    <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="/static/js//bootstrap-table.min.js"></script>
+
+    <!-- Latest compiled and minified Locales -->
+    <script src="/static/js/bootstrap-table-zh-CN.min.js"></script>
+{% endblock %}

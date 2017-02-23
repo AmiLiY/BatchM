@@ -11,6 +11,7 @@
 <link href="/static/css/styles.css" rel="stylesheet">
 <link href="/static/plugins/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 <link href="/static/css/custom.css" rel="stylesheet">
+
 {% endblock %}
 </head>
 
@@ -57,7 +58,12 @@
                 <ul class="children collapse" id="sub-item-3">
 					<li>
 						<a id="server_list" href="/asset/asset_list">
-							<span class="glyphicon glyphicon-share-alt"></span>服务器信息列表
+							<span class="glyphicon glyphicon-share-alt"></span>已审批服务器列表
+						</a>
+					</li>
+                    <li>
+						<a id="server_wait_approvel" href="/asset/asset_approvel">
+							<span class="glyphicon glyphicon-share-alt"></span>待审批服务器列表
 						</a>
 					</li>
 					<li>
@@ -181,6 +187,7 @@
 	<script src="/static/js/easypiechart.js"></script>
 	<script src="/static/js/easypiechart-data.js"></script>
 	<script src="/static/js/bootstrap-datepicker.js"></script>
+<!--    <script src="/static/js/jquery.dataTables.min.js"></script> -->
 {#    <script src="/static/js/selfdefine.js"></script>#}
 	<!--Nifty Admin [ RECOMMENDED ]-->
 
@@ -226,7 +233,6 @@
                             $('#'+ i +'_width').text(callback[i]);
                             $('#'+ i +'_attr').css('width',callback[i]+'%')
                     }// end for
-                    console.log('get_sys_load',callback)
                 },// end sucess func
                 error: function(callback){
                     console.log(callback)
