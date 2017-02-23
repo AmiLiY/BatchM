@@ -417,13 +417,12 @@ class Asset(object):
         :return:
         '''
         disk_info = self.clean_data.get('physical_disk_driver')
-        #print('disk_info',disk_info)
         if disk_info:
             try:
                 size_in_total = 0
                 for disk_item in disk_info:
                     #print('disk_item',disk_item)
-                    size_in_total = size_in_total + disk_item.get('capacity')
+                    size_in_total = size_in_total + int(disk_item.get('capacity'))
                     self.__verify_field(disk_item, 'slot', str)
                     #print(disk_item.get('slot'))
                     if disk_item.get('slot') in outdated_devices:   # storaging outdated devices
@@ -458,7 +457,6 @@ class Asset(object):
                                 'slot': disk_item.get('slot'),
                                 'disk_size_in_total': size_in_total,
                             }
-
                     obj = models.Disk(**data_set)
                     obj.save()
             except Exception as e:
@@ -501,15 +499,14 @@ class Asset(object):
         :return:
         '''
         ram_info = self.clean_data.get('ram')
-        #print('ram_info',ram_info)
         if ram_info:
             size_in_total = 0
             for ram_item in ram_info:
-                size_in_total = size_in_total + ram_item.get('capacity')
                 try:
                     #print('ram_item',ram_item)
                     self.__verify_field(ram_item, 'capacity', int)
-                    #print('self.response',self.response)
+                    size_in_total = size_in_total + ram_item.get('capacity')
+                    print('self.response',self.response)
                     if not len(self.response['error']):
                         #print('ram_info in not len',ram_info)
                         data_set = {

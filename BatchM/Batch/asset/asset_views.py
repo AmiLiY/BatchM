@@ -130,7 +130,6 @@ def new_assets_approval(request):
     if request.method == "POST":
         request.POST = request.POST.copy()
         approved_asset_id_list = request.POST.getlist('approved_asset_list')
-        print('approved_asset_list',approved_asset_id_list)
         approved_asset_list = models.NewAssetApprovalZone.objects.filter(id__in=approved_asset_id_list)
         response_dic = {}
         approved_host_list = []
@@ -318,23 +317,23 @@ def show_asset_in_table(request):
             print('sort_column', sort_column, 'order', order)
             if sort_column in ['id','asset_type','sn','name','management_ip','manufactory','type']:
                 if order == 'desc':
-                    all_records = models.Asset.objects.all().order_by('-%s'%(sort_column))
-                else:
-                    all_records = models.Asset.objects.all().order_by(sort_column)
+                    sort_column = '-%s' % (sort_column)
+                all_records = models.Asset.objects.all().order_by(sort_column)
             elif sort_column in ['salt_minion_id','os_release',]:
                 if order == 'desc':
-                    all_records = models.Asset.objects.all().order_by('-server__%s'%(sort_column))
-                else:
-                    all_records = models.Server.objects.all().order_by('server__%s'%(sort_column))
+                    sort_column = '-server__%s'%(sort_column)
+                all_records = models.Server.objects.all().order_by('server__%s'%(sort_column))
             elif sort_column in ['cpu_model','cpu_count','cpu_core_count']:
                 if order == 'desc':
-                    all_records = models.Asset.objects.all().order_by('-cpu__%s'%(sort_column))
-                else:
-                    all_records = models.Server.objects.all().order_by('cpu__%s'%(sort_column))
+                    sort_column = '-cpu__%s'%(sort_column)
+                all_records = models.Server.objects.all().order_by('cpu__%s'%(sort_column))
 
-            elif sort_column in ['rams_size','localdisks_size']:
+            elif sort_column in ['rams_size',]:
                 if order == 'desc':
-                    pass
+                    sort_column = '-ram__capacity'
+                else:
+                    sort_column = 'ram__capacity'
+                all_records = models.Asset.objects.all().annotate(rams_size=sum('ram__capacity')).order_by(sort_column)
 
 
 
