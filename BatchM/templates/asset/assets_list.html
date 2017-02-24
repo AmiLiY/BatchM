@@ -3,6 +3,19 @@
 {% block page_content %}
 <div id="asset_list">
     <div class="panel-body" >
+        搜索
+        <select name="select_opinon" id="select_opinon">
+            <option value="id">资产ID</option>
+            <option value="IDC">IDC机房</option>
+            <option value="business">业务线</option>
+            <option value="IP">管理IP</option>
+            <option value="manufactory">制造商</option>
+            <option value="cpu">CPU型号</option>
+        </select>
+        =
+        <input type="text"  id="input_content"  placeholder="请输入关键字进行搜索">
+        <input type="submit" class="btn btn-info" onclick="search_info()">
+        <br><br>
         <table id="asset_list" class="display table  table-hover">
               <thead >
                     <tr class="btn-info">
@@ -48,11 +61,22 @@
     </div>
 </div>
 <div id="asset_graphic" >
-    <h4>当前服务器总数:&nbsp;&nbsp;<span id="total_number_show" style="color: red;font-size: larger"></span></h4>
+    <h4>当前批准入库服务器总数:&nbsp;&nbsp;<span id="total_number_show" style="color: red;font-size: larger"></span></h4>
     <div>
         <div id="os_release"  style="min-width:400px;height:450px;background-color:aliceblue;width: 50%;float: left"></div>
         <div id="manufactory"  style="min-width:400px;height:450px;background-color:aliceblue;width: 50%;float: right"></div>
-        <!--暂未使用这个代码，后续可能使用 <div id="hosts_show" style="min-width:400px;height:450px"></div> --> -
+        <!--暂未使用这个代码，后续可能使用 <div id="hosts_show" style="min-width:400px;height:450px"></div>
+        <div>
+            <h4>请选择月份</h4>
+            <select>
+                <option selected="selected">now</option>
+                {% for month in months %}
+                    <option>{{ month }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" onclick="get_data('')">
+        </div>
+        --> -
         <div id="hosts_show" style="min-width:400px;height:450px">
     </div>
 </div>
@@ -66,7 +90,7 @@
     <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
 
     <script>
-        get_sys_load()
+        get_sys_load();
         $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
             if ($('.page-header').text() == '服务器信息表') {
                 $('#server_asset').toggleClass('active').siblings().removeClass('active');
@@ -166,6 +190,9 @@
         }); // end else if
 
         }else if(data_type='hosts_show') {   // 折线图
+            if(result['approved_month'].length  == 0){
+                result['approved_month']=result['approve_month']
+            }
 
             $('#hosts_show').highcharts({
                 chart: {
@@ -272,6 +299,24 @@
         result['approve_month'] = approve_month;
         result['approve_number'] = approve_number;
         return result
+    }
+
+    // 处理搜索的功能
+    function search_info() {
+        var select_opinon = $('#select_opinon').val();
+        var input_content = $('#input_content').val();
+        $.get({
+                    url: '/asset/asset_graphic',
+                    token: csrftoken,
+                    dataTypes: 'json',
+                    data: {'select_opinon':input_content}
+                    success: function (callback) {
+                        console.log(callback)
+                    },
+                    error: function (callback) {
+                        console.log(callback)
+                    }
+              })
     }
 
     </script>

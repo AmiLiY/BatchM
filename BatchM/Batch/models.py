@@ -249,20 +249,20 @@ class NewSaltstackMinionsStatus(models.Model):
         verbose_name_plural =  '系统状态'
 
 
-class ApproveHosts(models.Model):
-    '''
-    how many hosts was approved
-    '''
-    minion_name = models.CharField(u'saltstack_minion_name',max_length=4096)
-    how_many = models.IntegerField()
-    update_time = models.DateTimeField(u'批准时间',auto_now=True)
-
-    def __str__(self):
-        return self.minion_name
-
-    class Meta:
-        verbose_name = '批准主机的数量'
-        verbose_name_plural = '批准主机的数量'
+# class ApproveHosts(models.Model):
+#     '''
+#     how many hosts was approved
+#     '''
+#     minion_name = models.CharField(u'saltstack_minion_name',max_length=4096)
+#     how_many = models.IntegerField()
+#     update_time = models.DateTimeField(u'批准时间',auto_now=True)
+#
+#     def __str__(self):
+#         return self.minion_name
+#
+#     class Meta:
+#         verbose_name = '批准主机的数量'
+#         verbose_name_plural = '批准主机的数量'
 
 
 

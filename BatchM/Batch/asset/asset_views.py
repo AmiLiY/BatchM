@@ -88,9 +88,7 @@ def new_assets_approval(request):
                 obj.save()
                 response_dic[obj.id] = ass_handler.response
                 approved_host_list.append(obj.salt_minion_id)
-        # add which host was approved into Asset table..
-        ApproveHosts = models.ApproveHosts.objects.create(minion_name=approved_host_list,how_many=len(approved_host_list))
-        ApproveHosts.save()
+
 
         return HttpResponseRedirect('/admin/Batch/newassetapprovalzone/')
 
@@ -258,7 +256,14 @@ def asset_graphic(request):
     :return:
     '''
     if request.method == 'GET':
-        return render(request,'asset/assets_list.html',{'title':'服务器信息饼状图'})
+        select_opinon = request.GET.get('select_opinon')
+        if select_opinon:
+            rt = models.Asset.objects.filter('%s=%s'%select_opinon)
+        else:
+            months = range(1,datetime.datetime.now().month+1)
+            print('months',months)
+            return render(request,'asset/assets_list.html',{'title':'服务器信息饼状图','months':months})
+
     elif request.method == 'POST':   # how manay type of OS release and release's number
         graphic_type = request.POST.get('graphic_type')
         os_release_list =   all_os_release = []
@@ -268,24 +273,41 @@ def asset_graphic(request):
         elif graphic_type == "manufactory":
             all_os_release = models.Manufactory.objects.all().values('manufactory')
         elif graphic_type == 'hosts_show':
-            # filter which host was approved in  this table ApproveHosts
             now_month = datetime.datetime.now().month
-            already_approved = models.ApproveHosts.objects.filter(update_time__month=now_month).order_by('update_time')
-            waiting_approve = models.NewAssetApprovalZone.objects.filter(date__month=now_month,approved=False).order_by('date')
-            response_dict= {'already_approved':{},'waiting_approve':{}}
-            for i in already_approved:
-                if str(i.update_time).split()[0] in response_dict['already_approved'].keys():
-                    response_dict['already_approved'][str(i.update_time).split()[0]] =  response_dict['already_approved'][str(i.update_time).split()[0]]+i.how_many     # update_time as key in this dictionary
+            now_day = datetime.datetime.now().day
+
+            already_approved = collections.OrderedDict()   # using the orderDict,so we needn't to sort these data after add them
+            waiting_approved = collections.OrderedDict()
+            basic_hosts = len(models.Asset.objects.all())  # how many hosts in Asset table
+            n=0
+            a=0
+
+            for day in range(1,now_day+1):   # 遍历当月的日期
+                data_of_day_asset = models.Asset.objects.filter(create_date__day=day)
+                data_of_day_approvel = models.NewAssetApprovalZone.objects.filter(date__day=day, approved=False)
+                length_data_asset = len(data_of_day_asset)
+                length_data_approvel = len(data_of_day_approvel)
+
+                if length_data_asset:  # means the length of the data is gt 0
+                    n = n + length_data_asset
+                    already_approved['%d-%d' % (now_month, day)] =  n
                 else:
-                    response_dict['already_approved'][str(i.update_time).split()[0]] = i.how_many
+                    if n > 0 :
+                        already_approved['%d-%d'%(now_month,day)] = n
+                    else:
+                        already_approved['%d-%d' % (now_month, day)] = length_data_asset
 
-            for i in waiting_approve:
-                if str(i.date).split()[0] in response_dict['waiting_approve'].keys():  # if the day in the key of dict,so we need to incrase 1
-                    response_dict['waiting_approve'][str(i.date).split()[0]] = response_dict['waiting_approve'][str(i.date).split()[0]]+1
-                else:   # not in ,so we also incrase 1
-                    response_dict['waiting_approve'][str(i.date).split()[0]] =   1
+                if length_data_approvel:
+                    a = a + length_data_approvel
+                    waiting_approved['%d-%d' % (now_month, day)] =  a
+                else:
+                    if a > 0 :
+                        waiting_approved['%d-%d' % (now_month, day)] = a
+                    else:
+                        waiting_approved['%d-%d' % (now_month, day)] = length_data_approvel
 
-            print(response_dict)
+
+            response_dict= {'already_approved':already_approved,'waiting_approve':waiting_approved}
             return HttpResponse(json.dumps(response_dict))
 
         for os_release in all_os_release:
@@ -444,19 +466,6 @@ def run_shell(request,host_id):
                             May be these infos are outdated or losed!! please communicate with \
                             the website administrator! ")
         return render(request,'asset/run_cmd.html',{'salt_minion_id':salt_minion_id,'host_id':host_id})
-
-
-@login_required()
-def show_approve_hosts(request):
-    '''
-    show how many hosts was approvel
-    :return:
-    '''
-    now = datetime.datetime.now()
-    models.Asset.objects.dates()
-    all_approvel_host =  models.Asset.objects.filter(update_date__month=now.month)
-
-    hosts_approvel = models.ApproveHosts.objects.all()
 
 
 

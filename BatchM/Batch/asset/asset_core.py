@@ -112,7 +112,7 @@ class Asset(object):
 
         data = self.request.POST.get('asset_data')
         response = {}
-        print('asset_data',data)
+        #print('asset_data',data)
         if data:
             try:
                 data = json.loads(data)
@@ -130,7 +130,7 @@ class Asset(object):
                     else:
                         response = self.response
             except ValueError as e:
-                print('here',e)
+                #print('here',e)
                 self.response_msg("error", 'AssetDataInvalid', str(e))
                 response = self.response
         else:
@@ -190,7 +190,7 @@ class Asset(object):
                 self.clean_data = data
 
                 if not self.response['error']:
-                    print("-----dataisvalid!!")
+                    #print("-----dataisvalid!!")
                     return True
                 elif self.waitting_approval:
                     self.save_new_asset_to_approval_zone()
@@ -311,7 +311,7 @@ class Asset(object):
                 # 判断数据类型
                 if type(field_val) is not list:
                     data_set[field_key] = data_type(field_val)
-                    print('data_set',data_set)
+                    #print('data_set',data_set)
                 # 主要对没有做raid的磁盘做检测，并且有个标志位检测，如果是忽略列表为真，那么就跳过这个检测
                 elif type(field_val) is list and not ignore_list:
                     for data in field_val:
@@ -380,7 +380,7 @@ class Asset(object):
                     obj = models.Manufactory(manufactory=manufactory)
                     obj.save()
                 self.asset_obj.manufactory = obj
-                print(' xxxxx begin create record xxxx')
+                #print(' xxxxx begin create record xxxx')
                 self.asset_obj.save()
         except Exception as e:
             self.response_msg('error', 'ObjectCreationException', 'Object [manufactory] %s' % str(e))
@@ -418,14 +418,14 @@ class Asset(object):
         :return:
         '''
         disk_info = self.clean_data.get('physical_disk_driver')
-        print('disk_info',disk_info)
+        #print('disk_info',disk_info)
         if disk_info:
             try:
                 for disk_item in disk_info:
-                    print('disk_item',disk_item)
+                    #print('disk_item',disk_item)
 
                     self.__verify_field(disk_item, 'slot', str)
-                    print(disk_item.get('slot'))
+                    #print(disk_item.get('slot'))
                     if disk_item.get('slot') in outdated_devices:   # storaging outdated devices
                         data_set = { 'slot':disk_item.get('slot')}
                         obj = models.Disk(**data_set)
@@ -438,7 +438,7 @@ class Asset(object):
                         self.__verify_field(disk_item, 'iface_type', str)
                         self.__verify_field(disk_item, 'model', str)
                     # 如果没有错误那么就处理，有错误就不处理
-                    print('self.response', self.response)
+                    #print('self.response', self.response)
                     if not len(self.response['error']):
                         if len(disk_item) > 2:
                             data_set = {
@@ -469,7 +469,7 @@ class Asset(object):
         :return:
         '''
         nic_info = self.clean_data.get('nic')
-        print('nic_info',nic_info)
+        #print('nic_info',nic_info)
         if nic_info:
             for nic_item in nic_info:
                 try:
@@ -498,15 +498,15 @@ class Asset(object):
         :return:
         '''
         ram_info = self.clean_data.get('ram')
-        print('ram_info',ram_info)
+        #print('ram_info',ram_info)
         if ram_info:
             for ram_item in ram_info:
                 try:
-                    print('ram_item',ram_item)
+                    #print('ram_item',ram_item)
                     self.__verify_field(ram_item, 'capacity', int)
-                    print('self.response',self.response)
+                    #print('self.response',self.response)
                     if not len(self.response['error']):
-                        print('ram_info in not len',ram_info)
+                        #print('ram_info in not len',ram_info)
                         data_set = {
                             'asset_id': self.asset_obj.id,
                             'slot': ram_item.get('slot'),
@@ -658,8 +658,8 @@ class Asset(object):
             else:
                 data_source_key_list.append(data.get(identify_field))
 
-        print('-->identify field [%s] from source  :', data_source_key_list)
-        print('-->identify[%s] from data db:', [getattr(obj, identify_field) for obj in data_from_db])
+        #print('-->identify field [%s] from source  :', data_source_key_list)
+        #print('-->identify[%s] from data db:', [getattr(obj, identify_field) for obj in data_from_db])
 #        if type(data_source_key_list) is not list:
         data_source_key_list = set(data_source_key_list)
         data_identify_val_from_db = set([getattr(obj, identify_field) for obj in data_from_db])
@@ -685,9 +685,9 @@ class Asset(object):
         :param identify_field:
         :return:
         '''
-        print("all_components",all_components)
-        print('add_list',add_list)
-        print('identify_field',identify_field)
+        #print("all_components",all_components)
+        #print('add_list',add_list)
+        #print('identify_field',identify_field)
         model_class = getattr(models, model_obj_name)
         will_be_create_list = []
         for data in all_components:
@@ -710,7 +710,7 @@ class Asset(object):
                 self.response_msg('info', 'NewComponentAdded', log_msg)
                 log_handler(self.asset_obj, 'NewComponentAdded', self.request.user, log_msg, model_obj_name)
         except Exception as e:
-            print("\033[31m %s \033[0m" % str(e))
+            #print("\033[31m %s \033[0m" % str(e))
             log_msg = "Asset[%s] --> component[%s] has error: %s" % (self.asset_obj, model_obj_name, str(e))
             self.response_msg('error', "AddingComponentException", log_msg)
 
@@ -753,8 +753,8 @@ class Asset(object):
                     val_from_data_source = float(val_from_data_source)
                 # 如果下面两个相等，那么说明这个字段的数据在最后一次更新的时候有更新
                 if val_from_db != val_from_data_source:
-                    print('\033[34;1m val_from_db[%s]  != val_from_data_source[%s]\033[0m' \
-                          % (val_from_db, val_from_data_source), type(val_from_db), type(val_from_data_source))
+                    #print('\033[34;1m val_from_db[%s]  != val_from_data_source[%s]\033[0m' \
+                    #      % (val_from_db, val_from_data_source), type(val_from_db), type(val_from_data_source))
                     db_field = model_obj._meta.get_field(field)
                     db_field.save_form_data(model_obj, val_from_data_source)
                     model_obj.update_date = timezone.now()
@@ -971,10 +971,9 @@ class sftp_paramiko(object):
             else:
                 t = paramiko.Transport((self.host,self.port))
                 t.connect(username=self.username,password=self.password)
-                print(" ")
                 sftp=paramiko.SFTPClient.from_transport(t)
                 sftp.put(local_file,remote_file)
-                print(sftp.stat(remote_file))
+                #print(sftp.stat(remote_file))
             t.close()
             return True
         except paramiko.ssh_exception.AuthenticationException as e:

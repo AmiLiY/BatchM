@@ -8,9 +8,9 @@ from Batch.customize_auth_admin import UserAdmin
 
 
 
-class approve_hosts(admin.ModelAdmin):
-    search_fields = ['minion_name']
-    list_display = ['minion_name','how_many','update_time']
+# class approve_hosts(admin.ModelAdmin):
+#     search_fields = ['minion_name']
+#     list_display = ['minion_name','how_many','update_time']
 
 
 class app(admin.ModelAdmin):
@@ -214,7 +214,6 @@ admin.site.register(models.DockerOfHost,docker_host)
 admin.site.register(models.DockerOfImages,docker_images)
 
 #admin.site.register(MyUser)
-admin.site.register(models.ApproveHosts,approve_hosts)
 admin.site.register(models.Asset,AssetAdmin)
 admin.site.register(models.Server)
 admin.site.register(models.NetworkDevice)

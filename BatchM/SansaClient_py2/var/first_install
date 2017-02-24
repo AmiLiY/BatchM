@@ -1,4 +1,4 @@
-wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo
-yum install salt-minion
+wget -Onc /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo
+yum -y install salt-minion
 yum -y install '*/lsb_release'
 yum -y install python-pip python-devel && pip install psutil

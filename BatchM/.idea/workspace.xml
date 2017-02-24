@@ -32,7 +32,7 @@
     <SUITE FILE_PATH="coverage/BatchM$core.coverage" NAME="core Coverage Results" MODIFIED="1482920698883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Batch" />
     <SUITE FILE_PATH="coverage/BatchM$docker_control.coverage" NAME="docker_control Coverage Results" MODIFIED="1486545804594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Batch/plugs" />
     <SUITE FILE_PATH="coverage/BatchM$django_wsgi.coverage" NAME="django.wsgi Coverage Results" MODIFIED="1486541965661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Batch" />
-    <SUITE FILE_PATH="coverage/BatchM$manage.coverage" NAME="manage Coverage Results" MODIFIED="1487586251366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BatchM$manage.coverage" NAME="manage Coverage Results" MODIFIED="1487754377577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BatchM$Test__Batch_django_wsgi.coverage" NAME="Test: Batch.django.wsgi Coverage Results" MODIFIED="1486542581521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -50,8 +50,8 @@
       <file leaf-file-name="asset_views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Batch/asset/asset_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="275" column="38" selection-start-line="275" selection-start-column="38" selection-end-line="275" selection-end-column="38" />
+            <state relative-caret-position="278">
+              <caret line="260" column="66" selection-start-line="260" selection-start-column="53" selection-end-line="260" selection-end-column="66" />
               <folding>
                 <element signature="e#0#69#0" expanded="true" />
               </folding>
@@ -62,8 +62,8 @@
       <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Batch/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="57" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="57" />
+            <state relative-caret-position="246">
+              <caret line="215" column="28" selection-start-line="215" selection-start-column="28" selection-end-line="215" selection-end-column="28" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -74,18 +74,60 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Batch/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="594" column="12" selection-start-line="594" selection-start-column="4" selection-end-line="594" selection-end-column="12" />
+            <state relative-caret-position="293">
+              <caret line="260" column="33" selection-start-line="260" selection-start-column="33" selection-end-line="260" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <file leaf-file-name="first_install" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SansaClient_py2/var/first_install">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="217" column="30" selection-start-line="217" selection-start-column="18" selection-end-line="217" selection-end-column="30" />
+            <state relative-caret-position="45">
+              <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BatchM/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sites.py" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/py35/lib/python3.5/site-packages/Django-1.10.4-py3.5.egg/django/contrib/admin/sites.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="63" column="57" selection-start-line="63" selection-start-column="57" selection-end-line="63" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="actions.py" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/py35/lib/python3.5/site-packages/Django-1.10.4-py3.5.egg/django/contrib/admin/actions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="49" column="66" selection-start-line="49" selection-start-column="66" selection-end-line="49" selection-end-column="66" />
+              <folding>
+                <element signature="e#53#88#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="asset_core.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Batch/asset/asset_core.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="99" column="17" selection-start-line="99" selection-start-column="12" selection-end-line="99" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -94,18 +136,8 @@
       <file leaf-file-name="asset_urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Batch/asset/asset_urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="child_urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Batch/child_urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="24" column="100" selection-start-line="24" selection-start-column="100" selection-end-line="24" selection-end-column="100" />
+            <state relative-caret-position="246">
+              <caret line="19" column="57" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -114,18 +146,8 @@
       <file leaf-file-name="assets_list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/asset/assets_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="200" column="48" selection-start-line="200" selection-start-column="48" selection-end-line="200" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="asset_core.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Batch/asset/asset_core.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-69">
-              <caret line="105" column="8" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
+            <state relative-caret-position="372">
+              <caret line="311" column="41" selection-start-line="311" selection-start-column="28" selection-end-line="311" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -148,7 +170,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Batch/django.wsgi" />
         <option value="$PROJECT_DIR$/Batch/plugs/docker_control.py" />
         <option value="$PROJECT_DIR$/statics/js/selfdefine.js" />
         <option value="$PROJECT_DIR$/Batch/core.py" />
@@ -190,14 +211,15 @@
         <option value="$PROJECT_DIR$/SansaClient_py2/core/status_collection.py" />
         <option value="$PROJECT_DIR$/Batch/child_urls.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/Batch/asset/asset_urls.py" />
-        <option value="$PROJECT_DIR$/Batch/asset/asset_core.py" />
         <option value="$PROJECT_DIR$/SansaClient_py2/core/HouseStark.py" />
-        <option value="$PROJECT_DIR$/SansaClient_py2/var/first_install" />
         <option value="$PROJECT_DIR$/SansaClient_py2/core/install_rpm.py" />
-        <option value="$PROJECT_DIR$/Batch/admin.py" />
+        <option value="$PROJECT_DIR$/Batch/asset/asset_core.py" />
         <option value="$PROJECT_DIR$/Batch/models.py" />
+        <option value="/usr/local/py35/lib/python3.5/site-packages/Django-1.10.4-py3.5.egg/django/contrib/admin/actions.py" />
+        <option value="$PROJECT_DIR$/Batch/admin.py" />
+        <option value="$PROJECT_DIR$/SansaClient_py2/var/first_install" />
         <option value="$PROJECT_DIR$/templates/asset/assets_list.html" />
+        <option value="$PROJECT_DIR$/Batch/asset/asset_urls.py" />
         <option value="$PROJECT_DIR$/Batch/asset/asset_views.py" />
       </list>
     </option>
@@ -239,6 +261,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -532,7 +555,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -981,17 +1003,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2" y="25" width="1924" height="1034" extended-state="6" />
-    <editor active="false" />
+    <frame x="-2" y="25" width="1924" height="1034" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1430851" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14414893" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55191255" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30779392" sideWeight="0.11827957" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3125683" sideWeight="0.78457445" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24371585" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2749658" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36939892" sideWeight="0.84521276" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32568306" sideWeight="0.84521276" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2546448" sideWeight="0.8817204" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1024,27 +1046,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SansaClient_py3/bin/NedStark.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/py35/lib/python3.5/urllib/request.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="1177" column="44" selection-start-line="1177" selection-start-column="44" selection-end-line="1177" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/py35/lib/python3.5/urllib/parse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-250">
-          <caret line="752" column="4" selection-start-line="752" selection-start-column="4" selection-end-line="752" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SansaClient_py3/logs/run_log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -1264,19 +1265,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BatchM/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Batch/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1288,19 +1280,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SansaClient_py2/var/first_install">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="60" selection-start-line="3" selection-start-column="60" selection-end-line="3" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SansaClient_py2/core/install_rpm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1308,17 +1291,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
-          <folding>
-            <element signature="e#40#62#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Batch/asset/asset_core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-69">
-          <caret line="105" column="8" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1334,40 +1306,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Batch/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="57" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Batch/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="594" column="12" selection-start-line="594" selection-start-column="4" selection-end-line="594" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
+        <state relative-caret-position="3255">
           <caret line="217" column="30" selection-start-line="217" selection-start-column="18" selection-end-line="217" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/asset/assets_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="200" column="48" selection-start-line="200" selection-start-column="48" selection-end-line="200" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -1380,18 +1325,94 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/py35/lib/python3.5/wsgiref/simple_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BatchM/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/py35/lib/python3.5/site-packages/Django-1.10.4-py3.5.egg/django/contrib/admin/sites.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="63" column="57" selection-start-line="63" selection-start-column="57" selection-end-line="63" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Batch/asset/asset_core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="99" column="17" selection-start-line="99" selection-start-column="12" selection-end-line="99" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/py35/lib/python3.5/site-packages/Django-1.10.4-py3.5.egg/django/contrib/admin/actions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="49" column="66" selection-start-line="49" selection-start-column="66" selection-end-line="49" selection-end-column="66" />
+          <folding>
+            <element signature="e#53#88#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Batch/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="260" column="33" selection-start-line="260" selection-start-column="33" selection-end-line="260" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SansaClient_py2/var/first_install">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Batch/asset/asset_urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+        <state relative-caret-position="246">
+          <caret line="19" column="57" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/asset/assets_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="311" column="41" selection-start-line="311" selection-start-column="28" selection-end-line="311" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Batch/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="215" column="28" selection-start-line="215" selection-start-column="28" selection-end-line="215" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Batch/asset/asset_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="275" column="38" selection-start-line="275" selection-start-column="38" selection-end-line="275" selection-end-column="38" />
+        <state relative-caret-position="278">
+          <caret line="260" column="66" selection-start-line="260" selection-start-column="53" selection-end-line="260" selection-end-column="66" />
           <folding>
             <element signature="e#0#69#0" expanded="true" />
           </folding>
@@ -1400,6 +1421,6 @@
     </entry>
   </component>
   <component name="webServersAuthStorage">
-    <data>AAAAoExF1ZVDAbsoiprTC5tANZCL3j75cCI7g2SRRDgfBH9gu1s4H91NmBP276W3iy3OnumcBg5mtgghtvjFx7oGtE90/65Jmnj4rIu45QIs3zAzhcl5RhI6tiXpRLj414IMScFwyN3IyI07aMtHSeJ3FZStQK9/ZaUihxVUaVCZljnY+UPiS0CuhVxZLdysPH0M87A6NubRRTTxcnxSXd6aJIxjKpb/IQYBCYQDRIPNTUj+</data>
+    <data>AAAAoMRC8FzixVbimF9IC02VTMl4YMp455YDQgO1C0Nt80m0KSw0jyKaCD33dvEbFJHWPvSR1Jo3lxKOITS5qEgQRCq2q9mufdGu7hvpCIhvHpCwb5G/JsW2+e0NSLeDcHiDqsYa7fqIScNWOdHyMH+lHE0PTCo7We67LaVX/qcIglHFE2sDRcdW7rEC/W64MarvuCyAYhV/OSB4ZQUrWAfnRkXBoekU3GCBOeZrdGsWtLTK</data>
   </component>
 </project>
