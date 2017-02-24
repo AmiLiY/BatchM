@@ -48,8 +48,8 @@
                     <th data-field="asset_cpu_core_count" data-sortable="true">CPU总核数</th>
                     <th data-field="asset_rams_size" data-sortable="true">内存大小（MB）</th>
                     <th data-field="asset_localdisks_size" data-sortable="true">磁盘总空间（GB）</th>
-                    <th data-field="asset_admin" data-sortable="true">资产管理员</th>
-                    <th data-field="asset_idc" data-sortable="true">机柜</th>
+                    <th data-field="asset_admin" >资产管理员</th>
+                    <th data-field="asset_idc" data-sortable="true">机房名</th>
                     <th data-field="asset_trade_date" data-sortable="true">购买日期</th>
                     <th data-field="asset_create_date" data-sortable="true">创建日期</th>
                     </tr>
@@ -113,7 +113,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
 
     <script>
-        get_sys_load();
         $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
             if ($('.page-header').text() == '服务器信息表') {
                 $('#server_asset').toggleClass('active').siblings().removeClass('active');

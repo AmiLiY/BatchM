@@ -2,10 +2,37 @@
 {% block btitle %}{{ title }}{% endblock %}
 {% block page_content %}
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel2">注意</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="agree_approve" style="display: none" onclick="agree_approve('agree')">确定入库</button>
+          <button type="button" class="btn btn-primary" id="disagree_approve" style="display: none" onclick="agree_approve('disagree')">确定删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 <div class="panel-body" >
+<button class="btn btn-success" style="float: left" onclick="show_confirm('agree_approve')">批准选中的资产入库</button>
+<button class="btn btn-danger" style="float: left" onclick="show_confirm('disagree_approve')">删除选中的资产记录</button>
     <table id="new_asset_wait_approvel" class="display table  table-hover" data-toggle="table"
-                    data-url="{% url 'new_asset_wait_approvel' %}"
-                    data-method="post"
+                    data-url="{% url 'asset_approvel_show_table' %}"
+                    data-method="get"
                     data-pagination="true"
                     data-side-pagination="server"
                     data-page-list="[10, 20, 50, 100, 200]"
@@ -17,18 +44,19 @@
                     >
                   <thead >
                         <tr>
-                        <th data-field="state" data-checkbox="true"></th>
+                        <th data-field="state" data-checkbox="true" ></th>
+                        <th data-field="new_asset_id" class="new_asset_id" data-id-field="ture" data-sortable="true">记录ID</th>
                         <th data-field="new_asset_sn" data-align="left" data-sortable="true" data-class="asset_sn">资产编号</th>
                         <th data-field="new_asset_manufactory" data-sortable="true">厂商</th>
-                        <th data-field="new_asset_type" data-sortable="true">类型</th>
+                        <th data-field="new_asset_asset_type" data-sortable="true">类型</th>
                         <th data-field="new_asset_os_release" data-sortable="true">操作系统</th>
                         <th data-field="new_asset_cpu_model" data-sortable="true">CPU型号</th>
                         <th data-field="new_asset_cpu_count" data-sortable="true">CPU个数</th>
                         <th data-field="new_asset_cpu_core_count" data-sortable="true">CPU总核数</th>
-                        <th data-field="new_asset_rams_size" data-sortable="true">内存大小（MB）</th>
+                        <th data-field="new_asset_ram_size" data-sortable="true">内存大小（MB）</th>
                         <th data-field="new_asset_salt_minion_id" data-sortable="true">saltstack_minion_id</th>
-                        <th data-field="new_asset_posted_data"  data-align="center">新资产汇报的数据</th>
-                        <th data-field="new_asset_create_date" data-sortable="true">汇报日期</th>
+                        <th data-field="new_asset_data"  data-align="center">新资产汇报的数据</th>
+                        <th data-field="new_asset_date" data-sortable="true">汇报日期</th>
                         </tr>
                   </thead>
         </table>
@@ -37,11 +65,62 @@
 {% block encoding_js %}
 
     <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
-    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
-    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+
     <!-- Latest compiled and minified JavaScript -->
     <script src="/static/js//bootstrap-table.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
 
     <!-- Latest compiled and minified Locales -->
     <script src="/static/js/bootstrap-table-zh-CN.min.js"></script>
+
+    <script>
+        $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
+            if ($('.page-header').text() == '待审批入库的服务器') {
+                $('#server_asset').toggleClass('active').siblings().removeClass('active');
+                $('#sub-item-3').addClass('in').removeAttr('style');
+                $('#server_wait_approvel').css('background-color', 'grey');
+            }
+        });
+
+        function show_confirm(arg) {  // 显示模态框，在批准入库和删除记录之前弹出来再次确认
+            $('#myModal').modal('toggle');
+            $("#"+arg).show().siblings('.btn-primary').hide();
+            if(arg=='disagree_approve'){
+                $('.modal-body').html("确定要删除所选记录")
+            }else if(arg=='agree_approve') {
+                $('.modal-body').html("确定批准所选记录入库")
+            }
+        }
+
+        function  agree_approve(arg) {   // 提交同意入库或者同意删除记录的按钮。
+            var new_asset_id = [];
+            $('input:checkbox:checked').parent().siblings('.new_asset_id').each(function () {   // 遍历所有选中的框来
+                    new_asset_id.push(Number($(this).text()))
+                });
+            if ( new_asset_id.length == 0 ){
+                alert('没有选中任何数据')
+            }
+            var new_asset_id = JSON.stringify(new_asset_id);
+            var csrftoken = getCookie('csrftoken');
+            $.ajax({
+                url: "{% url 'new_assets_approvel' %}",
+                token: csrftoken,
+                type:'POST',
+                dataType:'json',
+                data:{'whether_approve':arg,'approved_asset_list':new_asset_id},
+                success: function (callback) {
+                   $('#myModal').modal('toggle');
+
+                    alert(callback)
+                },// end success
+                error: function (callback) {
+                    $('#myModal').modal('toggle');
+                    alert(callback)
+                    console.log(callback)
+                }
+            })
+        }
+    </script>
+
+
 {% endblock %}
