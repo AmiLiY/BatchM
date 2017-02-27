@@ -97,7 +97,6 @@ class Asset(object):
                 self.asset_obj = models.Asset.objects.get(sn=data['sn'])
             return True
         except ObjectDoesNotExist as e:
-            print(e)
             self.response_msg('error', 'AssetDataInvalid', error_code[102] %(data['asset_id'], data['sn']))
             # 添加批准确认标志
             self.waitting_approval = True
@@ -418,12 +417,12 @@ class Asset(object):
         :return:
         '''
         disk_info = self.clean_data.get('physical_disk_driver')
-        #print('disk_info',disk_info)
         if disk_info:
             try:
+                size_in_total = 0
                 for disk_item in disk_info:
                     #print('disk_item',disk_item)
-
+                    size_in_total = size_in_total + int(disk_item.get('capacity'))
                     self.__verify_field(disk_item, 'slot', str)
                     #print(disk_item.get('slot'))
                     if disk_item.get('slot') in outdated_devices:   # storaging outdated devices
@@ -449,12 +448,14 @@ class Asset(object):
                                 'model': disk_item.get('model'),
                                 'iface_type': disk_item.get('iface_type'),
                                 'manufactory': disk_item.get('manufactory'),
+                                'disk_size_in_total':size_in_total,
                             }
                         else:
                             data_set = {
                                 'capacity': disk_item.get('capacity'),
                                 'asset_id': self.asset_obj.id,
                                 'slot': disk_item.get('slot'),
+                                'disk_size_in_total': size_in_total,
                             }
                     obj = models.Disk(**data_set)
                     obj.save()
@@ -498,13 +499,14 @@ class Asset(object):
         :return:
         '''
         ram_info = self.clean_data.get('ram')
-        #print('ram_info',ram_info)
         if ram_info:
+            size_in_total = 0
             for ram_item in ram_info:
                 try:
                     #print('ram_item',ram_item)
                     self.__verify_field(ram_item, 'capacity', int)
-                    #print('self.response',self.response)
+                    size_in_total = size_in_total + ram_item.get('capacity')
+                    print('self.response',self.response)
                     if not len(self.response['error']):
                         #print('ram_info in not len',ram_info)
                         data_set = {
@@ -513,6 +515,7 @@ class Asset(object):
                             'sn': ram_item.get('sn'),
                             'capacity': ram_item.get('capacity'),
                             'model': ram_item.get('model'),
+                            'ram_size_in_total':size_in_total
                         }
                         obj = models.RAM(**data_set)
                         obj.save()

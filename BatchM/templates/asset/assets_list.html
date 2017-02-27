@@ -1,61 +1,79 @@
 {% extends 'index.html' %}
 {% block btitle %}{{ title }}{% endblock %}
 {% block page_content %}
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
 <div id="asset_list">
     <div class="panel-body" >
-        搜索
-        <select name="select_opinon" id="select_opinon">
-            <option value="id">资产ID</option>
-            <option value="IDC">IDC机房</option>
-            <option value="business">业务线</option>
-            <option value="IP">管理IP</option>
-            <option value="manufactory">制造商</option>
-            <option value="cpu">CPU型号</option>
-        </select>
-        =
-        <input type="text"  id="input_content"  placeholder="请输入关键字进行搜索">
-        <input type="submit" class="btn btn-info" onclick="search_info()">
+{#        搜索#}
+{#        <select name="select_opinon" id="select_opinon">#}
+{#            <option value="id">资产ID</option>#}
+{#            <option value="IDC">IDC机房</option>#}
+{#            <option value="business">业务线</option>#}
+{#            <option value="IP">管理IP</option>#}
+{#            <option value="manufactory">制造商</option>#}
+{#            <option value="cpu">CPU型号</option>#}
+{#        </select>#}
+{#        =#}
+{#        <input type="text"  id="input_content"  placeholder="请输入关键字进行搜索">#}
+{#        <input type="submit" class="btn btn-info" onclick="search_info()">#}
         <br><br>
-        <table id="asset_list" class="display table  table-hover">
+        <table id="asset_list_table" class="display table  table-hover" data-toggle="table"
+                data-url="{% url 'show_asset_in_table' %}"
+                data-method="get"
+                data-pagination="true"
+                data-side-pagination="server"
+                data-page-list="[10, 20, 50, 100, 200]"
+                data-search="true" data-mobile-responsive="true" searchOnEnterKey="true"
+                data-show-refresh="true" data-show-columns="true"
+                data-show-toggle="true" data-page-size=20 data-unique-id="asset_id"
+                data-sort-stable="true"  data-striped="true"
+                data-sortable="true"
+                >
               <thead >
-                    <tr class="btn-info">
-                        <th>资产ID</th>
-                        <th>资产类型</th>
-                        <th>Name</th>
-                        <th>SN</th>
-                        <th>IDC</th>
-                        <th>业务线</th>
-                        <th>管理IP</th>
-                        <th>制造商</th>
-                        <th>型号</th>
-                        <th>CPU型号</th>
-                        <th>CPU核数</th>
-                        <th>内存</th>
-                        <th>硬盘(GB)</th>
-                        <th>CMD</th>
-                    {#    databaase havn't this data  <th>状态</th>#}
-                    </tr>
-                </thead>
-                <tbody>
-                {% for info in assets %}
                     <tr>
-                        <th><a href="/asset/asset_list/{{ info.id }}" target="_blank">{{ info.id }}</a></th>
-                        <th>{{ info.asset_type }}</th>
-                        <th>{{ info.name }}</th>
-                        <th>{{ info.sn }}</th>
-                        <th>{{ info.idc }}</th>
-                        <th>{{ info.business_unit }}</th>
-                        <th>{{ info.management_ip }}</th>
-                        <th>{{ info.manufactory }}</th>
-                        <th>{{ info.model }}</th>
-                        <th>{{ info.cpu_model }}</th>
-                        <th>{{ info.cpu_core_count }}</th>
-                        <th>{{ info.ram_size }}</th>
-                        <th>{{ info.disk_size }}</th>
-                        <th><a href="shell/{{ info.id }} " target="_blank">Run Cmd</a></th>
+                    <th data-field="state" data-checkbox="true"></th>
+                    <th data-field="asset_id" data-align="center" data-sortable="true">资产ID(点击ID查看详情)</th>
+                    <th data-field="asset_sn" data-align="center" data-sortable="true"  data-width="50px">资产编号</th>
+                    <th data-field="asset_business_unit" data-sortable="true">产品线</th>
+                    <th data-field="asset_name" data-align="center" data-sortable="true"  data-class="asset_name">资产名</th>
+                    <th data-field="asset_management_ip" data-align="center" data-sortable="true"  data-class="asset_management_ip">管理IP</th>
+                    <th data-field="asset_manufactory" data-sortable="true">厂商</th>
+                    <th data-field="asset_type" data-sortable="true">类型</th>
+                    <th data-field="asset_os_release" data-sortable="true">操作系统</th>
+                    <th data-field="asset_salt_minion_id" data-sortable="true">saltminion_id</th>
+                    <th data-field="asset_cpu_model" data-sortable="true">CPU型号</th>
+                    <th data-field="asset_cpu_count" data-sortable="true">CPU个数</th>
+                    <th data-field="asset_cpu_core_count" data-sortable="true">CPU总核数</th>
+                    <th data-field="asset_rams_size" data-sortable="true">内存大小（MB）</th>
+                    <th data-field="asset_localdisks_size" data-sortable="true">磁盘总空间（GB）</th>
+                    <th data-field="asset_admin" >资产管理员</th>
+                    <th data-field="asset_idc" data-sortable="true">机房名</th>
+                    <th data-field="asset_trade_date" data-sortable="true">购买日期</th>
+                    <th data-field="asset_create_date" data-sortable="true">创建日期</th>
                     </tr>
-                {% endfor %}
-                </tbody>
+              </thead>
+{#                <tbody>#}
+{#                {% for info in assets %}#}
+{#                    <tr>#}
+{#                        <th><a href="/asset/asset_list/{{ info.id }}" target="_blank">{{ info.id }}</a></th>#}
+{#                        <th>{{ info.asset_type }}</th>#}
+{#                        <th>{{ info.name }}</th>#}
+{#                        <th>{{ info.sn }}</th>#}
+{#                        <th>{{ info.idc }}</th>#}
+{#                        <th>{{ info.business_unit }}</th>#}
+{#                        <th>{{ info.management_ip }}</th>#}
+{#                        <th>{{ info.manufactory }}</th>#}
+{#                        <th>{{ info.model }}</th>#}
+{#                        <th>{{ info.cpu_model }}</th>#}
+{#                        <th>{{ info.cpu_core_count }}</th>#}
+{#                        <th>{{ info.ram_size }}</th>#}
+{#                        <th>{{ info.disk_size }}</th>#}
+{#                        <th><a href="shell/{{ info.id }} " target="_blank">Run Cmd</a></th>#}
+{#                    </tr>#}
+{#                {% endfor %}#}
+{#                </tbody>#}
                 <footer></footer>
         </table>
     </div>
@@ -88,9 +106,13 @@
     <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
     <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
     <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+    <!-- Latest compiled and minified Locales -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
 
     <script>
-        get_sys_load();
         $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
             if ($('.page-header').text() == '服务器信息表') {
                 $('#server_asset').toggleClass('active').siblings().removeClass('active');
@@ -305,19 +327,24 @@
     function search_info() {
         var select_opinon = $('#select_opinon').val();
         var input_content = $('#input_content').val();
-        $.get({
+        console.log(select_opinon,input_content)
+        $.ajax({
                     url: '/asset/asset_graphic',
                     token: csrftoken,
                     dataTypes: 'json',
-                    data: {'select_opinon':input_content}
+                    type:'get',
+                    data: {'select_opinon':select_opinon,'input_content':input_content},
                     success: function (callback) {
-                        console.log(callback)
+                        console.log('success',callback)
                     },
                     error: function (callback) {
-                        console.log(callback)
+                        console.log('error',callback)
                     }
               })
     }
+
+
+
 
     </script>
 {% endblock %}

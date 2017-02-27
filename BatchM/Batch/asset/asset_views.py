@@ -7,6 +7,8 @@ from Batch.asset import  asset_utils  as utils
 from Batch import models
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import  ObjectDoesNotExist
+from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
+from django.db.models import Count,Sum
 from BatchM import settings
 from Batch.plugs import record_log
 import json
@@ -60,9 +62,73 @@ def saltstack_report(request):
         print(request)
     return HttpResponse(json.dumps('ok'))
 
+@csrf_exempt
+@login_required
+def asset_approvel(request):
+    '''
+    it's first time that  the server  post it's data ,then the data was need to admin to approvel
+    :return:
+    '''
+
+    if request.method == 'GET':
+        return render(request,"asset/new_asset_wait_approvel.html",{"title":'待审批入库的服务器'})
 
 
 
+
+def asset_approvel_show_table(request):
+    '''
+    显示待批准的服务器信息在表格里
+    :param request:
+    :return:
+    '''
+    if request.method == 'GET':
+        limit = request.GET.get('limit')  # how many items per page
+        offset = request.GET.get('offset')  # how many items in total in the DB
+        search = request.GET.get('search')
+        sort_column = request.GET.get('sort')  # which column need to sort
+        order = request.GET.get('order')  # ascending or descending
+
+        if search:
+            all_server_wait_approvel = models.NewAssetApprovalZone.objects.filter(approved=False,
+                                                                                  asset_type__contains=search)
+        else:
+            all_server_wait_approvel = models.NewAssetApprovalZone.objects.filter(approved=False)
+
+        if sort_column:
+            sort_column = sort_column.replace('new_asset_', '')
+            if order == 'desc':
+                sort_column = '-%s'%(sort_column)
+            all_server_wait_approvel = models.NewAssetApprovalZone.objects.filter(approved=False).order_by(sort_column)
+
+        all_records_count = all_server_wait_approvel.count()
+        if not offset:
+            offset = 0
+        if not limit:
+            limit = 20
+
+        pageinator = Paginator(all_server_wait_approvel, limit)
+        page = int(int(offset) / int(limit) + 1)
+        response_data = {'total': all_records_count, 'rows': []}
+        response_data = {'rows': [], 'total': all_records_count}
+        for new_asset in all_server_wait_approvel:
+            response_data['rows'].append({
+                "new_asset_id": new_asset.id,
+                "new_asset_sn": new_asset.sn,
+                "new_asset_manufactory": new_asset.manufactory,
+                "new_asset_asset_type": new_asset.asset_type,
+                "new_asset_os_release": new_asset.os_release,
+                "new_asset_cpu_model": new_asset.cpu_model,
+                "new_asset_cpu_count": new_asset.cpu_count,
+                "new_asset_cpu_core_count": new_asset.cpu_core_count,
+                "new_asset_ram_size": new_asset.ram_size,
+                "new_asset_salt_minion_id": new_asset.salt_minion_id,
+                "new_asset_data": new_asset.data,
+                "new_asset_date": new_asset.date.strftime("%Y-%m-%d %H:%M")
+            })
+        return HttpResponse(json.dumps(response_data))
+
+@csrf_exempt
 @login_required
 def new_assets_approval(request):
     '''
@@ -73,24 +139,36 @@ def new_assets_approval(request):
     :return:
     '''
     if request.method == "POST":
+        whether_approve = request.POST.get('whether_approve')
         request.POST = request.POST.copy()
-        approved_asset_id_list = request.POST.getlist('approved_asset_list')
-        print('approved_asset_list',approved_asset_id_list)
-        approved_asset_list = models.NewAssetApprovalZone.objects.filter(id__in=approved_asset_id_list)
-        response_dic = {}
-        approved_host_list = []
-        for obj in approved_asset_list:
-            request.POST['asset_data'] = obj.data
-            ass_handler = core.Asset(request)
-            if ass_handler.data_is_valid_without_id():
-                ass_handler.data_inject()
-                obj.approved = True
-                obj.save()
-                response_dic[obj.id] = ass_handler.response
-                approved_host_list.append(obj.salt_minion_id)
+        approved_asset_id_list = request.POST.get('approved_asset_list')
+        if type(approved_asset_id_list) is str:
+            approved_asset_id_list = json.loads(approved_asset_id_list)
+        else:
+            approved_asset_id_list =  request.POST.getlist('approved_asset_list')
+
+        print('approved_asset_id_list',type(approved_asset_id_list),approved_asset_id_list)
+        if whether_approve == 'agree':   # means these assets need to approve
+            approved_asset_list = models.NewAssetApprovalZone.objects.filter(id__in=approved_asset_id_list)
+            response_dic = {}
+            approved_host_list = []
+            for obj in approved_asset_list:
+                request.POST['asset_data'] = obj.data
+                ass_handler = core.Asset(request)
+                if ass_handler.data_is_valid_without_id():
+                    ass_handler.data_inject()
+                    obj.approved = True
+                    obj.save()
+                    response_dic[obj.id] = ass_handler.response
+                    approved_host_list.append(obj.salt_minion_id)
+
+            return HttpResponse('approved successfully')
+
+        elif whether_approve == 'disagree': # disagress approve for these assets
+            models.NewAssetApprovalZone.objects.filter(id__in=approved_asset_id_list).delete()
+            return HttpResponse(json.dumps('deleted successfully'))
 
 
-        return HttpResponseRedirect('/admin/Batch/newassetapprovalzone/')
 
     else:
         ids = request.GET.get('ids')
@@ -208,6 +286,27 @@ def assets(request):
     return render(request,'asset/assets_list.html',{'assets':assets,'title':'服务器信息表'})
 
 
+
+def get_ram_sum_size(asset_id):
+    '''
+    get the size of RAM and disk in total
+    :param asset_id:  asset's id
+    :return:   the size of RAM in total
+    '''
+    all_ram_slot = models.RAM.objects.filter(asset__id=asset_id)
+    all_disk_slot = models.Disk.objects.filter(asset__id=asset_id)
+    ram=0
+    for slot in all_ram_slot:
+        ram=ram+slot.capacity
+
+    disk = 0
+    for slot in all_disk_slot:
+        disk = disk+slot.capacity
+    return ram,disk
+
+
+
+
 @login_required
 def asset_list(request):
     '''
@@ -215,8 +314,104 @@ def asset_list(request):
     :param request:
     :return:
     '''
-    assets = handler.fetch_asset_list()
-    return render(request,'asset/assets_list.html',{'assets':assets['data'],'title':'服务器信息表'})
+
+    if request.method == 'GET':
+        print(request.GET)
+        assets = handler.fetch_asset_list()
+        return render(request,'asset/assets_list.html',{'assets':assets['data'],'title':'服务器信息表'})
+
+
+@login_required
+def show_asset_in_table(request):
+    if request.method == "GET":
+        print(request.GET)
+        limit = request.GET.get('limit')   # how many items per page
+        offset = request.GET.get('offset')  # how many items in total in the DB
+        search = request.GET.get('search')
+        sort_column = request.GET.get('sort')   # which column need to sort
+        order = request.GET.get('order')      # ascending or descending
+        if search:
+            all_records = models.Asset.objects.filter(id=search,asset_type=search,business_unit=search,idc=search)
+        else:
+            all_records = models.Asset.objects.all()   # must be wirte the line code here
+
+        if sort_column:
+            sort_column = sort_column.replace('asset_', '')
+            if sort_column in ['id','asset_type','sn','name','management_ip','manufactory','type']:
+                if order == 'desc':
+                    sort_column = '-%s' % (sort_column)
+                all_records = models.Asset.objects.all().order_by(sort_column)
+            elif sort_column in ['salt_minion_id','os_release',]:
+                sort_column = "server__%s" % (sort_column)
+                if order == 'desc':
+                    sort_column = '-%s'%(sort_column)
+                all_records = models.Asset.objects.all().order_by(sort_column)
+            elif sort_column in ['cpu_model','cpu_count','cpu_core_count']:
+                sort_column = "cpu__%s" %(sort_column)
+                if order == 'desc':
+                    sort_column = '-%s'%(sort_column)
+                all_records = models.Asset.objects.all().order_by(sort_column)
+            elif sort_column in ['rams_size',]:
+                if order == 'desc':
+                    sort_column = '-rams_size'
+                else:
+                    sort_column = 'rams_size'
+                all_records = models.Asset.objects.all().annotate(rams_size = Sum('ram__capacity')).order_by(sort_column)
+            elif sort_column in ['localdisks_size',]:  # using variable of localdisks_size because there have a annotation below of this line
+                if order == "desc":
+                    sort_column = '-localdisks_size'
+                else:
+                    sort_column = 'localdisks_size'
+                all_records = models.Asset.objects.all().annotate(localdisks_size=Sum('disk__capacity')).order_by(sort_column)
+
+            elif sort_column in ['idc',]:
+                sort_column = "idc__%s" % (sort_column)
+                if order == 'desc':
+                    sort_column = '-%s'%(sort_column)
+                all_records = models.Asset.objects.all().order_by(sort_column)
+
+            elif sort_column in ['trade_date','create_date']:
+                if order == 'desc':
+                    sort_column = '-%s'%sort_column
+                all_records = models.Asset.objects.all().order_by(sort_column)
+
+
+        all_records_count=all_records.count()
+
+        if not offset:
+            offset = 0
+        if not limit:
+            limit = 20
+        pageinator = Paginator(all_records, limit)
+
+        page = int(int(offset) / int(limit) + 1)
+        response_data = {'total':all_records_count,'rows':[]}
+
+
+        for asset in pageinator.page(page):
+            ram_disk = get_ram_sum_size(asset.id)
+            response_data['rows'].append({
+                "asset_id": '<a href="/asset/asset_list/%d" target="_blank">%d</a>' %(asset.id,asset.id),
+                "asset_sn" : asset.sn if asset.sn else "",
+                "asset_business_unit": asset.business_unit if asset.business_unit else "",
+                "asset_name": asset.name if asset.name else "",
+                "asset_management_ip": asset.management_ip if asset.management_ip else "",
+                "asset_manufactory": asset.manufactory.manufactory if hasattr(asset,'manufactory') else "",
+                "asset_type": asset.asset_type if asset.asset_type else "",
+                "asset_os_release": asset.server.os_release if hasattr(asset,'server') else "",
+                "asset_salt_minion_id":asset.server.salt_minion_id if hasattr(asset,'server') else "",
+                "asset_cpu_count":asset.cpu.cpu_count if hasattr(asset,'cpu') else "",
+                "asset_cpu_core_count": asset.cpu.cpu_core_count  ,
+                "asset_cpu_model": asset.cpu.cpu_model if hasattr(asset,'cpu') else "",
+                "asset_rams_size": ram_disk[0] if ram_disk[0] else "",
+                "asset_localdisks_size" : ram_disk[1] if ram_disk[1] else "",
+                "asset_admin": asset.admin.username if asset.admin else "",
+                "asset_idc": asset.idc if asset.idc else "",
+                "asset_trade_date": asset.trade_date.strftime('%Y-%m-%d %H:%M') if asset.trade_date else "",
+                "asset_create_date" : asset.create_date.strftime("%Y-%m-%d %H:%M") if asset.create_date else "",
+                "update_date": asset.update_date.strftime("%Y-%m-%d %H:%M") if  asset.update_date else "",
+            })
+        return  HttpResponse(json.dumps(response_data))
 
 @login_required
 def get_asset_list(request):
@@ -258,7 +453,12 @@ def asset_graphic(request):
     if request.method == 'GET':
         select_opinon = request.GET.get('select_opinon')
         if select_opinon:
-            rt = models.Asset.objects.filter('%s=%s'%select_opinon)
+            print(select_opinon,request.GET.get('input_content'))
+
+            rt = models.Asset.objects.filter()
+            for i in rt:
+                print(i)
+            return HttpResponse('hehe')
         else:
             months = range(1,datetime.datetime.now().month+1)
             print('months',months)

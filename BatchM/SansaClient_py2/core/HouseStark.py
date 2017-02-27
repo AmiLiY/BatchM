@@ -45,6 +45,7 @@ class ArgvHandler(object):
         obj = info_collection.InfoCollection()
         asset_data = obj.collect()
         print(asset_data)
+
     def run_forever(self):
         pass
  
@@ -102,15 +103,16 @@ class ArgvHandler(object):
         nic_info = []
         i=0
         # get ipaddress each NIC
+        print("data['l']",data['ip4_interfaces'])
         for k,v in data['ip4_interfaces'].items():
             if k != "lo":
                 nic_info.append({})
                 nic_info[i]['name'] = k
                 if len(v) != 0:
                     nic_info[i]['ipaddress'] = v[0]
+                    nic_info[i]['netmask'] = commands.getoutput("ifconfig |grep %s |awk -F 'Mask:' '{print $2}'" % (v[0]))
                 nic_info[i]['model'] = 'unknow'
                 nic_info[i]['network'] = 'unknow'
-                nic_info[i]['netmask'] = 'unknow'
                 nic_info[i]['bonding'] = 'unknow'
                 i+=1
         # get macaddress each NIC

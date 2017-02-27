@@ -397,9 +397,11 @@ class RAM(models.Model):
     model =  models.CharField(u'内存型号', max_length=128)
     slot = models.CharField(u'插槽', max_length=64)
     capacity = models.IntegerField(u'内存大小(MB)')
+    ram_size_in_total = models.IntegerField(u'内存总量',default=0)
     memo = models.CharField(u'备注',max_length=128, blank=True,null=True)
     create_date = models.DateTimeField(blank=True, auto_now_add=True)
     update_date = models.DateTimeField(blank=True,null=True)
+
     def __str__(self):
         return '%s:%s:%s' % (self.asset_id,self.slot,self.capacity)
     class Meta:
@@ -408,6 +410,22 @@ class RAM(models.Model):
         # 联合几个字段作为主键。
         unique_together = ("asset", "slot")
     auto_create_fields = ['sn','slot','model','capacity']
+
+
+# class RamDiskSize(models.Model):
+#     '''
+#     存放每台服务器的内存的最大值
+#     '''
+#     asset = models.ForeignKey('Asset')
+#     ram_size_in_total = models.CharField(u'内存总量',null=True,blank=True)
+#     disk_size_in_total = models.CharField(u'磁盘总量',null=True,blank=True)
+#
+#     def __str__(self):
+#         return self.asset_id,self.ram_size_in_total,self.disk_size_in_total
+#
+#     class Meta:
+#         verbose_name = u'每台服务器内存与磁盘总量'
+#         verbose_name_plural = u'每台服务器内存与磁盘总量'
 
 class Disk(models.Model):
     asset = models.ForeignKey('Asset')
@@ -424,6 +442,7 @@ class Disk(models.Model):
     )
 
     iface_type = models.CharField(u'接口类型', max_length=64,choices=disk_iface_choice,default='SAS')
+    disk_size_in_total = models.IntegerField(u'磁盘总量',default=0)
     memo = models.TextField(u'备注', blank=True,null=True)
     create_date = models.DateTimeField(blank=True, auto_now_add=True)
     update_date = models.DateTimeField(blank=True,null=True)
@@ -443,7 +462,7 @@ class NIC(models.Model):
     name = models.CharField(u'网卡名', max_length=64, blank=True,null=True)
     sn = models.CharField(u'SN号', max_length=128, blank=True,null=True)
     model =  models.CharField(u'网卡型号', max_length=128, blank=True,null=True)
-    macaddress = models.CharField(u'MAC', max_length=64,unique=True)
+    macaddress = models.CharField(u'MAC', max_length=64)
     ipaddress = models.GenericIPAddressField(u'IP', blank=True,null=True)
     netmask = models.CharField(max_length=64,blank=True,null=True)
     bonding = models.CharField(max_length=64,blank=True,null=True)
