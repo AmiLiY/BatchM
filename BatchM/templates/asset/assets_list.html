@@ -2,10 +2,37 @@
 {% block btitle %}{{ title }}{% endblock %}
 {% block page_content %}
 
+
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel2">注意</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="agree_edit" style="display: none" onclick="agree_operation('agree_edit')">确定修改</button>
+          <button type="button" class="btn btn-primary" id="agree_del" style="display: none" onclick="agree_operation('agree_del')">确定删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
 <div id="asset_list">
     <div class="panel-body" >
+
+
 {#        搜索#}
 {#        <select name="select_opinon" id="select_opinon">#}
 {#            <option value="id">资产ID</option>#}
@@ -18,7 +45,11 @@
 {#        =#}
 {#        <input type="text"  id="input_content"  placeholder="请输入关键字进行搜索">#}
 {#        <input type="submit" class="btn btn-info" onclick="search_info()">#}
-        <br><br>
+
+        <button class="btn btn-success" style="float: left" onclick="show_confirm('agree_edit')">修改选中的资产入库</button>
+        <button class="btn btn-danger" style="float: left" onclick="show_confirm('agree_del')">删除选中的资产记录</button>
+        <button class="btn btn-info" style="float: left;display: none" id="save_edit" onclick="save_edit('save')" >保存记录</button>
+        <button class="btn btn-default" style="float: left;display: none" id="cancel_edit" onclick="save_edit('cancel')">取消保存</button>
         <table id="asset_list_table" class="display table  table-hover" data-toggle="table"
                 data-url="{% url 'show_asset_in_table' %}"
                 data-method="get"
@@ -34,7 +65,7 @@
               <thead >
                     <tr>
                     <th data-field="state" data-checkbox="true"></th>
-                    <th data-field="asset_id" data-align="center" data-sortable="true">资产ID(点击ID查看详情)</th>
+                    <th data-field="asset_id" class="asset_id" data-align="center" data-sortable="true">资产ID(点击ID查看详情)</th>
                     <th data-field="asset_sn" data-align="center" data-sortable="true"  data-width="50px">资产编号</th>
                     <th data-field="asset_business_unit" data-sortable="true">产品线</th>
                     <th data-field="asset_name" data-align="center" data-sortable="true"  data-class="asset_name">资产名</th>
@@ -106,6 +137,7 @@
     <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
     <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
     <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
 
@@ -327,7 +359,7 @@
     function search_info() {
         var select_opinon = $('#select_opinon').val();
         var input_content = $('#input_content').val();
-        console.log(select_opinon,input_content)
+        console.log(select_opinon,input_content);
         $.ajax({
                     url: '/asset/asset_graphic',
                     token: csrftoken,
@@ -341,6 +373,86 @@
                         console.log('error',callback)
                     }
               })
+    }
+
+    // 出现模特框，让用户再次确认当前操作。
+    function show_confirm(arg) {  // 显示模态框，在批准入库和删除记录之前弹出来再次确认
+            var asset_id = [];
+            $('input:checkbox:checked').parent().siblings('.asset_id').each(function () {   // 遍历所有选中的框来
+                    asset_id.push(Number($(this).text()))
+                });
+            if ( asset_id.length == 0 ){
+                alert('没有选中任何数据');
+                return false
+            }
+
+            $('#myModal').modal('toggle');   // 打开模态框
+            $("#"+arg).show().siblings('.btn-primary').hide();
+            if(arg=='agree_del'){
+                $('.modal-body').html("确定要删除所选记录")
+            }else if(arg=='agree_edit') {
+                $('.modal-body').html("确定修改所选记录入库")
+            }
+        }
+
+        // 对选中的资产信息进行编辑
+    function  edit_table(data) {
+        $('#save_edit,#cancel_edit').show();  // show buttons
+
+        var original_data = {};
+        for(var d in data){
+            d = data[d];
+            console.log(d);
+            original_data[d] = [];
+            $('input:checkbox:checked').parent().siblings('.asset_id').each(function () {   // 遍历所有选中的框来
+                if( d == Number($(this).text())){
+                    $.each($(this).siblings('td'),function () {
+                        original_data[d].push($(this).text());
+                        $(this).replaceWith("<td><input type='text' class='d '"+$(this).text()+"' value='"+ $(this).text() +"'>")
+                    })
+                } // end if
+            });
+        } // end for
+        console.log(original_data);
+    }
+
+
+
+    //  删除选中的  数据和修改数据的
+    function  agree_operation(arg) {
+        $('#myModal').modal('toggle');
+        var asset_id = [];
+        $('input:checkbox:checked').parent().siblings('.asset_id').each(function () {   // 遍历所有选中的框来
+                asset_id.push(Number($(this).text()))
+            });
+        if ( asset_id.length == 0 ){
+            alert('没有选中任何数据');
+            return false
+        }
+        console.log(arg,asset_id);
+         if(arg=='agree_edit'){
+            result = edit_table(asset_id)
+        }
+         var asset_id = JSON.stringify(asset_id);
+         var csrftoken = getCookie('csrftoken');
+        $.ajax({
+            url:"{% url 'asset_operation' %}",
+            dataType:"json",
+            token : csrftoken,
+            type:'get',
+            data:{},
+            success: function () {
+
+            }, // end success
+            error:function () {
+
+            }, // end error
+        })
+    }
+
+    // 编辑表格的时候，通过这个方法来保存对应的内容
+    function  save_edit(arg) {
+
     }
 
 

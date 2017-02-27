@@ -162,19 +162,31 @@ def new_assets_approval(request):
                     response_dic[obj.id] = ass_handler.response
                     approved_host_list.append(obj.salt_minion_id)
 
-            return HttpResponse('approved successfully')
+            if type(approved_asset_id_list) is str:
+                return HttpResponseRedirect('/admin/Batch/newassetapprovalzone/')
+            else:
+                return HttpResponse(json.dumps('approved successfully'))
 
         elif whether_approve == 'disagree': # disagress approve for these assets
             models.NewAssetApprovalZone.objects.filter(id__in=approved_asset_id_list).delete()
             return HttpResponse(json.dumps('deleted successfully'))
-
-
 
     else:
         ids = request.GET.get('ids')
         ids_list = ids.split(',')
         asset_info = models.NewAssetApprovalZone.objects.filter(id__in=ids_list)
         return render(request,'asset/whether_approval.html',{'asset_info':asset_info})
+
+
+def asset_operation(request):
+    '''
+    对于资产页面进行删除选定的资产，或者修改选定的资产内容。
+    :param request:
+    :return:
+    '''
+    if request.method == "POST":
+        pass
+
 
 
 def create_salt_group(request):
