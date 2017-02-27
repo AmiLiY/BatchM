@@ -64,14 +64,10 @@
 {% endblock %}
 {% block encoding_js %}
 
-    <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="/static/js//bootstrap-table.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
 
     <!-- Latest compiled and minified Locales -->
-    <script src="/static/js/bootstrap-table-zh-CN.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
 
     <script>
         $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
@@ -82,7 +78,7 @@
             }
         });
 
-        function show_confirm(arg) {  // 显示模态框，在批准入库和删除记录之前弹出来再次确认
+        function l(arg) {  // 显示模态框，在批准入库和删除记录之前弹出来再次确认
             $('#myModal').modal('toggle');
             $("#"+arg).show().siblings('.btn-primary').hide();
             if(arg=='disagree_approve'){
@@ -99,6 +95,7 @@
                 });
             if ( new_asset_id.length == 0 ){
                 alert('没有选中任何数据')
+                return false
             }
             var new_asset_id = JSON.stringify(new_asset_id);
             var csrftoken = getCookie('csrftoken');

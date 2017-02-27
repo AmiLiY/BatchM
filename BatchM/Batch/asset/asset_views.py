@@ -323,6 +323,11 @@ def asset_list(request):
 
 @login_required
 def show_asset_in_table(request):
+    '''
+    专门处理在服务器资产列表里面的表格信息的方法
+    :param request:
+    :return:
+    '''
     if request.method == "GET":
         print(request.GET)
         limit = request.GET.get('limit')   # how many items per page
@@ -330,18 +335,19 @@ def show_asset_in_table(request):
         search = request.GET.get('search')
         sort_column = request.GET.get('sort')   # which column need to sort
         order = request.GET.get('order')      # ascending or descending
-        if search:
+        if search:    #    判断是否有搜索字
             all_records = models.Asset.objects.filter(id=search,asset_type=search,business_unit=search,idc=search)
         else:
             all_records = models.Asset.objects.all()   # must be wirte the line code here
 
-        if sort_column:
+        if sort_column:   # 判断是否有排序需求
             sort_column = sort_column.replace('asset_', '')
-            if sort_column in ['id','asset_type','sn','name','management_ip','manufactory','type']:
-                if order == 'desc':
+            if sort_column in ['id','asset_type','sn','name','management_ip','manufactory','type']:   # 如果排序的列表在这些内容里面
+                if order == 'desc':   # 如果排序是反向
                     sort_column = '-%s' % (sort_column)
                 all_records = models.Asset.objects.all().order_by(sort_column)
             elif sort_column in ['salt_minion_id','os_release',]:
+                # server__ 表示asset下的外键关联的表server下面的os_release或者其他的字段进行排序
                 sort_column = "server__%s" % (sort_column)
                 if order == 'desc':
                     sort_column = '-%s'%(sort_column)
@@ -362,6 +368,8 @@ def show_asset_in_table(request):
                     sort_column = '-localdisks_size'
                 else:
                     sort_column = 'localdisks_size'
+                #     annotate 是注释的功能,localdisks_size前端传过来的是这个值，后端也必须这样写，Sum方法是django里面的，不是小写的sum方法，
+                # 两者的区别需要注意，Sum（'disk__capacity‘）表示对disk表下面的capacity进行加法计算，返回一个总值.
                 all_records = models.Asset.objects.all().annotate(localdisks_size=Sum('disk__capacity')).order_by(sort_column)
 
             elif sort_column in ['idc',]:
@@ -381,15 +389,16 @@ def show_asset_in_table(request):
         if not offset:
             offset = 0
         if not limit:
-            limit = 20
-        pageinator = Paginator(all_records, limit)
+            limit = 20    # 默认是每页20行的内容，与前端默认行数一致
+        pageinator = Paginator(all_records, limit)   # 开始做分页
 
         page = int(int(offset) / int(limit) + 1)
-        response_data = {'total':all_records_count,'rows':[]}
+        response_data = {'total':all_records_count,'rows':[]}   # 必须带有rows和total这2个key，total表示总页数，rows表示每行的内容
 
 
         for asset in pageinator.page(page):
-            ram_disk = get_ram_sum_size(asset.id)
+            ram_disk = get_ram_sum_size(asset.id)    # 获取磁盘和内存的大小
+            # 下面这些asset_开头的key，都是我们在前端定义好了的，前后端必须一致，前端才能接受到数据并且请求.
             response_data['rows'].append({
                 "asset_id": '<a href="/asset/asset_list/%d" target="_blank">%d</a>' %(asset.id,asset.id),
                 "asset_sn" : asset.sn if asset.sn else "",
@@ -411,7 +420,8 @@ def show_asset_in_table(request):
                 "asset_create_date" : asset.create_date.strftime("%Y-%m-%d %H:%M") if asset.create_date else "",
                 "update_date": asset.update_date.strftime("%Y-%m-%d %H:%M") if  asset.update_date else "",
             })
-        return  HttpResponse(json.dumps(response_data))
+
+        return  HttpResponse(json.dumps(response_data))    # 需要json处理下数据格式
 
 @login_required
 def get_asset_list(request):

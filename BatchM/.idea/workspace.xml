@@ -3,8 +3,8 @@
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/templates/DockerM.html" line="0" />
     <bookmark url="file://$PROJECT_DIR$/templates/DockerM.html" line="152" mnemonic="1" />
-    <bookmark url="file://$PROJECT_DIR$/Batch/asset/asset_core.py" line="124" />
-    <bookmark url="file://$PROJECT_DIR$/Batch/asset/asset_core.py" line="134" />
+    <bookmark url="file://$PROJECT_DIR$/Batch/asset/asset_core.py" line="123" />
+    <bookmark url="file://$PROJECT_DIR$/Batch/asset/asset_core.py" line="133" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79edf99e-9ab7-4e23-b186-ec67a0fdab75" name="Default" comment="">
@@ -15,6 +15,7 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/selfdefine.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/asset/asset_detail.html" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/asset/assets_list.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/asset/new_asset_wait_approvel.html" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/asset/run_cmd.html" />
     </list>
     <ignored path="BatchM.iws" />
@@ -32,7 +33,7 @@
     <SUITE FILE_PATH="coverage/BatchM$core.coverage" NAME="core Coverage Results" MODIFIED="1482920698883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Batch" />
     <SUITE FILE_PATH="coverage/BatchM$docker_control.coverage" NAME="docker_control Coverage Results" MODIFIED="1486545804594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Batch/plugs" />
     <SUITE FILE_PATH="coverage/BatchM$django_wsgi.coverage" NAME="django.wsgi Coverage Results" MODIFIED="1486541965661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Batch" />
-    <SUITE FILE_PATH="coverage/BatchM$manage.coverage" NAME="manage Coverage Results" MODIFIED="1487754377577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BatchM$manage.coverage" NAME="manage Coverage Results" MODIFIED="1488181168424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BatchM$Test__Batch_django_wsgi.coverage" NAME="Test: Batch.django.wsgi Coverage Results" MODIFIED="1486542581521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -47,11 +48,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="asset_views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="asset_views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Batch/asset/asset_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="278" column="102" selection-start-line="278" selection-start-column="98" selection-end-line="278" selection-end-column="102" />
+            <state relative-caret-position="900">
+              <caret line="78" column="4" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#69#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new_asset_wait_approvel.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/asset/new_asset_wait_approvel.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="332">
+              <caret line="80" column="18" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="assets_list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/asset/assets_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1635">
+              <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="112" selection-end-column="119" />
               <folding />
             </state>
           </provider>
@@ -82,69 +105,10 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Batch/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3555">
-              <caret line="241" column="33" selection-start-line="241" selection-start-column="33" selection-end-line="241" selection-end-column="33" />
+            <state relative-caret-position="3840">
+              <caret line="260" column="33" selection-start-line="260" selection-start-column="33" selection-end-line="260" selection-end-column="33" />
               <folding>
-                <marker date="1487932995559" expanded="true" signature="133:180" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="221:253" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1487932995559" expanded="true" signature="912:1802" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="917:950" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1487932995559" expanded="true" signature="1648:1710" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="1727:1802" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="1843:3162" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="1848:1879" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1487932995559" expanded="true" signature="3005:3066" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="3083:3162" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="3195:3481" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="3200:3224" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1487932995559" expanded="true" signature="3367:3396" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="3413:3481" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="3519:3868" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="3524:3546" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1487932995559" expanded="true" signature="3748:3784" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="3801:3868" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="3908:5333" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="3913:3938" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1487932995559" expanded="true" signature="5217:5245" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="5262:5333" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="5336:6151" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="6190:6556" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="6195:6231" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1487932995559" expanded="true" signature="6407:6444" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="6461:6556" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="6594:7097" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="6599:6629" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1487932995559" expanded="true" signature="6948:6997" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="7014:7097" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="7142:8026" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="7147:7199" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1487932995559" expanded="true" signature="7900:7929" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="7946:8026" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="8075:8949" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="8080:8133" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-                <marker date="1487932995559" expanded="true" signature="8834:8864" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="8881:8949" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="8952:9417" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="9445:11160" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="9481:9737" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="11016:11083" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="11106:11160" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="11189:12432" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="11267:11312" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="12248:12349" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="12373:12432" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="12469:13210" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="13143:13210" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="13241:14224" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="13274:13410" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="13448:13574" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="13940:13990" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="14111:14139" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="14155:14224" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="14251:14786" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="14664:14733" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="14756:14786" ph="..." />
-                <marker date="1487932995559" expanded="true" signature="14813:15161" ph="..." />
+                <marker date="1488161871678" expanded="true" signature="14813:15161" ph="..." />
               </folding>
             </state>
           </provider>
@@ -155,16 +119,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sites.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/py35/lib/python3.5/site-packages/Django-1.10.4-py3.5.egg/django/contrib/admin/sites.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="63" column="57" selection-start-line="63" selection-start-column="57" selection-end-line="63" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -185,8 +139,8 @@
       <file leaf-file-name="asset_core.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Batch/asset/asset_core.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1470">
-              <caret line="100" column="17" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
+            <state relative-caret-position="1455">
+              <caret line="99" column="17" selection-start-line="99" selection-start-column="17" selection-end-line="99" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -195,18 +149,8 @@
       <file leaf-file-name="asset_urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Batch/asset/asset_urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="19" column="97" selection-start-line="19" selection-start-column="97" selection-end-line="19" selection-end-column="97" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assets_list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/asset/assets_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4335">
-              <caret line="289" column="32" selection-start-line="289" selection-start-column="32" selection-end-line="289" selection-end-column="32" />
+            <state relative-caret-position="300">
+              <caret line="21" column="73" selection-start-line="21" selection-start-column="73" selection-end-line="21" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -229,7 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Batch/plugs/docker_control.py" />
         <option value="$PROJECT_DIR$/statics/js/selfdefine.js" />
         <option value="$PROJECT_DIR$/Batch/core.py" />
         <option value="$PROJECT_DIR$/templates/DockerM.html" />
@@ -280,6 +223,7 @@
         <option value="$PROJECT_DIR$/templates/asset/assets_list.html" />
         <option value="$PROJECT_DIR$/Batch/asset/asset_urls.py" />
         <option value="$PROJECT_DIR$/Batch/asset/asset_views.py" />
+        <option value="$PROJECT_DIR$/templates/asset/new_asset_wait_approvel.html" />
       </list>
     </option>
   </component>
@@ -1065,26 +1009,26 @@
     <frame x="-2" y="25" width="1920" height="892" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14552239" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14765458" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55191255" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30779392" sideWeight="0.11827957" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24371585" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2749658" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27425614" sideWeight="0.84521276" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2546448" sideWeight="0.8817204" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3994614" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3125683" sideWeight="0.78457445" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32568306" sideWeight="0.84521276" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32568306" sideWeight="0.49787235" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3994614" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1105,13 +1049,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/readme.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="8" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SansaClient_py3/plugins/linux/sysinfo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
@@ -1345,7 +1282,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1389,14 +1325,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="705">
           <caret line="63" column="57" selection-start-line="63" selection-start-column="57" selection-end-line="63" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Batch/asset/asset_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1470">
-          <caret line="100" column="17" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
+        <state relative-caret-position="1455">
+          <caret line="99" column="17" selection-start-line="99" selection-start-column="17" selection-end-line="99" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1413,69 +1348,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Batch/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3555">
-          <caret line="241" column="33" selection-start-line="241" selection-start-column="33" selection-end-line="241" selection-end-column="33" />
+        <state relative-caret-position="3840">
+          <caret line="260" column="33" selection-start-line="260" selection-start-column="33" selection-end-line="260" selection-end-column="33" />
           <folding>
-            <marker date="1487932995559" expanded="true" signature="133:180" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="221:253" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1487932995559" expanded="true" signature="912:1802" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="917:950" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1487932995559" expanded="true" signature="1648:1710" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="1727:1802" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="1843:3162" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="1848:1879" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1487932995559" expanded="true" signature="3005:3066" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="3083:3162" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="3195:3481" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="3200:3224" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1487932995559" expanded="true" signature="3367:3396" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="3413:3481" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="3519:3868" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="3524:3546" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1487932995559" expanded="true" signature="3748:3784" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="3801:3868" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="3908:5333" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="3913:3938" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1487932995559" expanded="true" signature="5217:5245" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="5262:5333" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="5336:6151" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="6190:6556" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="6195:6231" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1487932995559" expanded="true" signature="6407:6444" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="6461:6556" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="6594:7097" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="6599:6629" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1487932995559" expanded="true" signature="6948:6997" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="7014:7097" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="7142:8026" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="7147:7199" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1487932995559" expanded="true" signature="7900:7929" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="7946:8026" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="8075:8949" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="8080:8133" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-            <marker date="1487932995559" expanded="true" signature="8834:8864" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="8881:8949" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="8952:9417" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="9445:11160" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="9481:9737" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="11016:11083" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="11106:11160" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="11189:12432" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="11267:11312" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="12248:12349" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="12373:12432" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="12469:13210" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="13143:13210" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="13241:14224" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="13274:13410" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="13448:13574" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="13940:13990" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="14111:14139" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="14155:14224" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="14251:14786" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="14664:14733" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="14756:14786" ph="..." />
-            <marker date="1487932995559" expanded="true" signature="14813:15161" ph="..." />
+            <marker date="1488161871678" expanded="true" signature="14813:15161" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1484,14 +1360,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/asset/assets_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4335">
-          <caret line="289" column="32" selection-start-line="289" selection-start-column="32" selection-end-line="289" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -1514,24 +1382,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/asset/assets_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1635">
+          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="112" selection-end-column="119" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Batch/asset/asset_urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="19" column="97" selection-start-line="19" selection-start-column="97" selection-end-line="19" selection-end-column="97" />
+        <state relative-caret-position="300">
+          <caret line="21" column="73" selection-start-line="21" selection-start-column="73" selection-end-line="21" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Batch/asset/asset_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="278" column="102" selection-start-line="278" selection-start-column="98" selection-end-line="278" selection-end-column="102" />
+        <state relative-caret-position="900">
+          <caret line="78" column="4" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/asset/new_asset_wait_approvel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="80" column="18" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
   </component>
   <component name="webServersAuthStorage">
-    <data>AAAAoNwJfpew61NZjkOANzciMtyRIVJRqDmOxIZk8njFAOHgpauDdVhlCg39DQFjiawpElrlKHOn3KpgPADu1AWzHfp1FwVNC/x1IRpQQ3hrlar5cf1gUs6Z6fVn9RHe7K+DEfSpefR21fvCkUTUDZDSS8G1v4e+GESdHmre+rlJS9gBDaoewGeDS9NgMn6+AzUuEbj0FiYxXehoBLpgOlR1e9NHQGYceab2HQqdEwABa21K</data>
+    <data>AAAAoBzOecmYFB13qOkQOnj9ga0cUKAeQ2PbuJfjbyAdNyurED1/zq90rF44lLR3OEV4AcYsx0GmYVPPE1qr2xhnDOs1rkX/1ATbtUfCTVaiWx2Rf/hoi30vsyJfNazftWBhKcLapV6eZFqH4n4sY5oF3Qk3C+6TqQc9wzYeXGn7/4QErCTsrvbIq60QCboxrV1Z2JOdJMmvf87kpjbvWbBkP3ZZLM/Sv4A0Z6eSSjpDtsbc</data>
   </component>
 </project>
