@@ -23,9 +23,6 @@
 </div>
 
 
-
-
-
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
 
@@ -65,24 +62,24 @@
               <thead >
                     <tr>
                     <th data-field="state" data-checkbox="true"></th>
-                    <th data-field="asset_id" class="asset_id" data-align="center" data-sortable="true">资产ID(点击ID查看详情)</th>
-                    <th data-field="asset_sn" data-align="center" data-sortable="true"  data-width="50px">资产编号</th>
-                    <th data-field="asset_business_unit" data-sortable="true">产品线</th>
-                    <th data-field="asset_name" data-align="center" data-sortable="true"  data-class="asset_name">资产名</th>
-                    <th data-field="asset_management_ip" data-align="center" data-sortable="true"  data-class="asset_management_ip">管理IP</th>
-                    <th data-field="asset_manufactory" data-sortable="true">厂商</th>
-                    <th data-field="asset_type" data-sortable="true">类型</th>
-                    <th data-field="asset_os_release" data-sortable="true">操作系统</th>
-                    <th data-field="asset_salt_minion_id" data-sortable="true">saltminion_id</th>
-                    <th data-field="asset_cpu_model" data-sortable="true">CPU型号</th>
-                    <th data-field="asset_cpu_count" data-sortable="true">CPU个数</th>
-                    <th data-field="asset_cpu_core_count" data-sortable="true">CPU总核数</th>
-                    <th data-field="asset_rams_size" data-sortable="true">内存大小（MB）</th>
-                    <th data-field="asset_localdisks_size" data-sortable="true">磁盘总空间（GB）</th>
-                    <th data-field="asset_admin" >资产管理员</th>
-                    <th data-field="asset_idc" data-sortable="true">机房名</th>
-                    <th data-field="asset_trade_date" data-sortable="true">购买日期</th>
-                    <th data-field="asset_create_date" data-sortable="true">创建日期</th>
+                    <th data-field="asset_id" class="id" data-align="center" data-sortable="true">资产ID(点击ID查看详情)</th>
+                    <th data-field="asset_sn" class="sn" data-align="center" data-sortable="true"  data-width="50px">资产编号</th>
+                    <th data-field="asset_business_unit" class="businessunit__name"  data-sortable="true">产品线</th>
+                    <th data-field="asset_name" class="name" data-align="center" data-sortable="true"  data-class="name">资产名</th>
+                    <th data-field="asset_management_ip" class="management_ip" data-align="center" data-sortable="true"  data-class="management_ip">管理IP</th>
+                    <th data-field="asset_manufactory" class="manufactory_name" data-sortable="true">厂商</th>
+                    <th data-field="asset_type" class="asset_type" data-sortable="true">类型</th>
+                    <th data-field="asset_os_release" class="os_release" data-sortable="true">操作系统</th>
+                    <th data-field="asset_salt_minion_id" class="salt_minion_id" data-sortable="true">saltminion_id</th>
+                    <th data-field="asset_cpu_model" class="cpu_model" data-sortable="true">CPU型号</th>
+                    <th data-field="asset_cpu_count" class="cpu_count"  data-sortable="true">CPU个数</th>
+                    <th data-field="asset_cpu_core_count" class="cpu_core_count"  data-sortable="true">CPU总核数</th>
+                    <th data-field="asset_rams_size" class="ram_capacity" data-sortable="true">内存大小（MB）</th>
+                    <th data-field="asset_localdisks_size" class="disk_capacity" data-sortable="true">磁盘总空间（GB）</th>
+                    <th data-field="asset_admin" class="username" >资产管理员</th>
+                    <th data-field="asset_idc" class="idc_name" data-sortable="true">机房名</th>
+                    <th data-field="asset_trade_date" class="trade_date" data-sortable="true">购买日期</th>
+                    <th data-field="asset_create_date" class="create_date" data-sortable="true">创建日期</th>
                     </tr>
               </thead>
 {#                <tbody>#}
@@ -138,10 +135,7 @@
     <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
     <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-
-    <!-- Latest compiled and minified Locales -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
 
     <script>
@@ -378,14 +372,13 @@
     // 出现模特框，让用户再次确认当前操作。
     function show_confirm(arg) {  // 显示模态框，在批准入库和删除记录之前弹出来再次确认
             var asset_id = [];
-            $('input:checkbox:checked').parent().siblings('.asset_id').each(function () {   // 遍历所有选中的框来
+            $('input:checkbox:checked').parent().siblings('.id').each(function () {   // 遍历所有选中的框来
                     asset_id.push(Number($(this).text()))
                 });
             if ( asset_id.length == 0 ){
                 alert('没有选中任何数据');
                 return false
             }
-
             $('#myModal').modal('toggle');   // 打开模态框
             $("#"+arg).show().siblings('.btn-primary').hide();
             if(arg=='agree_del'){
@@ -395,25 +388,63 @@
             }
         }
 
-        // 对选中的资产信息进行编辑
-    function  edit_table(data) {
-        $('#save_edit,#cancel_edit').show();  // show buttons
+     function  get_username() {
+         $.ajax({
+             url:"{% url 'asset_operation' %}",
+             type:'post',
+             dataType:'json',
+             data:{'action':'get_all_username'},
+             success:function (callback) {
+                 return callback
+             }
+         })
+     }
 
+
+        // 对选中的资产信息由td标签替换成input 标签,data是 资产ID的数组
+    function  Change_input_table(asset_id,action) {
+        $('#save_edit,#cancel_edit').show();  // show buttons
+        var title_data = [];
+        $('thead tr th').each(function(){title_data.push($(this).attr('class'))});
         var original_data = {};
-        for(var d in data){
-            d = data[d];
+        var input_data = {};    //  定义为全局变量，我们在提交数据的时候调用
+        for(var index in asset_id){   // 遍历这个资产ID的数组
+            d = asset_id[index];
             console.log(d);
             original_data[d] = [];
-            $('input:checkbox:checked').parent().siblings('.asset_id').each(function () {   // 遍历所有选中的框来
-                if( d == Number($(this).text())){
-                    $.each($(this).siblings('td'),function () {
-                        original_data[d].push($(this).text());
-                        $(this).replaceWith("<td><input type='text' class='d '"+$(this).text()+"' value='"+ $(this).text() +"'>")
+            input_data[d] = {};
+            $('input:checkbox:checked').parent().siblings('.id').each(function () {   // 遍历所有选中的框
+            if(action == 'edit'){     // 表示从td标签到input标签的转换
+                if( d == Number($(this).text())){     // 判断资产ID是否相等，等于的话 ，那么就开始取值，把这个行的所有内容都取出来，放在以ID为key的字典里面
+                    $.each($(this).siblings('td'),function () {    // 遍历这一行的每一列的值，
+                        if($(this).attr('class') != "bs-checkbox " ) {   // 如果不等于bs-checkbox ，那么我们就可以跳过第一个checkbox了
+                            if($(this).attr('class') == 'username'){
+                                var result =  get_username();
+                                $(this).replaceWith("<td>")
+                            }
+                            original_data[d].push($(this).text());       //    把这一列的值，以ID为key的放入字典里面
+                            // 把当前的值遍历后用把HTML标签替换成input标签。
+                            $(this).replaceWith("<td><input type='text' class='"+ d + "' value='" + $(this).text() + "'>")
+                        }
                     })
                 } // end if
+
+            }else if(action = 'save'){    // 表示从input标签到td标签的转换
+                if( d == Number($(this).text())){     // 判断资产ID是否相等，等于的话 ，那么就开始取值，把这个行的所有内容都取出来，放在以ID为key的字典里面
+                    $.each($(this).siblings('td'),function () {    // 遍历这一行的每一列的值，
+                        if($(this).attr('class') != "bs-checkbox " ) {   // 如果不等于bs-checkbox ，那么我们就可以跳过第一个checkbox了
+                            input_data[d][title_data[$(this).index()]] = ($(this).children('input').val());       //    把这一列的值，以ID为key的放入字典里面
+                            // 把当前的值遍历后用把HTML标签替换成input标签。
+                            $(this).children('input').replaceWith("<td class='" + d + "'>" + $(this).children('input').val() + "</td>");
+                            console.log(input_data)
+                        }
+
+                    })
+                } // end if
+            }
             });
         } // end for
-        console.log(original_data);
+        return input_data
     }
 
 
@@ -421,8 +452,8 @@
     //  删除选中的  数据和修改数据的
     function  agree_operation(arg) {
         $('#myModal').modal('toggle');
-        var asset_id = [];
-        $('input:checkbox:checked').parent().siblings('.asset_id').each(function () {   // 遍历所有选中的框来
+        asset_id = [];   // 定义全局变量的数组，方便后面的提交数据函数调用
+        $('input:checkbox:checked').parent().siblings('.id').each(function () {   // 遍历所有选中的框来
                 asset_id.push(Number($(this).text()))
             });
         if ( asset_id.length == 0 ){
@@ -431,28 +462,30 @@
         }
         console.log(arg,asset_id);
          if(arg=='agree_edit'){
-            result = edit_table(asset_id)
+            Change_input_table(asset_id,action='edit')
         }
-         var asset_id = JSON.stringify(asset_id);
-         var csrftoken = getCookie('csrftoken');
+        //asset_id = JSON.stringify(asset_id);
+    }
+
+
+    // 编辑表格的时候，通过这个方法来保存对应的内容
+    function  save_edit(arg) {
+        console.log('asset_id',asset_id);
+        var result = JSON.stringify(Change_input_table(asset_id,action='save'));
+        console.log('result',result);
         $.ajax({
             url:"{% url 'asset_operation' %}",
             dataType:"json",
             token : csrftoken,
-            type:'get',
-            data:{},
-            success: function () {
-
+            type:'post',
+            data:{"post_data":result,'action':arg},
+            success: function (callback) {
+                console.log(callback)
             }, // end success
             error:function () {
-
+                console.log(callback)
             }, // end error
         })
-    }
-
-    // 编辑表格的时候，通过这个方法来保存对应的内容
-    function  save_edit(arg) {
-
     }
 
 

@@ -177,7 +177,7 @@ def new_assets_approval(request):
         asset_info = models.NewAssetApprovalZone.objects.filter(id__in=ids_list)
         return render(request,'asset/whether_approval.html',{'asset_info':asset_info})
 
-
+@csrf_exempt
 def asset_operation(request):
     '''
     对于资产页面进行删除选定的资产，或者修改选定的资产内容。
@@ -185,7 +185,43 @@ def asset_operation(request):
     :return:
     '''
     if request.method == "POST":
-        pass
+        print('POST',request.POST)
+        action = request.POST.get('action')
+        if action == 'save':
+            post_data = json.loads(request.POST.get('post_data'))
+            for k,v in post_data.items():
+                for keys in v.keys():
+                    if keys in ['cpu_model','cpu_count','cpu_core_count']:
+                        models.CPU.objects.filter(asset_id=k).update(cpu_model=v.get('cpu_model'),
+                                                                     cpu_count=v.get('cpu_count'),
+                                                                     cpu_core_count=v.get('cpu_core_count'))
+                    elif keys in ['salt_minion_id','os_release',]:
+                        models.Server.objects.filter(asset_id=k).update(os_release=v.get('os_release'),
+                                                                        salt_minion_id=v.get('salt_minion_id')
+                                                                        )
+                    elif keys in ['ram_capacity']:
+                        models.RAM.objects.filter(asset_id=k).update(capacity=v.get('ram_capacity'))
+                    elif keys in ['disk_capacity']:
+                        models.Disk.objects.filter(asset_id=k).update(capacity=v.get('ram_capacity'))
+                    elif keys in ['sn','businessunit__name','name','management_ip','asset_type',
+                                  'trade_date','create_date',]:   # 对asset表进行更新
+                        models.Asset.objects.filter(id=k).update(sn=v.get('sn'),business_unit=v.get('businessunit__name'),
+                                                             name=v.get('name'),management_ip=v.get('management_ip'),
+                                                             asset_type=v.get('asset_type'),trade_date=v.get('trade_date'),
+                                                             create_date=v.get('create_date')    )
+                    elif keys in ['username',]:
+                        models.Asset.objects.filter(id=35).update(admin=v.get('username'))
+                        pass
+                    elif keys in ['idc_name']:
+                        models.IDC.objects.filter(asset_id=k).update(name=v.get('idc_name'))
+
+        elif action == 'get_all_username':
+            result = models.MyUser.objects.all()
+            return HttpResponse(json.dumps(result))
+
+
+
+        return HttpResponse('111')
 
 
 

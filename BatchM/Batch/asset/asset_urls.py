@@ -15,7 +15,7 @@ from . import asset_views as views
 
 urlpatterns = [
     url(r'new_assets/approval/',views.new_assets_approval,name="new_assets_approvel"),   #新的资产等待批准入库和批准入库
-    url(r'asset_operation',views.asset_operation,name="asset_operation"),   #
+    url(r'asset_operation',views.asset_operation,name="asset_operation"),   #  对修改资产信息的操作
     url(r'salt_group_create/$',views.create_salt_group,name="create_salt_group"),       # 创建saltstack组
     url(r'asset_list/$',views.asset_list ,name='asset_list'),       # 显示资产列表的信息,包含所有，大表
     url(r'asset_show_table',views.show_asset_in_table,name='show_asset_in_table'),  # 展示资产信息在bootstrap-table里面
