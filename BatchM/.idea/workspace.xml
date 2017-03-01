@@ -33,7 +33,7 @@
     <SUITE FILE_PATH="coverage/BatchM$core.coverage" NAME="core Coverage Results" MODIFIED="1482920698883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Batch" />
     <SUITE FILE_PATH="coverage/BatchM$docker_control.coverage" NAME="docker_control Coverage Results" MODIFIED="1486545804594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Batch/plugs" />
     <SUITE FILE_PATH="coverage/BatchM$django_wsgi.coverage" NAME="django.wsgi Coverage Results" MODIFIED="1486541965661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Batch" />
-    <SUITE FILE_PATH="coverage/BatchM$manage.coverage" NAME="manage Coverage Results" MODIFIED="1488269316183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BatchM$manage.coverage" NAME="manage Coverage Results" MODIFIED="1488365205613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/BatchM$Test__Batch_django_wsgi.coverage" NAME="Test: Batch.django.wsgi Coverage Results" MODIFIED="1486542581521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -48,11 +48,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="asset_views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="asset_views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Batch/asset/asset_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="219" column="49" selection-start-line="219" selection-start-column="49" selection-end-line="219" selection-end-column="49" />
+            <state relative-caret-position="178">
+              <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
               <folding>
                 <element signature="e#0#69#0" expanded="true" />
               </folding>
@@ -60,11 +60,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BatchM/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="370">
+              <caret line="158" column="17" selection-start-line="158" selection-start-column="17" selection-end-line="158" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="customize_auth_model.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Batch/customize_auth_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="39" column="12" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="12" />
+            <state relative-caret-position="165">
+              <caret line="46" column="64" selection-start-line="46" selection-start-column="64" selection-end-line="46" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -73,7 +83,7 @@
       <file leaf-file-name="asset_core.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Batch/asset/asset_core.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
+            <state relative-caret-position="15">
               <caret line="431" column="29" selection-start-line="431" selection-start-column="29" selection-end-line="431" selection-end-column="29" />
               <folding />
             </state>
@@ -83,18 +93,18 @@
       <file leaf-file-name="new_asset_wait_approvel.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/asset/new_asset_wait_approvel.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="751">
+            <state relative-caret-position="1710">
               <caret line="114" column="39" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assets_list.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="assets_list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/asset/assets_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="422" column="59" selection-start-line="422" selection-start-column="59" selection-end-line="422" selection-end-column="59" />
+            <state relative-caret-position="181">
+              <caret line="429" column="94" selection-start-line="429" selection-start-column="94" selection-end-line="429" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -110,20 +120,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="asset_utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Batch/asset/asset_utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Batch/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
+            <state relative-caret-position="3150">
               <caret line="215" column="28" selection-start-line="215" selection-start-column="28" selection-end-line="215" selection-end-column="28" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -135,8 +135,8 @@
       <file leaf-file-name="asset_urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Batch/asset/asset_urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+            <state relative-caret-position="240">
+              <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -145,8 +145,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Batch/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="534" column="8" selection-start-line="534" selection-start-column="4" selection-end-line="534" selection-end-column="8" />
+            <state relative-caret-position="-56">
+              <caret line="270" column="6" selection-start-line="270" selection-start-column="6" selection-end-line="270" selection-end-column="6" />
               <folding>
                 <marker date="1488161871678" expanded="true" signature="14813:15161" ph="..." />
               </folding>
@@ -171,7 +171,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/statics/js/selfdefine.js" />
         <option value="$PROJECT_DIR$/Batch/core.py" />
         <option value="$PROJECT_DIR$/templates/DockerM.html" />
         <option value="$PROJECT_DIR$/Batch/asset/README" />
@@ -195,7 +194,6 @@
         <option value="$PROJECT_DIR$/SansaClient_py2/plugins/linux/__init__.py" />
         <option value="$PROJECT_DIR$/SansaClient_py2/plugins/windows/__init__.py" />
         <option value="$PROJECT_DIR$/SansaClient_py2/plugins/windows/sysinfo.py" />
-        <option value="$PROJECT_DIR$/BatchM/settings.py" />
         <option value="$PROJECT_DIR$/SansaClient_py3/core/info_collection.py" />
         <option value="$PROJECT_DIR$/templates/asset/whether_approval.html" />
         <option value="$PROJECT_DIR$/templates/asset/base_for_AddAsset.html" />
@@ -220,8 +218,10 @@
         <option value="$PROJECT_DIR$/templates/asset/new_asset_wait_approvel.html" />
         <option value="$PROJECT_DIR$/Batch/asset/asset_core.py" />
         <option value="$PROJECT_DIR$/Batch/asset/asset_urls.py" />
-        <option value="$PROJECT_DIR$/Batch/asset/asset_views.py" />
+        <option value="$PROJECT_DIR$/Batch/customize_auth_model.py" />
         <option value="$PROJECT_DIR$/templates/asset/assets_list.html" />
+        <option value="$PROJECT_DIR$/BatchM/settings.py" />
+        <option value="$PROJECT_DIR$/Batch/asset/asset_views.py" />
       </list>
     </option>
   </component>
@@ -232,10 +232,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-2" />
     <option name="y" value="25" />
-    <option name="width" value="1920" />
-    <option name="height" value="892" />
+    <option name="width" value="1916" />
+    <option name="height" value="888" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -262,7 +261,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -556,6 +554,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1004,10 +1003,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2" y="25" width="1920" height="892" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="25" width="1916" height="888" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14978679" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15085287" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55191255" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30779392" sideWeight="0.11827957" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1142,14 +1141,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="1777" column="3" selection-start-line="1777" selection-start-column="3" selection-end-line="1777" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BatchM/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1317,9 +1308,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="49" column="66" selection-start-line="49" selection-start-column="66" selection-end-line="49" selection-end-column="66" />
-          <folding>
-            <element signature="e#53#88#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1327,7 +1315,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1347,17 +1334,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Batch/asset/asset_urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Batch/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
+        <state relative-caret-position="3150">
           <caret line="215" column="28" selection-start-line="215" selection-start-column="28" selection-end-line="215" selection-end-column="28" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -1365,60 +1344,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Batch/models.py">
+    <entry file="file://$PROJECT_DIR$/templates/asset/new_asset_wait_approvel.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="534" column="8" selection-start-line="534" selection-start-column="4" selection-end-line="534" selection-end-column="8" />
-          <folding>
-            <marker date="1488161871678" expanded="true" signature="14813:15161" ph="..." />
-          </folding>
+        <state relative-caret-position="1710">
+          <caret line="114" column="39" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Batch/asset/asset_urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Batch/customize_auth_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="39" column="12" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="12" />
+        <state relative-caret-position="165">
+          <caret line="46" column="64" selection-start-line="46" selection-start-column="64" selection-end-line="46" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Batch/asset/asset_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
+        <state relative-caret-position="15">
           <caret line="431" column="29" selection-start-line="431" selection-start-column="29" selection-end-line="431" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/asset/new_asset_wait_approvel.html">
+    <entry file="file://$PROJECT_DIR$/templates/asset/assets_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="751">
-          <caret line="114" column="39" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
+        <state relative-caret-position="181">
+          <caret line="429" column="94" selection-start-line="429" selection-start-column="94" selection-end-line="429" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Batch/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-56">
+          <caret line="270" column="6" selection-start-line="270" selection-start-column="6" selection-end-line="270" selection-end-column="6" />
+          <folding>
+            <marker date="1488161871678" expanded="true" signature="14813:15161" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BatchM/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="158" column="17" selection-start-line="158" selection-start-column="17" selection-end-line="158" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Batch/asset/asset_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="219" column="49" selection-start-line="219" selection-start-column="49" selection-end-line="219" selection-end-column="49" />
+        <state relative-caret-position="178">
+          <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
           <folding>
             <element signature="e#0#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/asset/assets_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="422" column="59" selection-start-line="422" selection-start-column="59" selection-end-line="422" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
   </component>
   <component name="webServersAuthStorage">
-    <data>AAAAoHNEZhz4qvKL7vz2gMmvARNXCenyN37m2VayqCtEzQLnBMrcYFeSkySp9XKfQiJHx5j+utsYjB1lFIJrSdFyQRDl3LYTXPnVQq++VH1rWdSaRZtRPmcD5CbolKQ8xYvNZw6kxMK4TgbJXCNHtTOCGFuSrpuaSkdDa8+pwhyMIld3MGQt+yWTcnneVLzbnJZ874trzEeBiBuLdYqn/5EHoscac1KYy5p3VVdJDqs/qnYI</data>
+    <data>AAAAoJbU0+P4rWtxUooTD+01z1zraa+MCNFX49cK995vKme+xkdQLmlymhxqPSa3Em6Piq4hWLfBQwARK1l+nB8jGAKOdv0a+huRbARkyMtvlN25qSItRvXYc69ojjWl74cTB4fPsG2fXR3XVm0YPbvnXTBexbHN1JK9OJW9IyNNPjP41BGJF0lH4jP7n+BSj8CYP5Mx9cyYBSPxSqRE+g+Ljzm3QlGt3wkUD4wLRZ6Zrudb</data>
   </component>
 </project>

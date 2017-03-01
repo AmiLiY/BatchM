@@ -388,16 +388,20 @@
             }
         }
 
+            // 获取用户名的
      function  get_username() {
+         var result = '';
          $.ajax({
+             async:false,
              url:"{% url 'asset_operation' %}",
              type:'post',
              dataType:'json',
              data:{'action':'get_all_username'},
              success:function (callback) {
-                 return callback
+                 result = callback;
              }
-         })
+         });
+        return result
      }
 
 
@@ -419,12 +423,17 @@
                     $.each($(this).siblings('td'),function () {    // 遍历这一行的每一列的值，
                         if($(this).attr('class') != "bs-checkbox " ) {   // 如果不等于bs-checkbox ，那么我们就可以跳过第一个checkbox了
                             if($(this).attr('class') == 'username'){
-                                var result =  get_username();
-                                $(this).replaceWith("<td>")
+                                var rt =  get_username();
+                                console.log('result',rt);
+                                var select_option = '';
+                                for(var i in rt){
+                                    select_option = select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                }
+                                $(this).replaceWith("<td><select name='username'>"+ select_option +"</select></td>")
                             }
                             original_data[d].push($(this).text());       //    把这一列的值，以ID为key的放入字典里面
                             // 把当前的值遍历后用把HTML标签替换成input标签。
-                            $(this).replaceWith("<td><input type='text' class='"+ d + "' value='" + $(this).text() + "'>")
+                            $(this).replaceWith("<td><input type='text' class='"+ d + "' value='" + $(this).text() + "'></td>")
                         }
                     })
                 } // end if
@@ -433,9 +442,9 @@
                 if( d == Number($(this).text())){     // 判断资产ID是否相等，等于的话 ，那么就开始取值，把这个行的所有内容都取出来，放在以ID为key的字典里面
                     $.each($(this).siblings('td'),function () {    // 遍历这一行的每一列的值，
                         if($(this).attr('class') != "bs-checkbox " ) {   // 如果不等于bs-checkbox ，那么我们就可以跳过第一个checkbox了
-                            input_data[d][title_data[$(this).index()]] = ($(this).children('input').val());       //    把这一列的值，以ID为key的放入字典里面
+                            input_data[d][title_data[$(this).index()]] = ($(this).children('input,select').val());       //    把这一列的值，以ID为key的放入字典里面
                             // 把当前的值遍历后用把HTML标签替换成input标签。
-                            $(this).children('input').replaceWith("<td class='" + d + "'>" + $(this).children('input').val() + "</td>");
+                            $(this).children('input,select').replaceWith("<td class='" + d + "'>" + $(this).children('input,select').val() + "</td>");
                             console.log(input_data)
                         }
 
@@ -466,7 +475,6 @@
         }
         //asset_id = JSON.stringify(asset_id);
     }
-
 
     // 编辑表格的时候，通过这个方法来保存对应的内容
     function  save_edit(arg) {

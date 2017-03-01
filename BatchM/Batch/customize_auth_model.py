@@ -44,7 +44,7 @@ class MyUser(AbstractBaseUser):
         unique=True,
     )
     #staff_id = models.BigIntegerField(u'员工ID')
-    username = models.CharField(u'用户名',max_length=30)
+    username = models.CharField(u'用户名',max_length=30,unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 

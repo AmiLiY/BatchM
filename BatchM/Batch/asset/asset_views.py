@@ -205,21 +205,24 @@ def asset_operation(request):
                         models.Disk.objects.filter(asset_id=k).update(capacity=v.get('ram_capacity'))
                     elif keys in ['sn','businessunit__name','name','management_ip','asset_type',
                                   'trade_date','create_date',]:   # 对asset表进行更新
+                        print(v.get('create_date'),type(v.get('create_date')))
                         models.Asset.objects.filter(id=k).update(sn=v.get('sn'),business_unit=v.get('businessunit__name'),
                                                              name=v.get('name'),management_ip=v.get('management_ip'),
-                                                             asset_type=v.get('asset_type'),trade_date=v.get('trade_date'),
-                                                             create_date=v.get('create_date')    )
+                                                             asset_type=v.get('asset_type'),
+                                                             trade_date=v.get('trade_date') if v.get('trade_date') else '1970-01-01',
+                                                             create_date=v.get('create_date') if v.get('trade_date') else '1970-01-01',)
                     elif keys in ['username',]:
-                        models.Asset.objects.filter(id=35).update(admin=v.get('username'))
+                        models.Asset.objects.filter(id=k).update(admin=models.MyUser.objects.filter(username=v.get('username')).first().id)
                         pass
                     elif keys in ['idc_name']:
-                        models.IDC.objects.filter(asset_id=k).update(name=v.get('idc_name'))
+                        models.IDC.objects.filter(asset__id=k).update(name=v.get('idc_name'))
 
         elif action == 'get_all_username':
             result = models.MyUser.objects.all()
-            return HttpResponse(json.dumps(result))
-
-
+            userinfo = {}
+            for name in result:
+                userinfo[name.id] = name.username
+            return HttpResponse(json.dumps(userinfo))
 
         return HttpResponse('111')
 
@@ -464,9 +467,9 @@ def show_asset_in_table(request):
                 "asset_localdisks_size" : ram_disk[1] if ram_disk[1] else "",
                 "asset_admin": asset.admin.username if asset.admin else "",
                 "asset_idc": asset.idc if asset.idc else "",
-                "asset_trade_date": asset.trade_date.strftime('%Y-%m-%d %H:%M') if asset.trade_date else "",
-                "asset_create_date" : asset.create_date.strftime("%Y-%m-%d %H:%M") if asset.create_date else "",
-                "update_date": asset.update_date.strftime("%Y-%m-%d %H:%M") if  asset.update_date else "",
+                "asset_trade_date": asset.trade_date.strftime('%Y-%m-%d') if asset.trade_date else "",
+                "asset_create_date" : asset.create_date.strftime("%Y-%m-%d") if asset.create_date else "",
+                "update_date": asset.update_date.strftime("%Y-%m-%d") if  asset.update_date else "",
             })
 
         return  HttpResponse(json.dumps(response_data))    # 需要json处理下数据格式
