@@ -29,21 +29,7 @@
 <div id="asset_list">
     <div class="panel-body" >
 
-
-{#        搜索#}
-{#        <select name="select_opinon" id="select_opinon">#}
-{#            <option value="id">资产ID</option>#}
-{#            <option value="IDC">IDC机房</option>#}
-{#            <option value="business">业务线</option>#}
-{#            <option value="IP">管理IP</option>#}
-{#            <option value="manufactory">制造商</option>#}
-{#            <option value="cpu">CPU型号</option>#}
-{#        </select>#}
-{#        =#}
-{#        <input type="text"  id="input_content"  placeholder="请输入关键字进行搜索">#}
-{#        <input type="submit" class="btn btn-info" onclick="search_info()">#}
-
-        <button class="btn btn-success" style="float: left" onclick="show_confirm('agree_edit')">修改选中的资产入库</button>
+        <button class="btn btn-success" style="float: left" id="edit_selected" onclick="show_confirm('agree_edit')">修改选中的资产入库</button>
         <button class="btn btn-danger" style="float: left" onclick="show_confirm('agree_del')">删除选中的资产记录</button>
         <button class="btn btn-info" style="float: left;display: none" id="save_edit" onclick="save_edit('save')" >保存记录</button>
         <button class="btn btn-default" style="float: left;display: none" id="cancel_edit" onclick="save_edit('cancel')">取消保存</button>
@@ -64,7 +50,7 @@
                     <th data-field="state" data-checkbox="true"></th>
                     <th data-field="asset_id" class="id" data-align="center" data-sortable="true">资产ID(点击ID查看详情)</th>
                     <th data-field="asset_sn" class="sn" data-align="center" data-sortable="true"  data-width="50px">资产编号</th>
-                    <th data-field="asset_business_unit" class="businessunit__name"  data-sortable="true">产品线</th>
+                    <th data-field="asset_business_unit" class="business_unit"  data-sortable="true">产品线</th>
                     <th data-field="asset_name" class="name" data-align="center" data-sortable="true"  data-class="name">资产名</th>
                     <th data-field="asset_management_ip" class="management_ip" data-align="center" data-sortable="true"  data-class="management_ip">管理IP</th>
                     <th data-field="asset_manufactory" class="manufactory_name" data-sortable="true">厂商</th>
@@ -389,14 +375,14 @@
         }
 
             // 获取用户名的
-     function  get_username() {
+     function  get_username(action) {
          var result = '';
          $.ajax({
              async:false,
              url:"{% url 'asset_operation' %}",
              type:'post',
              dataType:'json',
-             data:{'action':'get_all_username'},
+             data:{'action':action},
              success:function (callback) {
                  result = callback;
              }
@@ -415,27 +401,65 @@
         for(var index in asset_id){   // 遍历这个资产ID的数组
             d = asset_id[index];
             console.log(d);
-            original_data[d] = [];
+            original_data[d] = {};
             input_data[d] = {};
             $('input:checkbox:checked').parent().siblings('.id').each(function () {   // 遍历所有选中的框
             if(action == 'edit'){     // 表示从td标签到input标签的转换
                 if( d == Number($(this).text())){     // 判断资产ID是否相等，等于的话 ，那么就开始取值，把这个行的所有内容都取出来，放在以ID为key的字典里面
                     $.each($(this).siblings('td'),function () {    // 遍历这一行的每一列的值，
-                        if($(this).attr('class') != "bs-checkbox " ) {   // 如果不等于bs-checkbox ，那么我们就可以跳过第一个checkbox了
-                            if($(this).attr('class') == 'username'){
-                                var rt =  get_username();
-                                console.log('result',rt);
-                                var select_option = '';
+                        if($(this).attr('class') != "bs-checkbox " ) {   // 如果不等于bs-checkbox ，那么我们就可以跳过第一个checkbox了,因为第一个复选框不许要取值
+                            original_data[d][title_data[$(this).index()]] = $(this).text();       //    把这一列的值，以ID为key的放入字典里面,在变更之前把所有的最初值先保存
+                            if($(this).attr('class') == 'username'){    // 对管理员这列做下拉框，因为后端数据库是外键
+                                var rt =  get_username('get_all_username');
+                                var user_select_option = "<option value='' selected='selected'></option>";
                                 for(var i in rt){
-                                    select_option = select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                    if(original_data[d]['username'] == rt[i]){
+                                        user_select_option = user_select_option + "<option value='" + rt[i] +"' selected='selected'>"+ rt[i] + "</option>"
+                                    }
+                                    user_select_option = user_select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
                                 }
-                                $(this).replaceWith("<td><select name='username'>"+ select_option +"</select></td>")
+                                $(this).replaceWith("<td><select name='username'>"+ user_select_option +"</select></td>")
+
+                            }else  if($(this).attr('class') == 'business_unit'){   // 对业务线这列做下拉框，因为后端数据库是外键
+                                var rt = get_username('get_all_business');
+                                var business_select_option = "<option value='' selected='selected'></option>";
+                                for(var i in rt){
+                                    console.log(original_data[d],original_data[d]['business_unit'],rt[i])
+                                    if(original_data[d]['business_unit'] == rt[i]){
+                                        business_select_option = business_select_option + "<option value='" + rt[i] +"' selected='selected'>"+ rt[i] + "</option>"
+                                    }
+                                    business_select_option = business_select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                }
+                                $(this).replaceWith("<td><select name='business_unit'>"+ business_select_option +"</select></td>")
+                            }else  if($(this).attr('class') == 'idc_name'){  // 对idc 机房这列做下拉框，因为后端数据库是外键
+                                var rt = get_username('get_all_idc_name');
+                                var idc_select_option = "<option value='' selected='selected'></option>";
+                                for(var i in rt){
+
+                                     if(original_data[d]['idc_name'] == rt[i]){
+                                        idc_select_option = idc_select_option + "<option value='" + rt[i] +"' selected='selected'>"+ rt[i] + "</option>"
+                                    }
+                                    idc_select_option = idc_select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                }
+                                $(this).replaceWith("<td><select name='idc_name'>"+ idc_select_option +"</select></td>")
+                            }else  if($(this).attr('class') == 'manufactory_name'){  // 对 厂商机房这列做下拉框，因为后端数据库是外键
+                                var rt = get_username('get_all_manufactory_name');
+                                console.log('manufactory_name',rt);
+                                var manufactory_select_option = "<option value='' selected='selected'></option>";
+                                for(var i in rt){
+                                     if(original_data[d]['manufactory_name'] == rt[i]){
+                                        manufactory_select_option = manufactory_select_option + "<option value='" + rt[i] +"' selected='selected'>"+ rt[i] + "</option>"
+                                    }
+                                    manufactory_select_option = manufactory_select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                }
+                                $(this).replaceWith("<td><select name='idc_name'>"+ manufactory_select_option +"</select></td>")
                             }
-                            original_data[d].push($(this).text());       //    把这一列的值，以ID为key的放入字典里面
+
                             // 把当前的值遍历后用把HTML标签替换成input标签。
-                            $(this).replaceWith("<td><input type='text' class='"+ d + "' value='" + $(this).text() + "'></td>")
+                            $(this).replaceWith("<td><input type='text' class='"+ title_data[$(this).index()] + "' value='" + $(this).text() + "'></td>");
                         }
                     })
+                    console.log('original_data',original_data)
                 } // end if
 
             }else if(action = 'save'){    // 表示从input标签到td标签的转换
@@ -444,13 +468,22 @@
                         if($(this).attr('class') != "bs-checkbox " ) {   // 如果不等于bs-checkbox ，那么我们就可以跳过第一个checkbox了
                             input_data[d][title_data[$(this).index()]] = ($(this).children('input,select').val());       //    把这一列的值，以ID为key的放入字典里面
                             // 把当前的值遍历后用把HTML标签替换成input标签。
-                            $(this).children('input,select').replaceWith("<td class='" + d + "'>" + $(this).children('input,select').val() + "</td>");
-                            console.log(input_data)
+                            $(this).children('input,select').replaceWith("<td class='" + title_data[$(this).index()] + "'>" + $(this).children('input,select').val() + "</td>");
                         }
 
                     })
                 } // end if
-            }
+            }else  if(action = 'cancel'){
+                if( d == Number($(this).text())){     // 判断资产ID是否相等，等于的话 ，那么就开始取值，把这个行的所有内容都取出来，放在以ID为key的字典里面
+                    $.each($(this).siblings('td'),function () {    // 遍历这一行的每一列的值，
+                        if($(this).attr('class') != "bs-checkbox " ) {   // 如果不等于bs-checkbox ，那么我们就可以跳过第一个checkbox了
+                            original_data[d][title_data[$(this).index()]] = ($(this).children('input,select').val());       //    把这一列的值，以ID为key的放入字典里面
+                            // 把当前的值遍历后用把HTML标签替换成input标签。
+                            $(this).children('input,select').replaceWith("<td class='" + title_data[$(this).index()] + "'>" + $(this).children('input,select').val() + "</td>");
+                        }
+                    })
+                }
+            }// end if
             });
         } // end for
         return input_data
@@ -460,6 +493,7 @@
 
     //  删除选中的  数据和修改数据的
     function  agree_operation(arg) {
+        $('#edit_selected').css('display','none'); // 隐藏这个编辑按钮
         $('#myModal').modal('toggle');
         asset_id = [];   // 定义全局变量的数组，方便后面的提交数据函数调用
         $('input:checkbox:checked').parent().siblings('.id').each(function () {   // 遍历所有选中的框来
@@ -476,24 +510,37 @@
         //asset_id = JSON.stringify(asset_id);
     }
 
+    function reset_button() {
+        $('#edit_selected').css('display','inline');
+        $('input:checkbox').prop('checked',false);  // 取消所有选中的复选框
+        $('#save_edit,#cancel_edit').css('display','none'); // 隐藏编辑的按钮
+    }
+
+
     // 编辑表格的时候，通过这个方法来保存对应的内容
     function  save_edit(arg) {
-        console.log('asset_id',asset_id);
-        var result = JSON.stringify(Change_input_table(asset_id,action='save'));
-        console.log('result',result);
-        $.ajax({
-            url:"{% url 'asset_operation' %}",
-            dataType:"json",
-            token : csrftoken,
-            type:'post',
-            data:{"post_data":result,'action':arg},
-            success: function (callback) {
-                console.log(callback)
-            }, // end success
-            error:function () {
-                console.log(callback)
-            }, // end error
-        })
+        if(arg=="save"){
+            console.log('asset_id',asset_id);
+            var result = JSON.stringify(Change_input_table(asset_id,action='save'));
+            reset_button()
+            console.log('result',result);
+            $.ajax({
+                url:"{% url 'asset_operation' %}",
+                dataType:"json",
+                token : csrftoken,
+                type:'post',
+                data:{"post_data":result,'action':arg},
+                success: function (callback) {
+                    console.log(callback)
+                }, // end success
+                error:function () {
+                    console.log(callback)
+                }, // end error
+            })
+        }else {
+             Change_input_table(asset_id,action='cancel')
+             reset_button()
+        }
     }
 
 

@@ -233,7 +233,7 @@ class Asset(object):
             try:
                 data = json.loads(data)
                 # push asset id into reporting data before doing the mandatory check
-                asset_obj = models.Asset.objects.get_or_create(sn=data.get('sn'), name=data.get('sn'))
+                asset_obj = models.Asset.objects.get_or_create(sn=data.get('sn'), name=data.get('sn'),trade_date='1970-01-01')
                 data['asset_id'] = asset_obj[0].id
                 # 强制数据检测
                 self.mandatory_check(data, only_check_sn=True)

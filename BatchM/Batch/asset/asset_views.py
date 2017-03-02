@@ -166,11 +166,9 @@ def new_assets_approval(request):
                 return HttpResponseRedirect('/admin/Batch/newassetapprovalzone/')
             else:
                 return HttpResponse(json.dumps('approved successfully'))
-
         elif whether_approve == 'disagree': # disagress approve for these assets
             models.NewAssetApprovalZone.objects.filter(id__in=approved_asset_id_list).delete()
             return HttpResponse(json.dumps('deleted successfully'))
-
     else:
         ids = request.GET.get('ids')
         ids_list = ids.split(',')
@@ -181,6 +179,7 @@ def new_assets_approval(request):
 def asset_operation(request):
     '''
     对于资产页面进行删除选定的资产，或者修改选定的资产内容。
+    POST: 保存修改的数据
     :param request:
     :return:
     '''
@@ -190,41 +189,83 @@ def asset_operation(request):
         if action == 'save':
             post_data = json.loads(request.POST.get('post_data'))
             for k,v in post_data.items():
-                for keys in v.keys():
-                    if keys in ['cpu_model','cpu_count','cpu_core_count']:
-                        models.CPU.objects.filter(asset_id=k).update(cpu_model=v.get('cpu_model'),
-                                                                     cpu_count=v.get('cpu_count'),
-                                                                     cpu_core_count=v.get('cpu_core_count'))
-                    elif keys in ['salt_minion_id','os_release',]:
-                        models.Server.objects.filter(asset_id=k).update(os_release=v.get('os_release'),
-                                                                        salt_minion_id=v.get('salt_minion_id')
-                                                                        )
-                    elif keys in ['ram_capacity']:
-                        models.RAM.objects.filter(asset_id=k).update(capacity=v.get('ram_capacity'))
-                    elif keys in ['disk_capacity']:
-                        models.Disk.objects.filter(asset_id=k).update(capacity=v.get('ram_capacity'))
-                    elif keys in ['sn','businessunit__name','name','management_ip','asset_type',
-                                  'trade_date','create_date',]:   # 对asset表进行更新
-                        print(v.get('create_date'),type(v.get('create_date')))
-                        models.Asset.objects.filter(id=k).update(sn=v.get('sn'),business_unit=v.get('businessunit__name'),
-                                                             name=v.get('name'),management_ip=v.get('management_ip'),
-                                                             asset_type=v.get('asset_type'),
-                                                             trade_date=v.get('trade_date') if v.get('trade_date') else '1970-01-01',
-                                                             create_date=v.get('create_date') if v.get('trade_date') else '1970-01-01',)
-                    elif keys in ['username',]:
-                        models.Asset.objects.filter(id=k).update(admin=models.MyUser.objects.filter(username=v.get('username')).first().id)
-                        pass
-                    elif keys in ['idc_name']:
-                        models.IDC.objects.filter(asset__id=k).update(name=v.get('idc_name'))
 
-        elif action == 'get_all_username':
-            result = models.MyUser.objects.all()
+                cpu_info = {'cpu_model':v.get('cpu_model'),'cpu_count':v.get('cpu_count'),"cpu_core_count":v.get('cpu_core_count')}
+                models.CPU.objects.filter(asset_id=k).update(**cpu_info)
+
+                server_info = {'salt_minion_id':v.get('salt_minion_id'),'os_release':v.get('v')}
+                models.Server.objects.filter(asset_id=k).update(**server_info)
+
+                rams_info = {'capacity':v.get('ram_capacity')}
+                models.RAM.objects.filter(asset_id=k).update(**rams_info)
+
+                disk_info = {'capacity':v.get('ram_capacity')}
+                models.Disk.objects.filter(asset_id=k).update(**disk_info)
+
+                basic_info = {'sn':v.get('sn'),'name':v.get('name'),'management_ip':v.get('management_ip'),
+                              'asset_type':v.get('asset_type'),
+                              'trade_date':v.get('trade_date') if v.get('trade_date') else "1970-01-01",
+                              'create_date':v.get('create_date'),}  # 对asset表进行更新
+
+                models.Asset.objects.filter(id=k).update(**basic_info)
+
+                if v.get('business_unit'):
+                    business_info = {'name':v.get('business_unit')}
+                    models.Asset.objects.filter(id=k).update(business_unit=models.BusinessUnit.objects.filter(**business_info).first().id)
+                else:   # 没有绑定业务线
+                    models.Asset.objects.filter(id=k).update(business_unit='')
+
+                if v.get('username'):
+                    user_info = {'username':v.get('username')}
+                    models.Asset.objects.filter(id=k).update(admin=models.MyUser.objects.filter(**user_info).first().id)
+                else:    # 表示管理员为空，没有绑定任何人
+                    models.Asset.objects.filter(id=k).update(admin='')
+
+                if v.get('idc_name'):
+                    idc_info = {'name':v.get('idc_name')}
+                    models.Asset.objects.filter(id=k).update(idc=models.IDC.objects.filter(**idc_info).first().id)
+                else:   # 没有绑定机房
+                    models.Asset.objects.filter(id=k).update(idc='')
+
+                if v.get('manufactory_name'):
+                    manufactory_info = {'manufactory':v.get('manufactory_name')}
+                    models.Asset.objects.filter(id=k).update(manufactory=models.Manufactory.objects.filter(**manufactory_info).first().id)
+                else:  # 没有绑定厂商，无牌产品
+                    models.Asset.objects.filter(id=k).update(manufactory='')
+
+            return HttpResponse(json.dumps('edited successfully'))
+
+        elif action == 'get_all_username':   # 获取所有用户的名字
+            all_user = models.MyUser.objects.all()
             userinfo = {}
-            for name in result:
+            for name in all_user:
                 userinfo[name.id] = name.username
             return HttpResponse(json.dumps(userinfo))
 
-        return HttpResponse('111')
+        elif action == 'get_all_business':   # 获取所有的项目名称
+            all_business_unit = models.BusinessUnit.objects.all()
+            business_info = {}
+            for business_unit in all_business_unit:
+                business_info[business_unit.id] = business_unit.name
+
+            return HttpResponse(json.dumps(business_info))
+
+        elif action == 'get_all_idc_name':   # 获取IDC机房名字的
+            all_idc_name = models.IDC.objects.all()
+            idc_name = {}
+            for idc in all_idc_name:
+                idc_name[idc.id] = idc.name
+            return HttpResponse(json.dumps(idc_name))
+
+        elif action == 'get_all_manufactory_name':   # 获取所有厂商
+            all_manufactory_name = models.Manufactory.objects.all()
+            manufactory_name = {}
+            for manufactory in all_manufactory_name:
+                manufactory_name[manufactory.id] = manufactory.manufactory
+            print('manufactory_name',manufactory_name)
+            return HttpResponse(json.dumps(manufactory_name))
+
+        return HttpResponse(1)
 
 
 
@@ -453,25 +494,26 @@ def show_asset_in_table(request):
             response_data['rows'].append({
                 "asset_id": '<a href="/asset/asset_list/%d" target="_blank">%d</a>' %(asset.id,asset.id),
                 "asset_sn" : asset.sn if asset.sn else "",
-                "asset_business_unit": asset.business_unit if asset.business_unit else "",
+                "asset_business_unit": asset.business_unit.name if asset.business_unit else "",
                 "asset_name": asset.name if asset.name else "",
                 "asset_management_ip": asset.management_ip if asset.management_ip else "",
-                "asset_manufactory": asset.manufactory.manufactory if hasattr(asset,'manufactory') else "",
+                "asset_manufactory": asset.manufactory.manufactory if asset.manufactory  else "",
                 "asset_type": asset.asset_type if asset.asset_type else "",
                 "asset_os_release": asset.server.os_release if hasattr(asset,'server') else "",
-                "asset_salt_minion_id":asset.server.salt_minion_id if hasattr(asset,'server') else "",
-                "asset_cpu_count":asset.cpu.cpu_count if hasattr(asset,'cpu') else "",
+                "asset_salt_minion_id":asset.server.salt_minion_id if asset.server  else "",
+                "asset_cpu_count": asset.cpu.cpu_count if asset.cpu else "",
                 "asset_cpu_core_count": asset.cpu.cpu_core_count  ,
-                "asset_cpu_model": asset.cpu.cpu_model if hasattr(asset,'cpu') else "",
+                "asset_cpu_model": asset.cpu.cpu_model if asset.cpu  else "",
                 "asset_rams_size": ram_disk[0] if ram_disk[0] else "",
                 "asset_localdisks_size" : ram_disk[1] if ram_disk[1] else "",
                 "asset_admin": asset.admin.username if asset.admin else "",
-                "asset_idc": asset.idc if asset.idc else "",
+                "asset_idc": asset.idc.name if asset.idc else "",
                 "asset_trade_date": asset.trade_date.strftime('%Y-%m-%d') if asset.trade_date else "",
                 "asset_create_date" : asset.create_date.strftime("%Y-%m-%d") if asset.create_date else "",
                 "update_date": asset.update_date.strftime("%Y-%m-%d") if  asset.update_date else "",
             })
 
+        print('response_data',response_data)
         return  HttpResponse(json.dumps(response_data))    # 需要json处理下数据格式
 
 @login_required
