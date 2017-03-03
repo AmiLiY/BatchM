@@ -38,7 +38,7 @@
                 data-pagination="true"
                 data-side-pagination="server"
                 data-page-list="[10, 20, 50, 100, 200]"
-                data-search="true" data-mobile-responsive="true" searchOnEnterKey="true"
+                data-search="true" data-mobile-responsive="true"
                 data-show-refresh="true" data-show-columns="true"
                 data-show-toggle="true" data-page-size=20 data-unique-id="asset_id"
                 data-sort-stable="true"  data-striped="true"
@@ -127,14 +127,14 @@
         $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
             if ($('.page-header').text() == '服务器信息表') {
                 $('#server_asset').toggleClass('active').siblings().removeClass('active');
-                $('#sub-item-3').addClass('in').removeAttr('style');
+                $('#sub-item-3').toggleClass('in').removeAttr('style');
                 $('#server_list').css('background-color', 'grey');
                 $('#asset_graphic').hide();
                 $('#asset_list').show();
 
             } else if ($('.page-header').text() == '服务器信息饼状图') {
                 $('#server_asset').toggleClass('active').siblings().removeClass('active');
-                $('#sub-item-3').addClass('in').removeAttr('style');
+                $('#sub-item-3').toggleClass('in').removeAttr('style');
                 $('#server_graphic').css('background-color', 'grey');
                 $('#asset_list').hide();
                 $('#asset_graphic').show();

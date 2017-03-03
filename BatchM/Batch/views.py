@@ -61,7 +61,7 @@ def saltstack_index(request):
     :param request:
     :return:
     '''
-    return render(request,'saltstack.html')
+    return render(request,'saltstack/saltstack.html')
 
 
 @login_required()

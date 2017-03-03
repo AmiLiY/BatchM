@@ -181,14 +181,14 @@
         $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
                 if ($('#btitle').text() == '搜索操作记录') {
                     $('#update_index').toggleClass('active').siblings().removeClass('active');
-                    $('#sub-item-1').addClass('in').removeAttr('style');
+                    $('#sub-item-1').toggleClass('in').removeAttr('style');
                     $('#search_record').css('background-color','grey');
                     $('#updatecode').hide();
                     $('#search_order').show();
 
                 } else if ($('#btitle').text() == '申请更新') {
                     $('#update_index').toggleClass('active').siblings().removeClass('active');
-                    $('#sub-item-1').addClass('in').removeAttr('style');
+                    $('#sub-item-1').toggleClass('in').removeAttr('style');
                     $('#apply_update').css('background-color','grey');
                     $('#updatecode').show();
                     $('#search_order').hide();

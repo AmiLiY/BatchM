@@ -73,7 +73,7 @@
         $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
             if ($('.page-header').text() == '待审批入库的服务器') {
                 $('#server_asset').toggleClass('active').siblings().removeClass('active');
-                $('#sub-item-3').addClass('in').removeAttr('style');
+                $('#sub-item-3').toggleClass('in').removeAttr('style');
                 $('#server_wait_approvel').css('background-color', 'grey');
             }
         });

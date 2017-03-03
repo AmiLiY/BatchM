@@ -48,9 +48,31 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="/BatchM/index.html"><span class="glyphicon glyphicon-dashboard"></span>前台</a></li>
-			<li><a href="/BatchM/saltstack.html"><span class="glyphicon glyphicon-th"></span> saltstack管理</a></li>
+			<!-- <li class="active"><a href="/BatchM/index.html"><span class="glyphicon glyphicon-dashboard"></span>前台</a></li> -->
+
 			<li><a href="charts.html"><span class="glyphicon glyphicon-stats"></span>服务器性能趋势监控</a></li>
+            <li id="saltstack_manage" class="parent ">
+                <a href="#"  onclick="in_active(this)">
+					<span class="glyphicon glyphicon-adjust"></span> saltstack管理 <span data-toggle="collapse" href="#sub-item-4" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+				</a>
+                <ul class="children collapse" id="sub-item-4">
+					<li>
+						<a id="single_host" href="/asset/asset_list">
+							<span class="glyphicon glyphicon-share-alt"></span>单机管理
+						</a>
+					</li>
+                    <li>
+						<a id="group_host" href="/asset/asset_approvel">
+							<span class="glyphicon glyphicon-share-alt"></span>组管理
+						</a>
+					</li>
+					<!-- <li>
+						<a id="server_graphic" href="/asset/asset_graphic">
+							<span class="glyphicon glyphicon-share-alt"></span>服务器信息图表
+						</a>
+					</li> -->
+				</ul>
+            </li>
             <li id="server_asset" class="parent ">
                 <a href="#"  onclick="in_active(this)">
 					<span class="glyphicon glyphicon-adjust"></span> 服务器信息汇总 <span data-toggle="collapse" href="#sub-item-3" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>

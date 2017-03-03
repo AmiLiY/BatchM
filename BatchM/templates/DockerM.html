@@ -289,17 +289,17 @@
 {% block encoding_js %}
     <script>
 
-    $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择到标签
+    $(document).ready( function () {    // 这个方法来用去高亮当前页面到右边选择的标签
                 if ($('#btitle').text() == 'Docker 容器管理') {
                     $('#docker_manage').toggleClass('active').siblings().removeClass('active');
-                    $('#sub-item-2').addClass('in').removeAttr('style');
+                    $('#sub-item-2').toggleClass('in').removeAttr('style');
                     $('#containers_manage').css('background-color','grey');
                     $('#Dimages').hide();
                     $('#Dmanage').show();
                 } else if($('#btitle').text() == 'Docker镜像查看') {
                     $('#Dmanage').attr('style','display:none');
                     $('#docker_manage').toggleClass('active').siblings().removeClass('active');
-                    $('#sub-item-2').addClass('in').removeAttr('style');
+                    $('#sub-item-2').toggleClass('in').removeAttr('style');
                     $('#images_show').css('background-color','grey');
                     $('#Dmanage').hide();
                     $('#Dimages').show();
