@@ -199,7 +199,7 @@ def asset_operation(request):
                 rams_info = {'capacity':v.get('ram_capacity')}
                 models.RAM.objects.filter(asset_id=k).update(**rams_info)
 
-                disk_info = {'capacity':v.get('ram_capacity')}
+                disk_info = {'capacity':v.get('disk_capacity')}
                 models.Disk.objects.filter(asset_id=k).update(**disk_info)
 
                 basic_info = {'sn':v.get('sn'),'name':v.get('name'),'management_ip':v.get('management_ip'),
@@ -264,6 +264,17 @@ def asset_operation(request):
                 manufactory_name[manufactory.id] = manufactory.manufactory
             print('manufactory_name',manufactory_name)
             return HttpResponse(json.dumps(manufactory_name))
+
+        elif action == 'del_asset':     # 删除选中的资产ID
+            asset_id_list = json.loads(request.POST.get('asset_id'))   # asset_id 列表类型
+            print(asset_id_list)
+            if asset_id_list:
+                models.Asset.objects.filter(id__in=asset_id_list).delete()
+                return HttpResponse(json.dumps('Deleted successfully'))
+            else:
+                return HttpResponse(json.dumps('unvalid data'))
+
+
 
         return HttpResponse(1)
 
@@ -574,7 +585,8 @@ def asset_graphic(request):
         if graphic_type == 'os_release':
             all_os_release = models.Server.objects.all().values('os_release')
         elif graphic_type == "manufactory":
-            all_os_release = models.Manufactory.objects.all().values('manufactory')
+            graphic_type = 'asset__manufactory__manufactory'   # 重新定义，因为下面for循环里面需要获取这个key
+            all_os_release = models.Server.objects.all().values('asset__manufactory__manufactory')
         elif graphic_type == 'hosts_show':
             now_month = datetime.datetime.now().month
             now_day = datetime.datetime.now().day
@@ -612,6 +624,7 @@ def asset_graphic(request):
 
             response_dict= {'already_approved':already_approved,'waiting_approve':waiting_approved}
             return HttpResponse(json.dumps(response_dict))
+
 
         for os_release in all_os_release:
             os_release_list.append(os_release[graphic_type])

@@ -13,7 +13,7 @@
 [root@lvsmaster191 ~]# python SansaClient_py2/bin/NedStark.py CDSS
 
  请注意：我们在执行的时候，一定要是在这个客户端包的最外面执行，不然会提示路径出错。
- 
+
  那么客户端需要配置下汇报数据的服务器地址，配置文件如下:
  [root@lvsmaster191 ~]# vim SansaClient_py2/conf/settings.py
  Params = {
@@ -23,4 +23,18 @@
     其他的配置保持默认，不要更改
 }
 
+然后我们再看看执行命令前需要执行的安装命令，命令存放在var/first_install里面：
+wget -Onc /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo     # 下载一个repo，确保能够安装下面的包，请下载对应当前系统版本的repo
+yum -y install salt-minion
+yum -y install '*/lsb_release'
+yum -y install python-pip python-devel && pip install psutil
+
+在第一次执行倘若python SansaClient_py2/bin/NedStark.py CDSS的时候，首先会进行安装包，安装成功后会生成一个配置文件在var/installed,下次再次执行CDSS的时候，如果发现有 installed，那么就不在进行安装包了。
+安装的时间可能比较长，请耐心等待。
+
+
+在第一次汇报资产数据的时候，需要等待管理员的批准，等待批准后，第二次汇报资产数据后就会拿到资产ID的值.这个值会放在var/.asset_id,有这个ID后，每次都会汇报数据都会带上这个ID。
+如果出现这样的报错：
+Cannot find a asset object in DB by using asset id [35] and SN [VMware-42 10 36 c3 b5 7f ae 63-a4 bd ce bc 48 7e d7 8c]
+那么就说明数据库里面删除来这条资产记录，我们这个时候就需要把当前var/.asset_id给删除,然后重新汇报资产信息既可。
 

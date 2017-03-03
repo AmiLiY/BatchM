@@ -118,8 +118,8 @@
                 dataType:'json',
                 data:{'whether_approve':arg,'approved_asset_list':new_asset_id},
                 success: function (callback) {
-                    alert(callback)
-
+                    alert(callback);
+                    window.location.reload()
                 },// end success
                 error: function (callback) {
                     alert(callback)

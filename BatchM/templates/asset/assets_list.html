@@ -28,7 +28,6 @@
 
 <div id="asset_list">
     <div class="panel-body" >
-
         <button class="btn btn-success" style="float: left" id="edit_selected" onclick="show_confirm('agree_edit')">修改选中的资产入库</button>
         <button class="btn btn-danger" style="float: left" onclick="show_confirm('agree_del')">删除选中的资产记录</button>
         <button class="btn btn-info" style="float: left;display: none" id="save_edit" onclick="save_edit('save')" >保存记录</button>
@@ -375,14 +374,14 @@
         }
 
             // 获取用户名的
-     function  get_username(action) {
-         var result = '';
+     function  get_username(action,asset_id) {
+         var asset_id_list = asset_id || '';
          $.ajax({
              async:false,
              url:"{% url 'asset_operation' %}",
              type:'post',
              dataType:'json',
-             data:{'action':action},
+             data:{'action':action,'asset_id':JSON.stringify(asset_id_list)},
              success:function (callback) {
                  result = callback;
              }
@@ -498,7 +497,6 @@
 
     //  删除选中的  数据和修改数据的
     function  agree_operation(arg) {
-        $('#edit_selected').css('display','none'); // 隐藏这个编辑按钮
         $('#myModal').modal('toggle');
         asset_id = [];   // 定义全局变量的数组，方便后面的提交数据函数调用
         $('input:checkbox:checked').parent().siblings('.id').each(function () {   // 遍历所有选中的框来
@@ -510,8 +508,12 @@
         }
         console.log(arg,asset_id);
          if(arg=='agree_edit'){
-            Change_input_table(asset_id,action='edit')
-        }
+             $('#edit_selected').css('display','none'); // 隐藏这个编辑按钮
+             Change_input_table(asset_id,action='edit')
+        }else if(arg=='agree_del'){
+             alert(get_username(action='del_asset',asset_id=asset_id))
+             window.location.reload()
+         }
         //asset_id = JSON.stringify(asset_id);
     }
 
@@ -536,14 +538,18 @@
                 type:'post',
                 data:{"post_data":result,'action':arg},
                 success: function (callback) {
-                    console.log(callback)
+                    console.log(callback);
+                    alert(callback)
+
                 }, // end success
                 error:function () {
-                    console.log(callback)
+                    console.log(callback);
+                    alert(callback);
+
                 }, // end error
             })
         }else {
-             Change_input_table(asset_id,action='cancel')
+             Change_input_table(asset_id,action='cancel');
              reset_button()
         }
     }
