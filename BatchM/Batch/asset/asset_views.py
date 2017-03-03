@@ -193,7 +193,7 @@ def asset_operation(request):
                 cpu_info = {'cpu_model':v.get('cpu_model'),'cpu_count':v.get('cpu_count'),"cpu_core_count":v.get('cpu_core_count')}
                 models.CPU.objects.filter(asset_id=k).update(**cpu_info)
 
-                server_info = {'salt_minion_id':v.get('salt_minion_id'),'os_release':v.get('v')}
+                server_info = {'salt_minion_id':v.get('salt_minion_id'),'os_release':v.get('os_release')}
                 models.Server.objects.filter(asset_id=k).update(**server_info)
 
                 rams_info = {'capacity':v.get('ram_capacity')}

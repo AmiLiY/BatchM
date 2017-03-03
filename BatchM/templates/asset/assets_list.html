@@ -415,8 +415,9 @@
                                 for(var i in rt){
                                     if(original_data[d]['username'] == rt[i]){
                                         user_select_option = user_select_option + "<option value='" + rt[i] +"' selected='selected'>"+ rt[i] + "</option>"
-                                    }
-                                    user_select_option = user_select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                    }else{
+                                        user_select_option = user_select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                        }
                                 }
                                 $(this).replaceWith("<td><select name='username'>"+ user_select_option +"</select></td>")
 
@@ -427,21 +428,24 @@
                                     console.log(original_data[d],original_data[d]['business_unit'],rt[i])
                                     if(original_data[d]['business_unit'] == rt[i]){
                                         business_select_option = business_select_option + "<option value='" + rt[i] +"' selected='selected'>"+ rt[i] + "</option>"
-                                    }
-                                    business_select_option = business_select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                    }else{
+                                        business_select_option = business_select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                        }
                                 }
                                 $(this).replaceWith("<td><select name='business_unit'>"+ business_select_option +"</select></td>")
+
                             }else  if($(this).attr('class') == 'idc_name'){  // 对idc 机房这列做下拉框，因为后端数据库是外键
                                 var rt = get_username('get_all_idc_name');
                                 var idc_select_option = "<option value='' selected='selected'></option>";
                                 for(var i in rt){
-
                                      if(original_data[d]['idc_name'] == rt[i]){
                                         idc_select_option = idc_select_option + "<option value='" + rt[i] +"' selected='selected'>"+ rt[i] + "</option>"
-                                    }
-                                    idc_select_option = idc_select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                    }else{
+                                        idc_select_option = idc_select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                         }
                                 }
                                 $(this).replaceWith("<td><select name='idc_name'>"+ idc_select_option +"</select></td>")
+
                             }else  if($(this).attr('class') == 'manufactory_name'){  // 对 厂商机房这列做下拉框，因为后端数据库是外键
                                 var rt = get_username('get_all_manufactory_name');
                                 console.log('manufactory_name',rt);
@@ -449,8 +453,9 @@
                                 for(var i in rt){
                                      if(original_data[d]['manufactory_name'] == rt[i]){
                                         manufactory_select_option = manufactory_select_option + "<option value='" + rt[i] +"' selected='selected'>"+ rt[i] + "</option>"
-                                    }
-                                    manufactory_select_option = manufactory_select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                    }else{
+                                        manufactory_select_option = manufactory_select_option + "<option value='" + rt[i] +"'>"+ rt[i] + "</option>"
+                                         }
                                 }
                                 $(this).replaceWith("<td><select name='idc_name'>"+ manufactory_select_option +"</select></td>")
                             }
@@ -470,8 +475,8 @@
                             // 把当前的值遍历后用把HTML标签替换成input标签。
                             $(this).children('input,select').replaceWith("<td class='" + title_data[$(this).index()] + "'>" + $(this).children('input,select').val() + "</td>");
                         }
-
                     })
+
                 } // end if
             }else  if(action = 'cancel'){
                 if( d == Number($(this).text())){     // 判断资产ID是否相等，等于的话 ，那么就开始取值，把这个行的所有内容都取出来，放在以ID为key的字典里面
