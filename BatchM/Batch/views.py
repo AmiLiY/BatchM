@@ -4,12 +4,13 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 from django.core.cache import cache
+from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
+from Batch.plugs import record_log
 from Batch import  formself,core
 from BatchM import  settings
 from datetime import timedelta,timezone,datetime
-from Batch import models
 from Batch import formself
 import json
 import time
@@ -252,12 +253,14 @@ def docker_containers_show(request):
         if request.POST.get('type') == 'containers':    # 根据请求类型来返回不同到响应包
             now_status = models.DockerContainers.objects.all()
             for info in now_status:
-                update_time = info.Record_time.astimezone(tzutc_8)
+                #print(info.Record_time,dir(info.Record_time))
+                #update_time = info.Record_time.astimezone(tzutc_8)
                 response_body [info.Container_id ]= {
                    "Real_host_ip":info.Real_host_ip.host_ip,"Container_id":info.Container_id,
                     "Container_name":info.Container_name,"Container_image":info.Container_image,
                     "Command":info.Command,"Created":info.Created,"Status":info.Status,
-                    "Record_time":update_time.strftime("%Y-%m-%d %H:%M:%S"),
+                    "Record_time":info.Record_time.strftime("%Y-%m-%d %H:%M:%S"),
+                    #"Record_time":update_time.strftime("%Y-%m-%d %H:%M:%S"),
                 }
         elif request.POST.get('type') == "images":
             pass   # 把获取回来到结果做成字典 返回给前端页。
@@ -365,6 +368,100 @@ def docker_host_detail_show(request,hostip):
         print('hostip',hostip)
         host_detail = models.DockerContainers.objects.get(Real_host_ip=hostip)
         return HttpResponse(200)
+
+
+
+'''
+just for geting a token from saltapi befor execute commands from client.it can speed execute
+'''
+print("\033[32mLet me start to get token from saltapi,it may be take some minutes!!\nplease wait for me.....\033[0m")
+if settings.SaltApiOfHost and settings.SaltApiUsername and settings.SaltApiPasswd:
+    ip = settings.SaltApiOfHost
+    username = settings.SaltApiUsername
+    passwd = settings.SaltApiPasswd
+    saltapi = core.run_salt_api(username=username,passwd=passwd,ip=ip)
+else:
+    assert "Your are not set saltapi's username,password,hostip in settings"
+
+print("\033[32m ok ,i already get this token from saltapi,let's continue..\033[0m")
+
+@login_required()
+def run_shell(request,host_id):
+    '''
+    调用salt client api 来执行来自于前端汇报过来的saltstack命令，只是单台服务器的执行
+    :param request:
+    ;:param host_id: 服务器资产id
+    :return:
+    '''
+    # if the requestion's method is post ,it's means client need to execute some cmds on this host_id
+
+    if request.method == "POST":
+        print(request.POST)
+        host_id = request.POST.get('host_id').strip()
+        minion_name = request.POST.get('minion_name').strip()
+        func = request.POST.get('func').strip()
+        args = request.POST.get('args').strip()
+
+        rh = record_log.handler_log(request.user.get_username(),
+                                    logfile_path="%s/../log/saltstack_access.log" % os.path.dirname(__file__))
+        rh.info("mimion: %s ,func: %s,args: %s" % (minion_name, func, args if args else None))
+        if args:  #judge wether have args on post request.if have args , must send to salt api with need to execute function
+            result = saltapi.api_exec(target=minion_name,func=func,arg=args,arg_num=1)
+        else:
+            result = saltapi.api_exec(target=minion_name,func=func)
+
+        return HttpResponse(json.dumps(result))
+    # if not post,client wants to get web page from here....
+    else:
+        host_info = models.Server.objects.filter(asset__id=host_id)
+        try:
+            salt_minion_id = host_info[0].salt_minion_id
+        except IndexError:
+            return HttpResponse("<h1>404</h1>,Not Found the minion's anything on the databases,\
+                            May be these infos are outdated or losed!! please communicate with \
+                            the website administrator! ")
+        return render(request,'asset/run_cmd.html',{'salt_minion_id':salt_minion_id,'host_id':host_id})
+
+
+
+@csrf_exempt
+@login_required()
+def groupshell(request,host_id):
+    '''
+    execute saltstack group's command!
+    :param request:
+    :param host_id:  saltstack组ID
+    :return:
+    '''
+
+    if int(host_id) != 000: #展示saltstack主机组首页到url结尾就是000结尾，如果不是000结尾到那就说明需要进入saltstack主机组到其他页面
+        if request.method == "POST":
+            print(request.POST)
+            group_name = request.POST.get('group_name')
+            func = request.POST.get('func')
+            args = request.POST.get('args')
+            rh = record_log.handler_log(request.user.get_username(),
+                                        logfile_path="%s/../log/saltstack_access.log" % os.path.dirname(__file__))
+            rh.info("mimion: %s ,func: %s,args: %s" % (group_name, func, args if args else None))
+
+            if args:  #judge wether have args on post request.if have args , must send to salt api with need to execute function
+                result = saltapi.api_exec(target=group_name,expr_form='nodegroup',func=func,arg=args,arg_num=1)
+            else:
+                result = saltapi.api_exec(target=group_name,expr_form="nodegroup",func=func)
+            print(result)
+            return HttpResponse(json.dumps(result))
+        else:
+            try:
+                group_number = models.SaltGroup.objects.filter(id=host_id)
+                group = group_number[0]
+                return render(request,'asset/saltstack_group_detail.html',{'group_number':group_number,'group':group})
+            except IndexError:
+                return HttpResponse("<h1>404</h1>,Not Found the Group's anything on the databases,\
+                                        May be these infos are outdated or losed!! please communicate with \
+                                        the website administrator! ")
+
+    salt_group = models.SaltGroup.objects.all()
+    return render(request,'asset/saltstack_group.html',{"salt_group":salt_group,})
 
 
 

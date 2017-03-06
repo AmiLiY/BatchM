@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'index.html$|^$',views.dashboard_index),
     url(r'GetServerHostStatus$',views.server_host_status,name="get_server_host_status"),#获取运行次系统的服务状态信息
     url(r"^saltstack.html$",views.saltstack_index),
+    url(r'^salt_single_host',views.saltstack_index,name='salt_single_host'),  # 对指定的salt-minion执行操作
     url(r"apply_update.html$",views.apply_update_apply),
     url(r"apply_update.html/search/(\d+)$",views.apply_detail),
     url(r"apply_update.html/search",views.apply_update_search,name='post_order_id'),  # 定义搜索工单到URL

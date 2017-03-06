@@ -9,12 +9,15 @@ from django.core.mail import send_mail
 from BatchM import settings
 from Batch.plugs import docker_control
 from Batch import formself,models
+from Batch.plugs import  record_log
 from django.core import mail
 from multiprocessing import Pool,TimeoutError
-import json
-import urllib
 from urllib import error
+import json
+import pycurl
+import urllib
 import time,datetime
+from io import  BytesIO
 
 import os
 import re
@@ -287,9 +290,155 @@ def CreateContainer(request):
 
 
 
-def ExeccmdContainers(request):
+class run_salt_api(object):
     '''
-    在容器执行命令的方法
-    :param request:   用户的请求头，从view视图里面传入
-    :return:
+    调用saltapi来调用salt完成相关操作
     '''
+
+    def __init__(self,username,passwd,auth_method='pam',ip="127.0.0.1",port=8010):
+        self.ip = ip
+        self.port = port
+        self.username = username
+        self.passwd = passwd
+        self.auth_method = auth_method
+        self.token = self.api_login()
+        self.logger = record_log('root', '%s/../log/access.log' % os.path.dirname(__file__))
+
+    def api_login(self):
+        '''
+        登陆用户，获取token
+        '''
+        url = "http://%s:%d/login" %(self.ip,self.port)
+        ch = pycurl.Curl()
+        info = BytesIO()
+        ch.setopt(ch.URL,url)
+        ch.setopt(ch.WRITEFUNCTION,info.write)
+        ch.setopt(ch.POST,True)
+        # add auth info to http header
+        ch.setopt(ch.HTTPHEADER,['Accept: application/json'])
+        ch.setopt(ch.POSTFIELDS,'username=%s&password=%s&eauth=%s'%(self.username,self.passwd,self.auth_method))
+        ch.setopt(ch.HEADER,True)
+        ch.perform()
+        # get token from salt-api  response
+        html = info.getvalue().decode()
+        return_data = html.split('\n')[-1]
+        import json
+        token = json.loads(return_data)
+        token = token['return'][0]['token']
+        info.close()
+        ch.close()
+        self.logger.info('already get this token')
+        return token
+
+    def api_exec(self,target,func,arg='',expr_form=None,arg_num=0):
+        '''
+        调用saltapi执行相关的saltstack函数去执行
+        pparam target: 要对哪个minion执行
+        :param func:   执行哪个方法
+        :param arg:     执行这个方法的参数
+        :param arg_num:  参数的数量
+        :return:
+        '''
+        import time
+
+        url = "http://%s:%d" %(self.ip,self.port)
+        ch = pycurl.Curl()
+        info = BytesIO()
+        ch.setopt(ch.URL,url)
+        ch.setopt(ch.WRITEFUNCTION,info.write)
+        ch.setopt(ch.POST,True)
+
+        ch.setopt(ch.HTTPHEADER,['Accept: application/x-yaml','X-Auth-Token: %s'%self.token])
+        if arg_num == 0:
+            if expr_form:
+                ch.setopt(ch.POSTFIELDS,'client=local&amp;tgt=%s&amp;expr_form=%s&amp;fun=%s'
+                           %(target,expr_form,func))
+
+            else:
+                ch.setopt(ch.POSTFIELDS,'client=local&amp;tgt=%s&amp;fun=%s'%(target,func))
+        elif arg_num == 1:
+            if expr_form:
+                ch.setopt(ch.POSTFIELDS,'client=local&amp;tgt=%s&amp;expr_form=%s&amp;fun=%s&amp;arg=%s'
+                %(target,expr_form,func,arg))
+            else:
+                ch.setopt(ch.POSTFIELDS,'client=local&amp;tgt=%s&amp;fun=%s&amp;arg=%s'%(target,func,arg))
+
+        ch.setopt(ch.HEADER,False)
+        ch.perform()
+        html = info.getvalue().decode()
+        info.close()
+        ch.close()
+        self.logger.info('already execute this command : [%s %s] ,targets: [%s] ,expr_form:[%s]'%(func,arg,target,expr_form))
+        return html
+
+
+class Create_SaltGroup(object):
+    '''
+    生成saltstack 的group的配置文件，在/etc/salt/master.d/下面生成。
+    '''
+    def __init__(self,**group_info):
+        self.group_info = group_info   # self.group_info must be dict format
+        self.group_file = settings.SaltGroupConfigFile
+        nodegroups = os.popen("grep nodegroups: %s >/dev/null;echo $?"%self.group_file).read().split('\n')[0]
+        if int(nodegroups):
+            os.system("echo 'nodegroups:' >>%s"%self.group_file)
+
+
+    def add_groups(self,create_group_id_list):
+        '''
+        添加组和组成员信息的
+        ;:param:create_group_id_list 组ID列表，用来过滤哪些是已经在salt配置文件里面增加来到。
+        :return:
+        '''
+        # 通过数据库里面到y一个字段来判断是否已经在配置文件里面生成来。
+        for i in models.SaltGroup.objects.filter(id__in=create_group_id_list):
+                if  i.whether_create:
+                    self.group_info.pop(i.group_name)
+
+        with open(self.group_file,'a') as f:
+            for i,k in self.group_info.items():
+                # 判断之前是否有同样到组名
+                result_code = os.popen("grep ^'    %s:' %s >/dev/null ;echo $?"%(i,self.group_file)).read().split('\n')[0]
+                if  int(result_code):
+                    f.seek(0,2)
+                    f.write("    %s: "%(i))
+                    for v in k:
+                        f.seek(0,2)
+                        if k.index(v) == 0:  # if the v is first value in the list ,it should add L@ befor itself
+                            f.write("L@%s,"%(v))
+                        elif k.index(v) == len(k)-1: # if the v is last one in the list,it should add ' end of line
+                            f.write("%s\n"%v)
+                        else:
+                            f.write("%s,"%(v))
+        return True
+
+    def del_groups(self):
+        '''
+        删除组和组成员信息的
+        :return:
+        '''
+        import datetime
+        new_file_name = self.group_file+datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+        onef=open(new_file_name,'a+')
+        with open(self.group_file,'a+') as f:
+            for line in f:
+                for group_name in self.group_info:
+                    if not line.strip().startswith(group_name):
+                        onef.write(line)
+        onef.close()
+        os.system("\mv %s  %s"%(new_file_name,self.group_file))
+
+        return True
+
+
+
+    def changge_groups(self):
+        '''
+        改变组和组成员信息的
+        :return:
+        '''
+        pass
+
+
+
+

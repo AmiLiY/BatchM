@@ -8,7 +8,7 @@ from Batch import models
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import  ObjectDoesNotExist
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
-from django.db.models import Count,Sum
+from django.db.models import Count,Sum,Q
 from BatchM import settings
 from Batch.plugs import record_log
 import json
@@ -407,9 +407,6 @@ def get_ram_sum_size(asset_id):
         disk = disk+slot.capacity
     return ram,disk
 
-
-
-
 @login_required
 def asset_list(request):
     '''
@@ -432,16 +429,19 @@ def show_asset_in_table(request):
     :return:
     '''
     if request.method == "GET":
-        print(request.GET)
+        #print(request.GET)
         limit = request.GET.get('limit')   # how many items per page
         offset = request.GET.get('offset')  # how many items in total in the DB
         search = request.GET.get('search')
         sort_column = request.GET.get('sort')   # which column need to sort
         order = request.GET.get('order')      # ascending or descending
         if search:    #    判断是否有搜索字
-            all_records = models.Asset.objects.filter(id=search,asset_type=search,business_unit=search,idc=search)
+            all_records = models.Asset.objects.filter(Q(id__contains=search)|Q(asset_type__contains=search)
+                                                      |Q(business_unit__name__contains=search)
+                                                      |Q(idc__name__contains=search)|Q(management_ip__contains=search)
+                                                      |Q(manufactory__manufactory__contains=search))
         else:
-            all_records = models.Asset.objects.all()   # must be wirte the line code here
+            all_records = models.Asset.objects.all()
 
         if sort_column:   # 判断是否有排序需求
             sort_column = sort_column.replace('asset_', '')
@@ -486,8 +486,10 @@ def show_asset_in_table(request):
                     sort_column = '-%s'%sort_column
                 all_records = models.Asset.objects.all().order_by(sort_column)
 
-
-        all_records_count=all_records.count()
+        if all_records:
+            all_records_count=all_records.count()    # 统计多少条数据
+        else:
+            return HttpResponse(json.dumps("Not Found anything what you want"))
 
         if not offset:
             offset = 0
@@ -524,7 +526,7 @@ def show_asset_in_table(request):
                 "update_date": asset.update_date.strftime("%Y-%m-%d") if  asset.update_date else "",
             })
 
-        print('response_data',response_data)
+        #print('response_data',response_data)
         return  HttpResponse(json.dumps(response_data))    # 需要json处理下数据格式
 
 @login_required
@@ -729,100 +731,6 @@ def get_status_data(request):
         print(responce_data)
         return HttpResponse(json.dumps(responce_data))
     return HttpResponse('permission denied')
-
-
-
-'''
-just for geting a token from saltapi befor execute commands from client.it can speed execute
-'''
-print("\033[32mLet me start to get token from saltapi,it may be take some minutes!!\nplease wait for me.....\033[0m")
-# if settings.SaltApiOfHost and settings.SaltApiUsername and settings.SaltApiPasswd:
-#     ip = settings.SaltApiOfHost
-#     username = settings.SaltApiUsername
-#     passwd = settings.SaltApiPasswd
-#     saltapi = core.run_salt_api(,username=username,passwd=passwd,ip=ip)
-# else:
-#     assert "Your are not set saltapi's username,password,hostip in settings"
-
-print("\033[32m ok ,i already get this token from saltapi,let's continue..\033[0m")
-
-@login_required()
-def run_shell(request,host_id):
-    '''
-    调用salt client api 来执行来自于前端汇报过来的saltstack命令，只是单台服务器的执行
-    :param request:
-    ;:param host_id: 服务器资产id
-    :return:
-    '''
-    # if the requestion's method is post ,it's means client need to execute some cmds on this host_id
-
-    if request.method == "POST":
-        print(request.POST)
-        host_id = request.POST.get('host_id').strip()
-        minion_name = request.POST.get('minion_name').strip()
-        func = request.POST.get('func').strip()
-        args = request.POST.get('args').strip()
-
-        rh = record_log.handler_log(request.user.get_username(),
-                                    logfile_path="%s/../log/saltstack_access.log" % os.path.dirname(__file__))
-        rh.info("mimion: %s ,func: %s,args: %s" % (minion_name, func, args if args else None))
-        if args:  #judge wether have args on post request.if have args , must send to salt api with need to execute function
-            result = saltapi.api_exec(target=minion_name,func=func,arg=args,arg_num=1)
-        else:
-            result = saltapi.api_exec(target=minion_name,func=func)
-
-        return HttpResponse(json.dumps(result))
-    # if not post,client wants to get web page from here....
-    else:
-        host_info = models.Server.objects.filter(asset__id=host_id)
-        try:
-            salt_minion_id = host_info[0].salt_minion_id
-        except IndexError:
-            return HttpResponse("<h1>404</h1>,Not Found the minion's anything on the databases,\
-                            May be these infos are outdated or losed!! please communicate with \
-                            the website administrator! ")
-        return render(request,'asset/run_cmd.html',{'salt_minion_id':salt_minion_id,'host_id':host_id})
-
-
-
-@csrf_exempt
-@login_required()
-def groupshell(request,host_id):
-    '''
-    execute saltstack group's command!
-    :param request:
-    :param host_id:  saltstack组ID
-    :return:
-    '''
-
-    if int(host_id) != 000: #展示saltstack主机组首页到url结尾就是000结尾，如果不是000结尾到那就说明需要进入saltstack主机组到其他页面
-        if request.method == "POST":
-            print(request.POST)
-            group_name = request.POST.get('group_name')
-            func = request.POST.get('func')
-            args = request.POST.get('args')
-            rh = record_log.handler_log(request.user.get_username(),
-                                        logfile_path="%s/../log/saltstack_access.log" % os.path.dirname(__file__))
-            rh.info("mimion: %s ,func: %s,args: %s" % (group_name, func, args if args else None))
-
-            if args:  #judge wether have args on post request.if have args , must send to salt api with need to execute function
-                result = saltapi.api_exec(target=group_name,expr_form='nodegroup',func=func,arg=args,arg_num=1)
-            else:
-                result = saltapi.api_exec(target=group_name,expr_form="nodegroup",func=func)
-            print(result)
-            return HttpResponse(json.dumps(result))
-        else:
-            try:
-                group_number = models.SaltGroup.objects.filter(id=host_id)
-                group = group_number[0]
-                return render(request,'asset/saltstack_group_detail.html',{'group_number':group_number,'group':group})
-            except IndexError:
-                return HttpResponse("<h1>404</h1>,Not Found the Group's anything on the databases,\
-                                        May be these infos are outdated or losed!! please communicate with \
-                                        the website administrator! ")
-
-    salt_group = models.SaltGroup.objects.all()
-    return render(request,'asset/saltstack_group.html',{"salt_group":salt_group,})
 
 
 
