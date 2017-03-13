@@ -162,3 +162,5 @@ SaltApiPasswd='123456'
 SaltApiAuthMethod='pam'
 # 设置saltstack的组配置文件路径
 SaltGroupConfigFile="/etc/salt/master.d/group.conf"
+# 设置启动novnc的命令位置
+novnc_cmd_path='/root/devops/noVNC/utils/launch.sh'
