@@ -373,7 +373,7 @@ def docker_host_detail_show(request,hostip):
 
 '''
 just for geting a token from saltapi befor execute commands from client.it can speed execute
-'''
+
 print("\033[32mLet me start to get token from saltapi,it may be take some minutes!!\nplease wait for me.....\033[0m")
 if settings.SaltApiOfHost and settings.SaltApiUsername and settings.SaltApiPasswd:
     ip = settings.SaltApiOfHost
@@ -384,7 +384,7 @@ else:
     assert "Your are not set saltapi's username,password,hostip in settings"
 
 print("\033[32m ok ,i already get this token from saltapi,let's continue..\033[0m")
-
+'''
 @login_required()
 def run_shell(request,host_id):
     '''

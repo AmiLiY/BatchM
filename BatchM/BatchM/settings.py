@@ -83,6 +83,15 @@ DATABASES = {
     }
 }
 
+# 定义一个缓存,用来存放键值对
+CACHES = {
+    'default':{
+        'BACKEND':'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+        'TIMEOUT': 3600,
+    }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -164,3 +173,9 @@ SaltApiAuthMethod='pam'
 SaltGroupConfigFile="/etc/salt/master.d/group.conf"
 # 设置启动novnc的命令位置
 novnc_cmd_path='/root/devops/noVNC/utils/launch.sh'
+# 设置NOVNC监听的起始端口
+novnc_begin_port = 6080
+novnc_end_port = 6100
+
+# 设置 启动NOvnc脚本输出内容存放的目录
+novnc_outputcontent_path = '/tmp/NoVnc'
