@@ -295,14 +295,15 @@ class run_salt_api(object):
     调用saltapi来调用salt完成相关操作
     '''
 
-    def __init__(self,username,passwd,auth_method='pam',ip="127.0.0.1",port=8010):
+    def __init__(self,username,passwd,auth_method='pam',ip="127.0.0.1",port=8080):
         self.ip = ip
         self.port = port
         self.username = username
         self.passwd = passwd
         self.auth_method = auth_method
+        self.logger = record_log.handler_log('root', settings.logfile_path)
         self.token = self.api_login()
-        self.logger = record_log('root', '%s/../log/access.log' % os.path.dirname(__file__))
+
 
     def api_login(self):
         '''
@@ -327,7 +328,7 @@ class run_salt_api(object):
         token = token['return'][0]['token']
         info.close()
         ch.close()
-        self.logger.info('already get this token')
+        self.logger.info('already got this token')
         return token
 
     def api_exec(self,target,func,arg='',expr_form=None,arg_num=0):
@@ -342,7 +343,7 @@ class run_salt_api(object):
         import time
 
         url = "http://%s:%d" %(self.ip,self.port)
-        ch = pycurl.Curl()
+        ch = pycurl.Curl()    # ch == channel
         info = BytesIO()
         ch.setopt(ch.URL,url)
         ch.setopt(ch.WRITEFUNCTION,info.write)
@@ -368,7 +369,7 @@ class run_salt_api(object):
         html = info.getvalue().decode()
         info.close()
         ch.close()
-        self.logger.info('already execute this command : [%s %s] ,targets: [%s] ,expr_form:[%s]'%(func,arg,target,expr_form))
+        self.logger.info('already executed this command : [%s %s] ,targets: [%s] ,expr_form:[%s]'%(func,arg,target,expr_form))
         return html
 
 

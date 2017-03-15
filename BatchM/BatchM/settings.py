@@ -161,8 +161,10 @@ pools=20
 DockerVersion='auto'
 
 # 设置salt-api的主机IP
-SaltApiOfHost='172.16.22.129'
-#SaltApiOfHost='192.168.141.129'
+#SaltApiOfHost='172.16.22.129'
+SaltApiOfHost='127.0.0.1'
+# 设置salt-api的主机监听的端口
+SaltApiPort = 8080
 # 设置登录salt-api的用户名
 SaltApiUsername='saltapi'
 # 设置登录salt-api的密码
@@ -176,6 +178,7 @@ novnc_cmd_path='/root/devops/noVNC/utils/launch.sh'
 # 设置NOVNC监听的起始端口
 novnc_begin_port = 6080
 novnc_end_port = 6100
-
 # 设置 启动NOvnc脚本输出内容存放的目录
 novnc_outputcontent_path = '/tmp/NoVnc'
+# 日志路径
+logfile_path='/var/log/BatchM.log'

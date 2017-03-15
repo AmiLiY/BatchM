@@ -3,9 +3,9 @@
     saltstack 单机管理
 {% endblock %}
 {% block page_content %}
-    saltstack 单机管理
-     <table id="new_asset_wait_approvel" class="display table  table-hover" data-toggle="table"
-                    data-url="{% url '' %}"
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+     <table id="saltstack_minions_show" class="display table  table-hover" data-toggle="table"
+                    data-url="{% url 'saltstack_minions_show' %}"
                     data-method="get"
                     data-pagination="true"
                     data-side-pagination="server"
@@ -19,23 +19,19 @@
                   <thead >
                         <tr>
                         <th data-field="state" data-checkbox="true" ></th>
-                        <th data-field="new_asset_id" class="new_asset_id" data-id-field="ture" data-sortable="true">记录ID</th>
-                        <th data-field="new_asset_sn" data-align="left" data-sortable="true" data-class="asset_sn">资产编号</th>
-                        <th data-field="new_asset_manufactory" data-sortable="true">厂商</th>
-                        <th data-field="new_asset_asset_type" data-sortable="true">类型</th>
-                        <th data-field="new_asset_os_release" data-sortable="true">操作系统</th>
-                        <th data-field="new_asset_cpu_model" data-sortable="true">CPU型号</th>
-                        <th data-field="new_asset_cpu_count" data-sortable="true">CPU个数</th>
-                        <th data-field="new_asset_cpu_core_count" data-sortable="true">CPU总核数</th>
-                        <th data-field="new_asset_ram_size" data-sortable="true">内存大小（MB）</th>
-                        <th data-field="new_asset_salt_minion_id" data-sortable="true">saltstack_minion_id</th>
-                        <th data-field="new_asset_data"  data-align="center">新资产汇报的数据</th>
-                        <th data-field="new_asset_date" data-sortable="true">汇报日期</th>
+                        <th data-field="asset_id" class="new_asset_id" data-id-field="ture" data-sortable="true">资产ID</th>
+                        <th data-field="model" data-sortable="true">服务器型号</th>
+                        <th data-field="os_type" data-sortable="true">系统类型</th>
+                        <th data-field="os_release" data-sortable="true">操作系统</th>
+                        <th data-field="salt_minion_id" data-sortable="true">saltstack_minion_id</th>
+                        <th data-field="update_date" data-sortable="true">数据更新日期</th>
                         </tr>
                   </thead>
         </table>
 {% endblock %}
 {% block encoding_js %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
     <script>
         $('#saltstack_manage').toggleClass('active').siblings().removeClass('active');
         $('#sub-item-4').toggleClass('in').removeAttr('style');

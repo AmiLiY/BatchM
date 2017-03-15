@@ -496,13 +496,12 @@ def show_asset_in_table(request):
         if not limit:
             limit = 20    # 默认是每页20行的内容，与前端默认行数一致
         pageinator = Paginator(all_records, limit)   # 开始做分页
-
         page = int(int(offset) / int(limit) + 1)
         response_data = {'total':all_records_count,'rows':[]}   # 必须带有rows和total这2个key，total表示总页数，rows表示每行的内容
 
-
         for asset in pageinator.page(page):
             ram_disk = get_ram_sum_size(asset.id)    # 获取磁盘和内存的大小
+            print(asset,dir(asset))
             # 下面这些asset_开头的key，都是我们在前端定义好了的，前后端必须一致，前端才能接受到数据并且请求.
             response_data['rows'].append({
                 "asset_id": '<a href="/asset/asset_list/%d" target="_blank">%d</a>' %(asset.id,asset.id),
@@ -737,71 +736,6 @@ def get_status_data(request):
 
 
 
-@login_required()
-def distributecode(request,project_name):
-    '''
-    代码分发，这个方法主要是用来处理用户上传的代码包以及scp代码包到目标服务器上。成功scp代码包到目标服务器后，
-    就会跳转到另一个输入命令的页面
-    :param request:
-    :return:
-    '''
-    if request.method == "POST":
-
-        print(request.POST,request.FILES)
-
-        code_pkg = request.FILES.get('code_pkg')
-        #install_script = request.FILES.get('install_script')    this line code was dropped
-        remote_ip = request.POST.get('remote_ip')
-        remote_code_pkg = "%s/%s"%(settings.CodePkgPath,code_pkg)
-        remote_inst_script = "%s/%s_%s.sh"%(settings.InstallScriptPath,settings.InstallScriptPrefix,project_name)
-        pkg_file_path = "uploads/%s" %(code_pkg)
-        #install_script_path = "uploads/%s" %(install_script)
-
-        recv_size = 0
-        with open(pkg_file_path, 'wb') as new_file:
-            for chunk in code_pkg.chunks():
-                new_file.write(chunk)
-                recv_size += len(chunk)
-                cache.set(code_pkg.name, recv_size)
-        print(new_file,'has been wirte down')
-
-        # these lines were dropped  ，this block code as handle upload file
-        # with open(install_script_path,'wb') as new_script:
-        #     for chunk in install_script.chunks():
-        #         new_script.write(chunk)
-        # print(new_script, 'has been wirte down')
-
-        timestamp = time.time()  # timestamp as a id in cache, and send this stamp to web pages,
-        auth_method = request.POST.get('auth_method')
-        cache.set('%s_auth_method' % (timestamp), auth_method, 150)
-        if auth_method == 'password':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            cache.set('%s_username' % (timestamp), username, 150)
-            cache.set('%s_password' % (timestamp), password, 150)
-            sput = core.sftp_paramiko(request,auth_method=auth_method,host=remote_ip,username=username,password=password)
-        else:
-            sput = core.sftp_paramiko(request,auth_method=auth_method, host=remote_ip)
-
-        abs_pkg_file_path = "%s/../%s" %(os.path.dirname(__file__),pkg_file_path)
-        # abs_install_script_path = "%s/../%s" %(os.path.dirname(__file__),install_script_path)  this line was dropped
-        result = sput.put_file(abs_pkg_file_path,remote_code_pkg)
-        #sput.put_file(abs_install_script_path,remote_inst_script)  this line was dropped
-
-        # remote all of you upload file on localhost!!
-        os.system('rm -f %s'%(abs_pkg_file_path))
-        # 记录日志
-        rh = record_log.handler_log(request.user.get_username(),
-                                    logfile_path="%s/../log/distributecode.log" % os.path.dirname(__file__))
-        rh.info("host: %s,script_name: %s,code_pkg: %s,auth_method: %s ,"
-                % (remote_ip,remote_inst_script,code_pkg,auth_method))
-        if result is True:
-            return render(request,'asset/remote_run_cmd.html',{'script_name':remote_inst_script,'timestamp_cache':timestamp,
-                                                                "code_pkg_name":remote_code_pkg,"remote_ip":remote_ip})
-        else:
-            return  HttpResponse("<h1>Authentication failed.</h1> please check username or password or auth method!!!")
-    else:
-        return render(request, 'asset/distribute_code.html',{'project_name':project_name})
 
 @login_required()
 def remote_run_cmd_by_distributecode(request):

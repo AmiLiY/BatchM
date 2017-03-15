@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from Batch.plugs import record_log
-from Batch import  formself,core
+from Batch import  formself,core,models
 from BatchM import  settings
 from datetime import timedelta,timezone,datetime
 from Batch import formself
@@ -63,6 +63,50 @@ def saltstack_index(request):
     :return:
     '''
     return render(request,'saltstack/saltstack.html')
+
+def saltstack_minions_show(request):
+    '''
+
+    :param request:
+    :return:
+    '''
+    if request.method == 'GET':
+        limit = request.GET.get('limit')  # how many items per page
+        offset = request.GET.get('offset')  # how many items in total in the DB
+        search = request.GET.get('search')
+        sort_column = request.GET.get('sort')  # which column need to sort
+        order = request.GET.get('order')  # ascending or descending
+        if search:  # 判断是否有搜索字
+            all_saltminions = models.Server.objects.filter( Q(os_type__contains=search)
+                | Q(business_unit__name__contains=search)| Q(idc__name__contains=search) |
+                Q(os_release__contains=search)| Q(salt_minion_id__contains=search)|
+                                                            Q(asset_id=search))
+        else:
+            all_saltminions = models.Server.objects.all()
+
+        if all_saltminions:
+            all_saltminions_count=all_saltminions.count()    # 统计多少条数据
+        else:
+            return HttpResponse(json.dumps("Not Found anything what you want"))
+
+        if not offset:
+            offset = 0
+        if not limit:
+            limit = 20    # 默认是每页20行的内容，与前端默认行数一致
+        pageinator = Paginator(all_saltminions, limit)   # 开始做分页
+        print('all_saltminions',all_saltminions)
+        page = int(int(offset) / int(limit) + 1)
+        response_data = {'total':all_saltminions_count,'rows':[]}   # 必须带有rows和total这2个key，total表示总页数，rows表示每行的内容
+        for minion in pageinator.page(page):
+            response_data['rows'].append({
+                "asset_id": minion.asset_id,
+                "model":minion.model,
+                "os_type":minion.os_type,
+                "os_release":minion.os_release,
+                "salt_minion_id":minion.salt_minion_id,
+                "update_date":minion.update_date
+            })
+        return HttpResponse(json.dumps(response_data))
 
 
 @login_required()
@@ -373,18 +417,19 @@ def docker_host_detail_show(request,hostip):
 
 '''
 just for geting a token from saltapi befor execute commands from client.it can speed execute
-
-print("\033[32mLet me start to get token from saltapi,it may be take some minutes!!\nplease wait for me.....\033[0m")
+'''
+print("\033[32mLet me Begin to get a token from saltapi,it maybe take some minutes!!\nplease wait for me.....\033[0m")
 if settings.SaltApiOfHost and settings.SaltApiUsername and settings.SaltApiPasswd:
     ip = settings.SaltApiOfHost
     username = settings.SaltApiUsername
     passwd = settings.SaltApiPasswd
-    saltapi = core.run_salt_api(username=username,passwd=passwd,ip=ip)
+    port = settings.SaltApiPort
+    saltapi = core.run_salt_api(username=username,passwd=passwd,ip=ip,port=port)
 else:
     assert "Your are not set saltapi's username,password,hostip in settings"
 
-print("\033[32m ok ,i already get this token from saltapi,let's continue..\033[0m")
-'''
+print("\033[32m ok ,i already got this token from saltapi,let's continue..\033[0m")
+
 @login_required()
 def run_shell(request,host_id):
     '''
