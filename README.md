@@ -1,12 +1,11 @@
 # BatchM
 #### 平台简介：
 1. 该平台目前准备开发的功能是saltstack-web管理（包含WEB-vnc的功能），docker-web管理，服务器信息录入，变更工单申请，外挂一个ELK的连接。
-2. 目前已开发完成的功能docker-web管理，服务器信息录入，变更工单申请，saltstack-web管理（包含WEB-vnc的功能）。
+2. 目前已开发完成的功能docker-web管理，服务器信息录入，变更工单申请，正在开发saltstack-web管理（包含WEB-vnc的功能）。
 3. 该平台基于python3.5开发而来，django版本为1.10，平台依赖于第三方模块如pycurl,paramiko,docker,salt-api等模块.
-4. 客户端采集信息的包目前是python2.6,python2.7版本,依赖于python的psutil模块，也依赖于lsb_release系统命令，同时需要saltstack-minion.在客户端执行的时候，首先会执行install_rpm.py这个文件
-主要的功能是先进行命令或者模块的安装。且执行安装的系统命令都会在执行安装动作的时候打印出来，安装命令放在first_install 这个文件里面。
+4. 客户端采集信息的包目前是python2.6,python2.7版本,依赖于python的psutil模块，也依赖于lsb_release系统命令，同时需要saltstack-minion.在客户端执行的时候，首先会执行install_rpm.py这个文件，主要的功能是先进行命令或者模块的安装。且执行安装的系统命令都会在执行安装动作的时候打印出来，安装命令放在first_install 这个文件里面。
 
-客户端执行的命令如下:  
+###### 客户端执行的命令如下:  
 ```
 [root@lvsmaster191 ~]# python SansaClient_py2/bin/NedStark.py
 
@@ -16,9 +15,9 @@
 
 [root@lvsmaster191 ~]# python SansaClient_py2/bin/NedStark.py CDSS
 ```
- 请注意：我们在执行的时候，一定要是在这个客户端包的最外面执行，不然会提示路径出错。
+请注意：我们在执行的时候，一定要是在这个客户端包的最外面执行，不然会提示路径出错。
 
- 那么客户端需要配置下汇报数据的服务器地址，配置文件如下:  
+那么客户端需要配置下汇报数据的服务器地址，配置文件如下:  
  ```
  [root@lvsmaster191 ~]# vim SansaClient_py2/conf/settings.py
  Params = {
